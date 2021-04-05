@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+1) Fork this repo.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+2) Clone this repo on your computer.
 
-## Available Scripts
+3) Run the following command in your terminal.
 
-In the project directory, you can run:
+### `git remote add base https://github.com/aj235711/jamia_kart.git`
 
-### `npm start`
+4) Run the following command in your terminal.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `npm install`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+5) Create your separate branch from master by running the following command (let's say that you choose to create a branch called 'xyz').
 
-### `npm test`
+### `git checkout -b xyz`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6) Do the required changes on your branch.
 
-### `npm run build`
+7) When you have made all the changes, run the following commands in your terminal.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `git add .`
+### `git commit -m"<your commit message>"`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+8) Now checkout master by using the following command.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `git checkout master`
 
-### `npm run eject`
+9) Now pull the changes from the base using the following command.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `git pull base origin`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+10) Now again head back to your branch using the following command.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `git checkout xyz`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+11) Now rebase with master using the following command.
 
-## Learn More
+### `git rebase master`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If any merge conflicts occur during this step, contact me.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+12) Now push your changes to your origin by using the following command.
 
-### Code Splitting
+### `git push origin xyz`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+13) Now you are ready to create your pull request. Go to github.com and you will see a yello coloured prompt in the Code section which will tell you about your recent pushes. Click on the link and add a relevant message to create your pull request. The pull request will be created from your branch in the origin to the master branch in base.
 
-### Analyzing the Bundle Size
+14) Also, after your first push, if you work on the same branch and commit and rebase with master again, you might run into the refs head behind error while pushing your changes. In such case, just force push your changes using the following command.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### `git push origin +xyz`
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+15) That's it. Happy Coding...
