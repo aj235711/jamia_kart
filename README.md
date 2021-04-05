@@ -19,15 +19,6 @@
 6) Do the required changes on your branch.
 
 
-
-
-
-
-
-
-
-
-
 7) When you have made all the changes, run the following commands in your terminal.
 ### `git add .`
 ### `git commit -m"<your commit message>"`
