@@ -19,7 +19,7 @@ const RegisterForm = () => {
       className="d-flex align-items-center justify-content-center bg-light"
       style={{ height: "100vh" }}
     >
-      <Col md="3" className="border border-secondary rounded p-4 bg-white">
+      <Col md="3" className="border border-secondary rounded p-4 bg-white m-3">
         <Col md="12">
           <AvForm>
             <AvField name="name" label="Name" required />
