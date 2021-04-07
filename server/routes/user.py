@@ -13,7 +13,7 @@ route=APIRouter(
 
 get_db = database.get_db
 
-@route.post("/user")
+@route.post("/")
 async def create_users(request : schema.User, db : Session = Depends(get_db)):
     """
     creates user
@@ -24,7 +24,7 @@ async def create_users(request : schema.User, db : Session = Depends(get_db)):
     db.refresh(new_user)
     return {"message":"new user created"}
 
-@route.get("/user",response_model=List[schema.User_Show])
+@route.get("/",response_model=List[schema.User_Show])
 async def get_all_users(db : Session = Depends(get_db)):
     """
     get all user
@@ -32,7 +32,7 @@ async def get_all_users(db : Session = Depends(get_db)):
     users = db.query(models.User).all()
     return users
 
-@route.get("/user/{email}",response_model=schema.User_Show)
+@route.get("/{email}",response_model=schema.User_Show)
 async def get_user(email:str,db : Session = Depends(get_db)):
     """
     get single user
