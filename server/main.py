@@ -6,6 +6,7 @@ import storage.schema as schema
 import storage.database as database
 import storage.models as models
 import routes.user as user
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
