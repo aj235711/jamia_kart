@@ -26,7 +26,7 @@ async def create_users(request : schema.User, db : Session = Depends(get_db)):
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    return {"success":True,"errMsg": "User already exist"}
+    return {"success":True,"Msg": "user created"}
 
 @route.get("/",response_model=List[schema.User_Show])
 async def get_all_users(db : Session = Depends(get_db)):
