@@ -5,3 +5,4 @@ PyMySQL
 passlib
 bcrypt
 cryptography
+python-jose
