@@ -1,10 +1,11 @@
+from sqlalchemy.sql.functions import mode
 from fastapi import APIRouter, Depends, HTTPException, status, Response
 from sqlalchemy.orm import Session
 from typing import List
 import storage.schema as schema
 import storage.database as database
 import storage.models as models
-import hashing
+import hashing as hashing
 
 route=APIRouter(
     prefix="/user",
@@ -18,11 +19,14 @@ async def create_users(request : schema.User, db : Session = Depends(get_db)):
     """
     creates user
     """
+    user = db.query(models.User).filter(models.User.email==request.email)
+    if user.first():
+        return {"success":False,"errMsg": "User already exist"}
     new_user = models.User(email=request.email,name=request.name,password=hashing.Hash.bcrypt(request.password),category=request.category)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    return {"message":"new user created"}
+    return {"success":True,"errMsg": "User already exist"}
 
 @route.get("/",response_model=List[schema.User_Show])
 async def get_all_users(db : Session = Depends(get_db)):

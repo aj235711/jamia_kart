@@ -4,3 +4,4 @@ SQLAlchemy
 PyMySQL
 passlib
 bcrypt
+cryptography
