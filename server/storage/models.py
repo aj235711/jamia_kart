@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 
 from storage.database import Base
 
+#mysql
 # class User(Base):
 #     __tablename__="user"
 #     email=Column(String(length=100), primary_key=True,unique=True, )
