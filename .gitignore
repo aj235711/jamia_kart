@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 .vscode
-__pycache__
 backend
+__pycache__
 base.db
 # dependencies
 /node_modules
