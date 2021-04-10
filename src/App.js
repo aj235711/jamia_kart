@@ -6,7 +6,6 @@ import RegisterForm from './Components/RegisterForm';
 
 
 const App = () => {
-  axios.get('https://fakestoreapi.com/products/1').then(res => console.log(res));
   return (
     <>
       {/* <RegisterForm /><LoginForm /> */}
