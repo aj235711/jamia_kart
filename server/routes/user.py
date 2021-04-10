@@ -68,11 +68,11 @@ async def delete_user(email:str, pswd:str, db: Session=Depends(get_db),current_u
     user=db.query(models.User).filter(models.User.email == email)
     if not user.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-            detail="blog not found")
+            detail="user not found")
     elif not hashing.Hash.verify(user.first().password,pswd) or user.first().email != current_user.email:
         raise HTTPException(status_code=403,
             detail="unauthenticated")
     user.delete(synchronize_session=False)
     db.commit()
-    # return Response(status_code=status.HTTP_204_NO_CONTENT)
-    return {"access_token": "", "token_type": "bearer"}
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+    # return {"access_token": "", "token_type": "bearer"}
