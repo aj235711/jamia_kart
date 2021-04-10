@@ -6,14 +6,16 @@ const LeftBox = () => {
   return (
     <div
       style={{
+        position: "fixed",
+        overflowY: "auto",
         backgroundColor: "white",
         borderRight: "1px solid rgba(0,0,0,0.3)",
         // display: "flex",
         // justifyContent: "center",
-        height: "100vh",
+        height: "80vh",
         width: "20%",
         minWidth: "250px",
-        marginTop: "15px",
+        marginTop: "18vh",
         marginRight: "2px",
         padding: "8px"
       }}
