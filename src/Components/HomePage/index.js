@@ -1,18 +1,17 @@
 import React from "react";
-import { Col, Row } from "reactstrap";
 import NavBar from './NavBar.js';
 import Nav2 from './Nav2.js';
-import LeftBox from './LeftBox.js';
-import VerticalLine from './VerticalLine.js';
+import Main from './Main.js';
 
 
 const HomePage = () => {
     return (
         <div>
-            <NavBar />
-            <Nav2 />
-            <LeftBox />
-            {/* <VerticalLine /> */}
+            <div style={{position:"fixed", overflow:"hidden", top:"0", width:"100%", zIndex:"1000"}}>
+                <NavBar />
+                <Nav2 />
+            </div>
+            <Main />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import HomePage from "./HomePage"
+import HomePage from "./Components/HomePage"
 import LoginForm from './Components/LoginForm';
 import RegisterForm from './Components/RegisterForm';
 

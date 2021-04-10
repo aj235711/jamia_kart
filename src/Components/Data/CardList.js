@@ -5,7 +5,7 @@ import { Label } from 'reactstrap';
 const CardList = () => {
 
     return (
-        <div className='d-flex  flex-wrap' style={{overflowY:'scroll', border:'1px solid black', height : '600px',margin:'46px'}}>
+        <div className='d-flex  flex-wrap' style={{ marginTop:"18vh"}}>
 
             {product.map((p, i) => {
 
