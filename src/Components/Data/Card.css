@@ -9,9 +9,9 @@
   text-align: center;
   background-color: #ffffff80;
   color: rgb(0, 0, 0);
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  box-shadow: 5px 5px 15px 0px #313131;
+  /* border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px; */
+  box-shadow: 5px 5px 15px 0px #31313177;
   transition: all 0.3s ease-in-out;
 }
 

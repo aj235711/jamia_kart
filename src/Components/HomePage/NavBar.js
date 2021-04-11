@@ -206,12 +206,12 @@ export default function PrimarySearchAppBar() {
               </ListItem>
               </div>
             <IconButton aria-label="show 4 new" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={4} color="primary">
                   <ShoppingCartIcon /> 
               </Badge>
             </IconButton>
             <IconButton aria-label="show 17 new" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={17} color="primary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>

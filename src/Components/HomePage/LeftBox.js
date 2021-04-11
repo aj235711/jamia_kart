@@ -1,10 +1,15 @@
 import React from "react";
-import { FormControl, FormControlLabel, InputLabel, Chip } from '@material-ui/core';
+import {
+  FormControl,
+  FormControlLabel,
+  InputLabel,
+  Chip,
+} from "@material-ui/core";
 import Switch from "@material-ui/core/Switch";
-import { Select } from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
+import { Select } from "@material-ui/core";
+import MenuItem from "@material-ui/core/MenuItem";
 
-  const LeftBox = () => {
+const LeftBox = () => {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -14,11 +19,11 @@ import MenuItem from '@material-ui/core/MenuItem';
     setState({ ...state, [event.target.name]: event.target.checked });
   };
   const handleDelete = () => {
-    console.info('You clicked the delete icon.');
+    console.info("You clicked the delete icon.");
   };
 
   const handleClick = () => {
-    console.info('You clicked the Chip.');
+    console.info("You clicked the Chip.");
   };
 
   return (
@@ -28,73 +33,81 @@ import MenuItem from '@material-ui/core/MenuItem';
         overflowY: "auto",
         backgroundColor: "white",
         borderRight: "1px solid rgba(0,0,0,0.3)",
-        // display: "flex",
-        // justifyContent: "center",
         height: "80vh",
         width: "20%",
         minWidth: "250px",
         marginTop: "18vh",
         marginRight: "2px",
-        padding: "8px"
+        padding: "8px",
       }}
     >
-      <div style={{display:"flex", flexDirection:"column"}}>
-      <FormControlLabel style={{margin:"20px"}}
-        control={
-          <Switch
-            checked={state.checkedB}
-            onChange={handleChange}
-            name="checkedB"
-            color="secondary"
-            
-          />
-        }
-        label="Available products only"
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <FormControlLabel
+          style={{ margin: "20px" }}
+          control={
+            <Switch
+              checked={state.checkedB}
+              onChange={handleChange}
+              name="checkedB"
+              style={{ color: "black" }}
+              color="#000000"
+            />
+          }
+          label="Available products only"
         />
-        <FormControl style={{margin:"20px", marginTop:"30px", marginBottom:"30px"}}>
+        <FormControl
+          style={{ margin: "20px", marginTop: "30px", marginBottom: "30px" }}
+        >
           <InputLabel>Sort by</InputLabel>
 
           <Select>
-          <MenuItem value="">
-            <em>Featured (default)</em>
-          </MenuItem>
-          <MenuItem value={10}>Price : Low to High</MenuItem>
-          <MenuItem value={20}>Price : High to Low</MenuItem>
-          <MenuItem value={30}>Avg. Customer review</MenuItem>
+            <MenuItem value="">
+              <em>Featured (default)</em>
+            </MenuItem>
+            <MenuItem value={10}>Price : Low to High</MenuItem>
+            <MenuItem value={20}>Price : High to Low</MenuItem>
+            <MenuItem value={30}>Avg. Customer review</MenuItem>
           </Select>
         </FormControl>
-        <h2 style={{margin:"30px", marginBottom:"0px", textAlign:"center"}}>Discount</h2>
+        <h2
+          style={{ margin: "30px", marginBottom: "0px", textAlign: "center" }}
+        >
+          Discount
+        </h2>
+        <div className="d-flex justify-content center flex-wrap">
         <Chip
           label="10% off or more"
-          style={{margin:"50px",marginTop:"4px",marginBottom:"4px"}}
           onClick={handleClick}
           onDelete={handleDelete}
-          color="secondary"
+          className="d-flex justify-content-between mx-3 my-2"
+          style={{ border: "1px solid #ee8022bf", color: "#ee8022ff", backgroundColor: "#ffffff", width: '80%', fontSize: '1.1rem' }}
         />
         <Chip
           label="25% off or more"
-          style={{margin:"50px",marginTop:"4px",marginBottom:"4px"}}
           onClick={handleClick}
           onDelete={handleDelete}
-          color="secondary"
+          className="d-flex justify-content-between mx-3 my-2"
+          style={{ border: "1px solid #ee8022bf", color: "#ee8022ff", backgroundColor: "#ffffff", width: '80%', fontSize: '1.1rem' }}
         />
         <Chip
           label="35% off or more"
-          style={{margin:"50px",marginTop:"4px",marginBottom:"4px"}}
+          style={{ margin: "50px", marginTop: "4px", marginBottom: "4px", width: '80%' }}
           onClick={handleClick}
           onDelete={handleDelete}
-          color="secondary"
+          className="d-flex justify-content-between mx-3 my-2"
+          style={{ border: "1px solid #ee8022bf", color: "#ee8022ff", backgroundColor: "#ffffff", width: '80%', fontSize: '1.1rem' }}
         />
         <Chip
           label="50% off or more"
-          style={{margin:"50px",marginTop:"4px",marginBottom:"4px"}}
+          variant="outlined"
           onClick={handleClick}
           onDelete={handleDelete}
-          color="secondary"
+          className="d-flex justify-content-between mx-3 my-2"
+          style={{ border: "1px solid #ee8022bf", color: "#ee8022ff", backgroundColor: "#ffffff", width: '80%', fontSize: '1.1rem' }}
         />
-        
+        </div>
       </div>
-      </div>
+    </div>
   );
 };
 
