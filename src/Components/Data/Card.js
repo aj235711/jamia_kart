@@ -21,7 +21,7 @@ const Card = ({ id, name, price, imgTag, category }) => {
                 <p>${price}</p>
                 </div>
             </div>
-            <Button variant="contained" style={{backgroundColor:"#F98B88"}}
+            <Button variant="outlined" style={{border:"1px solid #ee8822aa", color: "#ee8822ff"}}
                 // color="secondary"
             >
             Show product
