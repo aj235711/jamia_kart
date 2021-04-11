@@ -1,26 +1,35 @@
-import React from 'react';
+import * as React from "react";
 import Card from './Card';
-import product from './Array.js'
-import { Label } from 'reactstrap';
+// import product from './Array.js'
+import { Col, Row } from 'reactstrap';
+import axios from "axios";
+
+
 const CardList = () => {
 
-    return (
-        <div className='d-flex  flex-wrap' style={{ marginTop:"18vh"}}>
+    const [products, setProducts] = React.useState([])
+    React.useEffect(() => {
+        axios.get("https://fakestoreapi.com/products").then(response => setProducts(response.data))
+    },[])
 
-            {product.map((p, i) => {
+    return (
+        <Row md="12" style={{marginTop:"18vh"}}>
+
+            {products.map((product, i) => {
 
                 return (<Card
                     key={i}
-                    id={p.id}
-                    price={p.price}
-                    name={p.name}
-                    imgTag={p.imgTag}
+                    id={product.id}
+                    price={product.price}
+                    name={product.title}
+                    imgTag={product.image}
+                    category={product.category}
                 />
                 )
             }
             )}
            
-        </div>
+        </Row>
     );
 }
 export default CardList;

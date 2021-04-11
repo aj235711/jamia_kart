@@ -1,26 +1,32 @@
-import React from 'react';
-import { Container } from 'reactstrap';
+import React from "react";
+import './Card.css';
+import Button from '@material-ui/core/Button';
 
 
-
-
-const Card = ({ id,name,price,imgTag}) => {
+const Card = ({ id, name, price, imgTag, category }) => {
     return (
-
-
-        <div className  ='bg-light rounded p-3 m-2 d-flex flex-wrap 'style={{alignItems:'center',textAlign:'centerssssss'}}>
-        <div className='d-flex justify-content-center' style={{width:'100%'}}>
-          <img alt='robots' src={imgTag} width='100vw' height='auto'/>
-         </div>
-
+        <div className="Container">
             <div >
-            {/* <h2>{id}</h2> */}
-            <h6>{name}</h6>
-            <p>{price}</p>
-            
-         </div>
+                <img alt="robots" src={imgTag} className="Image"/>
+            </div>
+            <div className="Cont2">
+            <div className="Name">
+                {/* <h2>{id}</h2> */}
+                <h5>{name.length < 25 ? name : name.substring(0, 25)+'...'}</h5>
+            </div>
+            <div className="Category">
+                <h6>{category}</h6>
+            </div>
+            <div className="Price">
+                <p>${price}</p>
+                </div>
+            </div>
+            <Button variant="contained" style={{backgroundColor:"#F98B88"}}
+                // color="secondary"
+            >
+            Show product
+            </Button>
         </div>
-
     );
-}
+};
 export default Card;
