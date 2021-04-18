@@ -21,9 +21,13 @@ const LoginForm = () => {
   const handleSubmit = (event, values) => {
     console.log(values);
     axios.post('http://localhost:8000/login/', {
-      username: values.email,
-      password: values.password,
-    }).then(res => {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data:{
+      username: 'test@test.com',
+      password: 'abcd',
+    }}).then(res => {
       console.log(res);
       history.push('/');
     });
