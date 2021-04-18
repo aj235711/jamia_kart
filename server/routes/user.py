@@ -28,7 +28,11 @@ async def create_users(request : schema.User, db : Session = Depends(get_db)):
     db.refresh(new_user)
     return {"success":True,"Msg": "user created"}
 
-@route.get("/",response_model=List[schema.User_Show])
+@route.get("/curr/{email}",response_model=schema.User_Show)
+async def get_curr_user(current_user:schema.User=Depends(get_current_user)):
+    return {"user":current_user}
+
+@route.get("/all",response_model=List[schema.User_Show])
 async def get_all_users(db : Session = Depends(get_db),current_user:schema.User=Depends(get_current_user)):
     """
     get all user
@@ -43,6 +47,8 @@ async def get_user(email:str,db : Session = Depends(get_db),current_user:schema.
     """
     user=db.query(models.User).filter(models.User.email==email).first()
     return user
+
+
 
 @route.put('/{email}')
 async def get_user(email:str, request : schema.User_Update, db : Session=Depends(get_db),current_user:schema.User=Depends(get_current_user)):
@@ -75,4 +81,4 @@ async def delete_user(email:str, pswd:str, db: Session=Depends(get_db),current_u
     user.delete(synchronize_session=False)
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
-    # return {"access_token": "", "token_type": "bearer"}
+    return {"access_token": "", "token_type": "bearer"}
