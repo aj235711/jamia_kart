@@ -11,12 +11,13 @@ import {
   AvCheckboxGroup,
   AvCheckbox,
 } from "availity-reactstrap-validation";
+import {useHistory} from 'react-router-dom';
 import { Button, Label, FormGroup, CustomInput } from "reactstrap";
 import JamiaKart from '../../utils/JamiaKart.jpg';
 import axios from 'axios';
 
 const RegisterForm = () => {
-
+  const history=useHistory();
   const handleSubmit = (event, values) => {
     console.log(values);
     axios.post('http://localhost:8000/user/', {
@@ -24,7 +25,10 @@ const RegisterForm = () => {
       email: values.email,
       password: values.password,
       category: values.userType
-    }).then(res=> console.log(res));
+    }).then(res => {
+      console.log(res);
+      history.push('/');
+    });
   }
 
   return (
