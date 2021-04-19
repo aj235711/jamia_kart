@@ -13,7 +13,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import JamiaKart from "./JamiaKart.jpg";
+import JamiaKart from "../../utils/JamiaKart.jpg";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -168,78 +168,16 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <div data-aos="fade-down" className={classes.grow}>
-      <AppBar position="static" color="black"
-        // style={{ background: "#ffffff" }}
+    <div className={classes.grow}>
+      <AppBar position="static" color="black" className="d-flex justify-content-between flex-wrap"
       >
-        <Toolbar>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton> */}
+        <Toolbar className="d-flex justify-content-between flex-wrap">
           <Typography className={classes.title} variant="h6" noWrap>
             <img src={JamiaKart} style={{height:"5vh"}}/>
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <div style={{display:"flex", width:"40%"}}>
-          <ListItem button>
-                      <ListItemText primary="Returns & Orders" />            
-              </ListItem>
-              </div>
-            <IconButton aria-label="show 4 new" color="inherit">
-              <Badge badgeContent={4} color="primary">
-                  <ShoppingCartIcon /> 
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new" color="inherit">
-              <Badge badgeContent={17} color="primary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+          <div>Sign Up</div>
+          </Toolbar>
+          </AppBar>
     </div>
   );
 }

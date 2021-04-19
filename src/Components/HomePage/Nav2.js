@@ -23,7 +23,7 @@ export default function DenseAppBar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div data-aos="fade-down" className={classes.root}>
       <AppBar
         position="static"
         style={{ backgroundColor: "#222222", fontFamily: "Times New Roman" }}

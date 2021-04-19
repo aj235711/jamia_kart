@@ -8,6 +8,7 @@ import {
 import Switch from "@material-ui/core/Switch";
 import { Select } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
+import {Col} from 'reactstrap';
 
 const LeftBox = () => {
   const [state, setState] = React.useState({
@@ -27,18 +28,18 @@ const LeftBox = () => {
   };
 
   return (
-    <div
+    <Col md="12" data-aos="fade-right"
       style={{
         position: "fixed",
-        overflowY: "auto",
         backgroundColor: "white",
         borderRight: "1px solid rgba(0,0,0,0.3)",
         height: "80vh",
-        width: "20%",
-        minWidth: "250px",
+        minWidth: "12%",
+        width: '20%',
         marginTop: "18vh",
-        marginRight: "2px",
         padding: "8px",
+        zIndex: '1000',
+        overflowX: 'auto'
       }}
     >
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -107,7 +108,7 @@ const LeftBox = () => {
         />
         </div>
       </div>
-    </div>
+    </Col>
   );
 };
 
