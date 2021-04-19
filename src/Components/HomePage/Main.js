@@ -5,14 +5,14 @@ import RightBox from "../Data/RightBox.js";
 
 const Main = () => {
     return (
-        <Row>
-            <Col md="3">
+        <div style={{minWidth: '1294px', overflowX: 'auto'}}>
+            <div className="w-25">
                 <LeftBox />
-            </Col>
-            <Col md="9">
+            </div>
+            <div className='w-75'>
                 <RightBox />
-            </Col>
-        </Row>
+            </div>
+        </div>
     )
 }
 

@@ -7,7 +7,7 @@ import CardList from './CardList';
 
 const RightBox = () => {
   return (
-    <div>
+    <div style={{position: 'relative', left: '21vw'}}>
       <CardList />,
     </div>
   )

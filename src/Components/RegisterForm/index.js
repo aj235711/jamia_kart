@@ -27,7 +27,7 @@ const RegisterForm = () => {
       category: values.userType
     }).then(res => {
       console.log(res);
-      history.push('/');
+      history.push('/jamia_kart');
     });
   }
 
