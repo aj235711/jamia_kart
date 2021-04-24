@@ -4,6 +4,9 @@ import Button from "@material-ui/core/Button";
 import { Row, Col } from "reactstrap";
 
 const Card = ({ id, name, price, imgTag, category }) => {
+  const PageChange = () => {
+    return(console.log("ab page change hona chaiye"))
+  }
   return (
     <Col
       md="12"
@@ -28,6 +31,7 @@ const Card = ({ id, name, price, imgTag, category }) => {
         </Col>
       </Col>
       <Button
+        onClick={PageChange}
         variant="outlined"
         style={{ border: "1px solid #ee8822aa", color: "#ee8822ff" }}
       >
