@@ -9,7 +9,7 @@ const Card = ({ id, name, price, imgTag, category, description }) => {
   const history = useHistory();
 
   const pageChange = () => {
-    history.push('/product', {id, name, price, imgTag, category, description});
+    history.push(`/product:${id}`, {id, name, price, imgTag, category, description});
   };
 
   return (

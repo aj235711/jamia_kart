@@ -8,7 +8,7 @@ const Details = ({name, price, description}) => {
           width: "100%",
           marginBottom: "30px",
                   borderBottom: "1px solid rgba(0,0,0,0.3",
-          paddingBottom:"20px"
+          paddingBottom:"10px",
         }}
       >
         <h1>{name}</h1>

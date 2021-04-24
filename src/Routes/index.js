@@ -14,7 +14,7 @@ const Routes = () => {
           <Route path="/jamia_kart" exact component={HomePage} />
           <Route path="/register" exact component={RegisterForm} />
           <Route path="/login" exact component={LoginForm} />
-          <Route path="/product" exact component={ProductPage} />
+          <Route path="/product:id" exact component={ProductPage} />
         </Switch>
       </Router>
     );
