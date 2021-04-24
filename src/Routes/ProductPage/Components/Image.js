@@ -6,7 +6,7 @@ const Image = ({imgTag}) => {
     style={{
         position: "fixed",
         backgroundColor: "white",
-              borderRight: "1px solid rgba(0,0,0,0.3)",
+        borderRight: "1px solid rgba(0,0,0,0.3)",
             //   marginTop: "1vh",
         height: "80vh",
         padding: "8px",
@@ -20,7 +20,7 @@ const Image = ({imgTag}) => {
         style={{
           display: "flex",
           justifyContent: "flex-start",
-          height: "25vw",
+          width: "20vw",
         }}
         src={imgTag}
         alt="laptop"
