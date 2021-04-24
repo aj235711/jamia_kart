@@ -26,7 +26,7 @@ export default function DenseAppBar() {
     <div data-aos="fade-down" className={classes.root}>
       <AppBar
         position="static"
-        style={{ backgroundColor: "#222222", fontFamily: "Times New Roman" }}
+        style={{ backgroundColor: "#222222", fontFamily: "Times New Roman", marginBottom:"10px"}}
       >
         <Toolbar variant="dense">
           <IconButton
@@ -39,11 +39,23 @@ export default function DenseAppBar() {
           </IconButton>
           <ListItem button>
             <ListItemText primary="Best sellers" />
+          </ListItem>
+          <ListItem button>
             <ListItemText primary="Mobiles" />
+            </ListItem>
+          <ListItem button>
             <ListItemText primary="Today's deals" />
+            </ListItem>
+          <ListItem button>
             <ListItemText primary="Fashion" />
+            </ListItem>
+          <ListItem button>
             <ListItemText primary="New releases" />
+            </ListItem>
+          <ListItem button>
             <ListItemText primary="Top purchases" />
+            </ListItem>
+          <ListItem button>
             <ListItemText primary="Computers" />
           </ListItem>
         </Toolbar>
