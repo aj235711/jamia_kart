@@ -14,10 +14,9 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import JamiaKart from "../utils/JamiaKart.jpg";
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -83,6 +82,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+
+  const history = useHistory();
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -182,7 +184,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
-            <img src={JamiaKart} style={{height:"5vh"}}/>
+            <img src={JamiaKart} style={{height:"5vh", cursor: "pointer"}} onClick={() => history.push('/jamia_kart')}/>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Details = () => {
+const Details = ({name, price, description}) => {
   return (
     <div>
       <div
@@ -11,19 +11,9 @@ const Details = () => {
           paddingBottom:"20px"
         }}
       >
-        <h1> HP ka jana mana laptop hai ye bohot batarha hu </h1>
+        <h1>{name}</h1>
       </div>
-
-      <h5
-        style={{
-          textDecorationLine: "line-through",
-          textDecorationStyle: "solid",
-        }}
-      >
-        {" "}
-        MRP : $70{" "}
-      </h5>
-      <h4 style={{ marginBottom: "20px" }}> Price : $50</h4>
+      <h4 style={{ marginBottom: "20px" }}> Price : ${price}</h4>
       <h4 style={{ color: "green" }}> In stock </h4>
 
       <div
@@ -34,9 +24,7 @@ const Details = () => {
           paddingTop:"20px"
         }}
           >
-              <h5>kya baat karrha hai bhai mai bolrha hu na mast laptop hai yaar bhai ki baat nahi maanega ab?
-               
-              </h5>
+              <h5>{description}</h5>
       </div>
     </div>
   );

@@ -27,6 +27,7 @@ const CardList = () => {
               name={product.title}
               imgTag={product.image}
               category={product.category}
+              description={product.description}
             />
           </Col>
         );

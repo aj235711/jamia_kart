@@ -1,6 +1,6 @@
 import React from "react";
 
-const Image = () => {
+const Image = ({imgTag}) => {
   return (
     <div
     style={{
@@ -22,7 +22,7 @@ const Image = () => {
           justifyContent: "flex-start",
           height: "25vw",
         }}
-        src="https://images-na.ssl-images-amazon.com/images/I/81SdJG3OUjL._SL1500_.jpg"
+        src={imgTag}
         alt="laptop"
       />
     </div>
