@@ -3,7 +3,7 @@ import Details from "./Details";
 import { Col, Row } from "reactstrap";
 import axios from "axios";
 
-const DetailBox = () => {
+const DetailBox = ({name, price, description}) => {
 
   // const [products, setProducts] = React.useState([]);
   // React.useEffect(() => {
@@ -41,7 +41,7 @@ const DetailBox = () => {
           </Col>
         );
       })} */}
-      <Details/>
+      <Details name={name} price={price} description={description} />
     </div>
   );
 };

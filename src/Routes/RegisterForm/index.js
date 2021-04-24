@@ -17,7 +17,9 @@ import JamiaKart from '../../utils/JamiaKart.jpg';
 import axios from 'axios';
 
 const RegisterForm = () => {
+  
   const history=useHistory();
+
   const handleSubmit = (event, values) => {
     console.log(values);
     axios.post('http://localhost:8000/user/', {
