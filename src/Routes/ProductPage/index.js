@@ -7,8 +7,11 @@ import Nav2 from '../../Components/Nav2.js';
 import {useLocation} from 'react-router-dom';
 
 const ProductPage = () => {
+
     const location=useLocation();
+
     const { id, name, price, imgTag, category, description} = location.state;
+    
     return (
         <div>
             <NavBar />
