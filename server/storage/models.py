@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date, Float
 from sqlalchemy.orm import relationship
 
 from storage.database import Base
@@ -32,3 +32,38 @@ class Costumer(Base):
     user_id=Column(String,ForeignKey("user.email"))
     loc=Column(String)
     joined=Column(Date)
+    cart=relationship("Cart",back_populates="costumer")
+
+class Product(Base):
+    __tablename__="product"
+    id=Column(Integer,primary_key=True,autoincrement=True)
+    name=Column(String,nullable=False)
+    decs=Column(String)
+    imgurl=Column(String)
+    qty=Column(Integer,nullable=False)
+    price=Column(Float,nullable=False)
+    category=Column(String)
+    seller_id=Column(Integer,ForeignKey("seller.id"),nullable=False)
+    cart=relationship("Cart",back_populates="product")
+
+class Cart(Base):
+    __tablename__="cart"
+    id=Column(Integer,primary_key=True,autoincrement=True)
+    qty=Column(Integer,nullable=False)
+    costumer_id=Column(Integer,ForeignKey("costumer.id"))
+    product_id=Column(Integer,ForeignKey("product.id"))
+    costumer=relationship("Costumer",back_populates="cart")
+    product=relationship("Product",back_populates="cart")
+
+class Order(Base):
+    __tablename__="order"
+    id=Column(Integer,primary_key=True,autoincrement=True)
+    qty=Column(Integer,nullable=False)
+    costumer_id=Column(Integer,ForeignKey("costumer.id"))
+    product_id=Column(Integer,ForeignKey("product.id"))
+    status=Column(Boolean,default=False)
+    ship_add=Column(String,nullable=False)
+    amount=Column(Float,nullable=False)
+    costumer=relationship("Costumer",back_populates="cart")
+    product=relationship("Product",back_populates="cart")
+
