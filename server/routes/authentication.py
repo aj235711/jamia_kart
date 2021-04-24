@@ -20,5 +20,5 @@ async def login(request: OAuth2PasswordRequestForm=Depends(),db: Session=Depends
             detail="Invalid Credentials")
     access_token_expires = timedelta(minutes=token.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = token.create_access_token(data={"sub": user.email})
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token, "token_type": "Bearer"}
 
