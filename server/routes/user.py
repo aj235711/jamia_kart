@@ -1,4 +1,4 @@
-from sqlalchemy.sql.functions import current_user, mode
+from datetime import date
 from fastapi import APIRouter, Depends, HTTPException, status, Response
 from sqlalchemy.orm import Session
 from typing import List
@@ -8,31 +8,46 @@ import hashing as hashing
 
 route=APIRouter(
     prefix="/user",
-    tags=["user"]
+    tags=["User"]
 )
 
 get_current_user=oauth2.get_current_user
 get_db = database.get_db
 
 @route.post("/")
-async def create_users(request : schema.User, db : Session = Depends(get_db)):
+async def create_users(request : schema.UserCreate, db : Session = Depends(get_db)):
     """
-    creates user
+    creates user and seller or Costumee
     """
+    cat=request.category.lower()
     user = db.query(models.User).filter(models.User.email==request.email)
     if user.first():
         return {"success":False,"errMsg": "User already exist"}
-    new_user = models.User(email=request.email,name=request.name,password=hashing.Hash.bcrypt(request.password),category=request.category)
+    new_user = models.User(email=request.email,name=request.name,password=hashing.Hash.bcrypt(request.password),category=cat)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    return {"success":True,"Msg": "user created"}
+    if cat=="seller":
+        new_seller = models.Seller(loc=request.location,joined=date.today(),user_id=request.email)
+        db.add(new_seller)
+        db.commit()
+        db.refresh(new_seller)
+    elif cat=="costumer":
+        new_costumer = models.Costumer(loc=request.location,joined=date.today(),user_id=request.email)
+        db.add(new_costumer)
+        db.commit()
+        db.refresh(new_costumer)
+    else:
+        if cat != "admin":
+            return {"success":False,"errMsg": "please provide a valid category"}
 
-@route.get("/curr/{email}",response_model=schema.User_Show)
+    return {"success":True,"Msg": "user created","category":request.category}
+
+@route.get("/",response_model=schema.UserShow)
 async def get_curr_user(current_user:schema.User=Depends(get_current_user)):
     return {"user":current_user}
 
-@route.get("/all",response_model=List[schema.User_Show])
+@route.get("/all",response_model=List[schema.UserShow])
 async def get_all_users(db : Session = Depends(get_db),current_user:schema.User=Depends(get_current_user)):
     """
     get all user
@@ -40,7 +55,7 @@ async def get_all_users(db : Session = Depends(get_db),current_user:schema.User=
     users = db.query(models.User).all()
     return users
 
-@route.get("/{email}",response_model=schema.User_Show)
+@route.get("/{email}",response_model=schema.UserShow)
 async def get_user(email:str,db : Session = Depends(get_db),current_user:schema.User=Depends(get_current_user)):
     """
     get single user
@@ -51,7 +66,7 @@ async def get_user(email:str,db : Session = Depends(get_db),current_user:schema.
 
 
 @route.put('/{email}')
-async def get_user(email:str, request : schema.User_Update, db : Session=Depends(get_db),current_user:schema.User=Depends(get_current_user)):
+async def update_user(email:str, request : schema.UserUpdate, db : Session=Depends(get_db),current_user:schema.User=Depends(get_current_user)):
     """
     edit user details, must be available to user loggedin with same id
     """

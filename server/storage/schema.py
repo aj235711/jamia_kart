@@ -1,26 +1,44 @@
 from typing import Optional
 from pydantic import BaseModel
 
+"""
+USER schemas
+"""
 class User(BaseModel):
     email : str
     name : str
     password : str
     category : str
 
-class User_Show(BaseModel):
+class UserCreate(User):
+    location : str
+
+class UserShow(BaseModel):
     email : str
     name : str
     category : str
-
     class Config():
         orm_mode=True
 
-class User_Update(BaseModel):
+class UserUpdate(BaseModel):
     name : str
     password : str
     category : str
+    location : str
     class Config():
         orm_mode=True
+
+"""
+SELLER schema
+"""
+
+class Seller(BaseModel):
+    location : str
+
+
+"""
+AUTH schemas
+"""
         
 class Login(BaseModel):
     username: str
@@ -32,3 +50,4 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     email: Optional[str]=None
+
