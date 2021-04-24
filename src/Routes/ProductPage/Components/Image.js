@@ -10,6 +10,7 @@ const Image = ({imgTag}) => {
             //   marginTop: "1vh",
         height: "80vh",
         padding: "8px",
+        paddingTop: "3px",
         display:"flex",
         width:"30%",
         alignItems:"center",
