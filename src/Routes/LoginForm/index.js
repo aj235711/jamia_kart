@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Button, Label, FormGroup, CustomInput } from "reactstrap";
 import JamiaKart from "../../utils/JamiaKart.jpg";
-import Nav from "../Nav";
+import Nav from "./Nav";
 const qs = require("qs");
 
 const LoginForm = () => {

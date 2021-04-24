@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from './NavBar.js';
-import Nav2 from './Nav2.js';
-import Main from './Main.js';
+import NavBar from '../../Components/NavBar.js';
+import Nav2 from '../../Components/Nav2.js';
+import Main from './Components/Main/index.js';
 
 
 const HomePage = () => {

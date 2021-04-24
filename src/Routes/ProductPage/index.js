@@ -1,9 +1,9 @@
 import React from "react";
-import Image from './Image.js';
-import DetailBox from './DetailBox.js';
-import RightBox from './RightBox.js';
-import NavBar from '../HomePage/NavBar.js';
-import Nav2 from '../HomePage/Nav2.js';
+import Image from './Components/Image.js';
+import DetailBox from './Components/DetailBox.js';
+import RightBox from './Components/RightBox.js';
+import NavBar from '../../Components/NavBar.js';
+import Nav2 from '../../Components/Nav2.js';
 
 
 const ProductPage = () => {
