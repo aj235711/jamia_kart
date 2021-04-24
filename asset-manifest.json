@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/jamia_kart/static/css/main.51347850.chunk.css",
-    "main.js": "/jamia_kart/static/js/main.c0b13206.chunk.js",
-    "main.js.map": "/jamia_kart/static/js/main.c0b13206.chunk.js.map",
+    "main.js": "/jamia_kart/static/js/main.245e5674.chunk.js",
+    "main.js.map": "/jamia_kart/static/js/main.245e5674.chunk.js.map",
     "runtime-main.js": "/jamia_kart/static/js/runtime-main.980ec06f.js",
     "runtime-main.js.map": "/jamia_kart/static/js/runtime-main.980ec06f.js.map",
     "static/js/2.08df8938.chunk.js": "/jamia_kart/static/js/2.08df8938.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.980ec06f.js",
     "static/js/2.08df8938.chunk.js",
     "static/css/main.51347850.chunk.css",
-    "static/js/main.c0b13206.chunk.js"
+    "static/js/main.245e5674.chunk.js"
   ]
 }
