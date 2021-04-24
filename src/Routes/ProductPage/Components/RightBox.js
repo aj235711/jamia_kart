@@ -32,7 +32,7 @@ const RightBox = () => {
       </Button>
       <Button
         variant="outlined"
-        style={{ border: "1px solid #ee8822aa", color: "#ee8822ff" }}
+        style={{ border: "1px solid #ee8822aa", color: "#ee8822ff", marginLeft:"5px" }}
       >
         Buy now
       </Button>

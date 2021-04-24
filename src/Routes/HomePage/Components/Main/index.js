@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Col, Row } from "reactstrap";
-import LeftBox from './LeftBox.js';
-import RightBox from "../Data/RightBox.js";
+import LeftBox from './LerftBox/index.js';
+import RightBox from "./RightBox/index.js";
 
 const Main = () => {
     return (

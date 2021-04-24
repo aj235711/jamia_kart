@@ -3,7 +3,7 @@ import Card from "./Card";
 // import product from './Array.js'
 import { Col, Row } from "reactstrap";
 import axios from "axios";
-import PlaceHolder from './PlaceHolder';
+import PlaceHolder from '../../../../../../Components/PlaceHolder';
 
 const CardList = () => {
   const [products, setProducts] = React.useState([]);
