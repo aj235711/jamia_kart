@@ -4,20 +4,19 @@ from storage import schema,database,models
 from security import oauth2
 
 route=APIRouter(
-    prefix="/seller",
-    tags=["Seller"]
+    prefix="/costumer",
+    tags=["Costumer"]
 )
 
 get_curr_user=oauth2.get_current_user
 get_db=database.get_db
 
-
 @route.put("/{email}")
-def edit_seller(email:str,request:schema.SellerUpdate,db:Session=Depends(get_db),current_user:schema.User=Depends(get_curr_user)):
+def edit_costumer(email:str,request:schema.SellerUpdate,db:Session=Depends(get_db),current_user:schema.User=Depends(get_curr_user)):
     user=db.query(models.User).filter(models.User.email==email).first()
     if user and user.email==current_user.email:
-        seller=db.query(models.Seller).filter(models.Seller.id==user.seller_id)
-        date=seller.first().joined
-        seller.update({"loc":request.location,"joined":date})
+        costumer=db.query(models.Costumer).filter(models.Costumer.id==user.costumer_id)
+        date=costumer.first().joined
+        costumer.update({"loc":request.location,"joined":date})
         db.commit()
-        return {"message":"seller info updated"}
+        return {"message":"costumer info updated"}

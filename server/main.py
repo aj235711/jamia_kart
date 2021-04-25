@@ -6,7 +6,7 @@ from starlette.middleware.cors import CORSMiddleware
 import storage.schema as schema
 import storage.database as database
 import storage.models as models
-from routes import  user, authentication,admin,seller
+from routes import  user, authentication,admin,seller,costumer
 from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -15,6 +15,7 @@ app.include_router(authentication.route)
 app.include_router(user.route)
 app.include_router(admin.route)
 app.include_router(seller.route)
+app.include_router(costumer.route)
 
 origins = [
     "http://localhost:3000",
