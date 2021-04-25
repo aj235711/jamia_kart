@@ -9,6 +9,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DenseAppBar() {
   const classes = useStyles();
-
+  const history = useHistory();
   return (
     <div data-aos="fade-down" className={classes.root}>
       <AppBar
@@ -37,20 +38,20 @@ export default function DenseAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <ListItem button style={{textAlign:"center" }}>
+          <ListItem button style={{textAlign:"center" }} onClick={() => history.push('/jamia_kart', {selectedCategory: 'all'})}>
             <ListItemText primary="All" />
           </ListItem>
           <ListItem button>
-            <ListItemText primary="Men's section" />
+            <ListItemText primary="Men's section" onClick={() => history.push('/jamia_kart', {selectedCategory: `men's clothing`})}/>
             </ListItem>
           <ListItem button>
-            <ListItemText primary="Women's section" />
+            <ListItemText primary="Women's section" onClick={() => history.push('/jamia_kart', {selectedCategory: `women's clothing`})}/>
             </ListItem>
           <ListItem button>
-            <ListItemText primary="Jewelery" />
+            <ListItemText primary="Jewelery" onClick={() => history.push('/jamia_kart', {selectedCategory: 'jewelery'})}/>
             </ListItem>
           <ListItem button>
-            <ListItemText primary="Electronics" />
+            <ListItemText primary="Electronics" onClick={() => history.push('/jamia_kart', {selectedCategory: 'electronics'})}/>
             </ListItem>
           {/* <ListItem button>
             <ListItemText primary="Top purchases" />
