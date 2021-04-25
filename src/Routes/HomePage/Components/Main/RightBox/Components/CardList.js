@@ -5,7 +5,7 @@ import { Col, Row } from "reactstrap";
 import axios from "axios";
 import PlaceHolder from "../../../../../../Components/PlaceHolder";
 
-const CardList = () => {
+const CardList = ({selectedCategory}) => {
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     axios
@@ -15,17 +15,19 @@ const CardList = () => {
 
   if (!products.length) return <PlaceHolder />;
 
+  const filteredProducts = selectedCategory === 'all' ? products : products.filter(product => product.category === selectedCategory);
+
   return (
     <Row
       data-aos="zoom-in-left"
       style={{ marginTop: "18vh", paddingBottom:"30px" }}
       className="display-flex justify-content-center"
     >
-      {products.map((product, i) => {
+      {filteredProducts.map((product, i) => {
         return (
           <Col md="3" sm="3">
             <Card
-              key={i}
+              key={product.id}
               id={product.id}
               price={product.price}
               name={product.title}

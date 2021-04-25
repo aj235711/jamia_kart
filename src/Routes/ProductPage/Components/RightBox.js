@@ -18,10 +18,6 @@ const RightBox = () => {
         padding: "8px",
         width: "20%",
         minWidth: "16vh",
-        // display:"flex",
-
-        // alignItems:"center",
-        // justifyContent:"center"
       }}
     >
       <TextField
@@ -31,6 +27,7 @@ const RightBox = () => {
         type="number"
         inputProps={{min: 0}}
         placeholder="Enter quantity"
+        inputProps={{min: 1}}
         onChange={(event) => setQuantity(event.target.value)}
         style={{
           margin: "10px",
