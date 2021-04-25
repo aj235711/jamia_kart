@@ -11,27 +11,29 @@ import {
   AvCheckboxGroup,
   AvCheckbox,
 } from "availity-reactstrap-validation";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { Button, Label, FormGroup, CustomInput } from "reactstrap";
-import JamiaKart from '../../utils/JamiaKart.jpg';
-import axios from 'axios';
+import JamiaKart from "../../utils/JamiaKart.jpg";
+import axios from "axios";
 
 const RegisterForm = () => {
-  
-  const history=useHistory();
+  const history = useHistory();
 
   const handleSubmit = (event, values) => {
     console.log(values);
-    axios.post('http://localhost:8000/user/', {
-      name: values.name,
-      email: values.email,
-      password: values.password,
-      category: values.userType
-    }).then(res => {
-      console.log(res);
-      history.push('/jamia_kart');
-    });
-  }
+    axios
+      .post("http://localhost:8000/user/", {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        category: values.userType,
+        location: values.address,
+      })
+      .then((res) => {
+        console.log(res);
+        history.push("/jamia_kart");
+      });
+  };
 
   return (
     <div
@@ -42,7 +44,7 @@ const RegisterForm = () => {
         <AvForm onValidSubmit={handleSubmit}>
           <Row>
             <Col md="12" className="d-flex justify-content-center">
-              <img src={JamiaKart} className="w-100 pb-2 px-5"/>
+              <img src={JamiaKart} className="w-100 pb-2 px-5" />
             </Col>
             <Col md="12">
               <AvField name="name" label="Name" required />
@@ -71,10 +73,12 @@ const RegisterForm = () => {
                 <option disabled={true} default>
                   ---Select User Type---
                 </option>
-                <option>Customer</option>
-                <option>Salesman</option>
-                <option>Admin</option>
+                <option value='customer'>Customer</option>
+                <option value='seller'>Salesman</option>
               </AvField>
+            </Col>
+            <Col md="12">
+              <AvField name="address" label="Address" required />
             </Col>
             <FormGroup className="w-100 d-flex justify-content-center">
               <Button type="submit" outline color="info">
