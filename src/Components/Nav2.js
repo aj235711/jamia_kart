@@ -37,27 +37,27 @@ export default function DenseAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <ListItem button>
-            <ListItemText primary="Best sellers" />
+          <ListItem button style={{textAlign:"center" }}>
+            <ListItemText primary="All" />
           </ListItem>
           <ListItem button>
-            <ListItemText primary="Mobiles" />
+            <ListItemText primary="Men's section" />
             </ListItem>
           <ListItem button>
-            <ListItemText primary="Today's deals" />
+            <ListItemText primary="Women's section" />
             </ListItem>
           <ListItem button>
-            <ListItemText primary="Fashion" />
+            <ListItemText primary="Jewelery" />
             </ListItem>
           <ListItem button>
-            <ListItemText primary="New releases" />
+            <ListItemText primary="Electronics" />
             </ListItem>
-          <ListItem button>
+          {/* <ListItem button>
             <ListItemText primary="Top purchases" />
             </ListItem>
           <ListItem button>
             <ListItemText primary="Computers" />
-          </ListItem>
+          </ListItem> */}
         </Toolbar>
       </AppBar>
     </div>
