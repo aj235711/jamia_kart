@@ -14,9 +14,12 @@ get_db = database.get_db
 
 @route.post("/")
 def create_cart(request : schema.Cart,db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+    """
+    creates cart
+    """
     user =  db.query(models.User).filter(models.User.email==current_user.email).first()
     if user.category != "customer":
-        return {"success":False, "errMsg":"not a costumer"}
+        return {"success":False, "errMsg":"not a customer"}
     product = db.query(models.Product).filter(models.Product.id==request.product_id).first()
     if not product:
         return {"success":False, "errMsg":"no such product found"}
@@ -28,6 +31,9 @@ def create_cart(request : schema.Cart,db : Session = Depends(get_db),current_use
 
 @route.get("/",response_model=List[schema.CartShow])
 def all_cart_items(db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+    """
+    get all cart items of customer
+    """
     user = db.query(models.User).filter(models.User.email==current_user.email).first()
     if user.category == "customer":
         cart_items=db.query(models.Cart).filter(models.Cart.costumer_id==user.costumer_id).all()
@@ -35,9 +41,12 @@ def all_cart_items(db : Session = Depends(get_db),current_user : schema.User = D
 
 @route.put("/update/{id}")
 def cart_update(id : int,qty : int,db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+    """
+    update cart item
+    """
     user = db.query(models.User).filter(models.User.email==current_user.email).first()
     if user.category != "customer":
-        return {"success":False, "errMsg":"not a costumer"}
+        return {"success":False, "errMsg":"not a customer"}
     cart_item = db.query(models.Cart).filter(models.Cart.id==id)
     if not cart_item.first():
         return {"success":False, "errMsg":"no such cart item"}
@@ -45,16 +54,19 @@ def cart_update(id : int,qty : int,db : Session = Depends(get_db),current_user :
         cart_item.update({"qty":qty},synchronize_session=False)
         db.commit()
         return {"success":True,"msg":"cart updated"}
-    return {"success":False, "errMsg":"not a costumer"}
+    return {"success":False, "errMsg":"not a customer"}
 
 @route.delete("/delete/{id}")
 def delete_cart(id : int,db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+    """
+    delete cart item
+    """
     user = db.query(models.User).filter(models.User.email==current_user.email).first()
     if user.category != "customer":
-        return {"success":False, "errMsg":"not a costumer"}
+        return {"success":False, "errMsg":"not a customer"}
     cart_item = db.query(models.Cart).filter(models.Cart.id==id)
     if user.costumer_id == cart_item.first().costumer_id:
         cart_item.delete()
         db.commit()
         return {"success":True,"msg":"item removed from cart"}
-    return {"success":False, "errMsg":"not a costumer"}
+    return {"success":False, "errMsg":"not a customer"}
