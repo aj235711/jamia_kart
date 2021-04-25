@@ -23,23 +23,26 @@ async def create_users(request : schema.UserCreate, db : Session = Depends(get_d
     user = db.query(models.User).filter(models.User.email==request.email)
     if user.first():
         return {"success":False,"errMsg": "User already exist"}
-    new_user = models.User(email=request.email,name=request.name,password=hashing.Hash.bcrypt(request.password),category=cat)
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
     if cat=="seller":
-        new_seller = models.Seller(loc=request.location,joined=date.today(),user_id=request.email)
+        new_seller = models.Seller(loc=request.location,joined=date.today())
         db.add(new_seller)
         db.commit()
         db.refresh(new_seller)
+        new_user = models.User(email=request.email,name=request.name,
+            password=hashing.Hash.bcrypt(request.password),category=cat,seller_id=new_seller.id)
     elif cat=="customer":
-        new_costumer = models.Costumer(loc=request.location,joined=date.today(),user_id=request.email)
+        new_costumer = models.Costumer(loc=request.location,joined=date.today())
         db.add(new_costumer)
         db.commit()
         db.refresh(new_costumer)
+        new_user = models.User(email=request.email,name=request.name,
+            password=hashing.Hash.bcrypt(request.password),category=cat,costumer_id=new_costumer.id)
     else:
         if cat != "admin":
             return {"success":False,"errMsg": "please provide a valid category"}
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
 
     return {"success":True,"Msg": "user created","category":request.category}
 
@@ -93,6 +96,12 @@ async def delete_user(email:str, pswd:str, db: Session=Depends(get_db),current_u
     elif not hashing.Hash.verify(user.first().password,pswd) or user.first().email != current_user.email:
         raise HTTPException(status_code=403,
             detail="unauthenticated")
+    if user.first().category=="seller":
+        seller=db.query(models.Seller).filter(models.Seller.id==user.first().seller_id)
+        seller.delete()
+    elif user.first().category=="costumer":
+        costumer=db.query(models.Costumer).filter(models.Seller.id==user.first().costumer_id)
+        costumer.delete()
     user.delete(synchronize_session=False)
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
