@@ -40,7 +40,7 @@ class Product(Base):
     __tablename__="product"
     id=Column(Integer,primary_key=True,autoincrement=True)
     name=Column(String,nullable=False)
-    decs=Column(String)
+    desc=Column(String)
     imgurl=Column(String)
     qty=Column(Integer,nullable=False)
     price=Column(Float,nullable=False)
