@@ -13,7 +13,7 @@ const Details = ({name, price, description}) => {
       >
         <h1>{name}</h1>
       </div>
-      <h4 style={{ marginBottom: "20px" }}> Price : ${price}</h4>
+      <h4 style={{ marginBottom: "20px" }}> Price : $ {price}</h4>
       <h4 style={{ color: "green" }}> In stock </h4>
 
       <div

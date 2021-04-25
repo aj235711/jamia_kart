@@ -1,9 +1,13 @@
-import React from "react";
+import * as React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 const RightBox = () => {
+  
+  const [quantity, setQuantity] = React.useState(0);
+
+
   return (
     <div
       style={{
@@ -20,26 +24,26 @@ const RightBox = () => {
         // justifyContent:"center"
       }}
     >
-      <form noValidate autoComplete="off">
-        <TextField
-          id="outlined-basic"
-          label="Quantity"
-          variant="outlined"
-          placeholder="pikaboo"
-          style={{
-            margin: "10px",
-            width: '88%',
-            textAlign:'center'
-          }}
-        />
-      </form>
+      <TextField
+        id="outlined-basic"
+        label="Quantity"
+        variant="outlined"
+        type="number"
+        placeholder="Enter quantity"
+        onChange={(event) => setQuantity(event.target.value)}
+        style={{
+          margin: "10px",
+          width: "88%",
+          textAlign: "center",
+        }}
+      />
       <Button
         variant="outlined"
         style={{
           border: "1px solid #ee8822aa",
           color: "#ee8822ff",
           marginLeft: "10px",
-          // marginBottom:"2px",
+          marginBottom: "10px",
           width: "88%",
         }}
       >
@@ -51,7 +55,7 @@ const RightBox = () => {
           border: "1px solid #ee8822aa",
           color: "#ee8822ff",
           marginLeft: "10px",
-          width:'88%'
+          width: "88%",
         }}
       >
         Buy now
