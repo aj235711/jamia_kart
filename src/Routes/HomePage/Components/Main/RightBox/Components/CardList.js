@@ -3,7 +3,7 @@ import Card from "./Card";
 // import product from './Array.js'
 import { Col, Row } from "reactstrap";
 import axios from "axios";
-import PlaceHolder from '../../../../../../Components/PlaceHolder';
+import PlaceHolder from "../../../../../../Components/PlaceHolder";
 
 const CardList = () => {
   const [products, setProducts] = React.useState([]);
@@ -13,10 +13,14 @@ const CardList = () => {
       .then((response) => setProducts(response.data));
   }, []);
 
-  if(!products.length) return <PlaceHolder />
+  if (!products.length) return <PlaceHolder />;
 
   return (
-    <Row data-aos="zoom-in-left" style={{ marginTop: "18vh" }} className="display-flex justify-content-center">
+    <Row
+      data-aos="zoom-in-left"
+      style={{ marginTop: "18vh", paddingBottom:"30px" }}
+      className="display-flex justify-content-center"
+    >
       {products.map((product, i) => {
         return (
           <Col md="3" sm="3">
