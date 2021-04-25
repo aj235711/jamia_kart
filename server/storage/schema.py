@@ -45,6 +45,22 @@ COSTUMER schema
 class CostumerUpdate(BaseModel):
     location : str
 
+"""
+PRODUCT schema
+"""
+
+class Product(BaseModel):
+    name : str
+    imgurl : str
+    qty : int
+    price : float
+    category : str
+    desc : str
+
+class ProductShow(Product):
+    id : int
+    class Config():
+        orm_mode=True
 
 """
 AUTH schemas
