@@ -32,7 +32,7 @@ async def create_users(request : schema.UserCreate, db : Session = Depends(get_d
         db.add(new_seller)
         db.commit()
         db.refresh(new_seller)
-    elif cat=="costumer":
+    elif cat=="customer":
         new_costumer = models.Costumer(loc=request.location,joined=date.today(),user_id=request.email)
         db.add(new_costumer)
         db.commit()
