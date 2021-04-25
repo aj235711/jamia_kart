@@ -29,6 +29,7 @@ const RightBox = () => {
         label="Quantity"
         variant="outlined"
         type="number"
+        inputProps={{min: 0}}
         placeholder="Enter quantity"
         onChange={(event) => setQuantity(event.target.value)}
         style={{
