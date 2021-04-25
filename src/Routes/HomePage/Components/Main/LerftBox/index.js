@@ -28,15 +28,30 @@ const LeftBox = () => {
   };
 
   return (
+    <div
+      style={{
+        position: "fixed",
+        backgroundColor: "white",
+        height: "100vh",
+        width: '20vw',
+        minWidth: '180px',
+        marginTop: "14vh",
+        paddingTop: "30px",
+        paddingBottom:"50px",
+        zIndex: '500',
+        overflowX: 'auto',
+        BorderRadius:"20px"
+    }}
+    >
+      
     <Col md="12" data-aos="fade-right"
       style={{
         position: "fixed",
         backgroundColor: "white",
         borderRight: "1px solid rgba(0,0,0,0.3)",
         height: "80vh",
-        minWidth: "12%",
-        width: '20%',
-        marginTop: "18vh",
+        width: '20vw',
+        minWidth: '180px',
         padding: "8px",
         zIndex: '1000',
         overflowX: 'auto'
@@ -109,6 +124,7 @@ const LeftBox = () => {
         </div>
       </div>
     </Col>
+    </div>
   );
 };
 
