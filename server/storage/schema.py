@@ -17,6 +17,8 @@ class UserShow(BaseModel):
     email : str
     name : str
     category : str
+    # seller_id : int
+    # costumer_id : int
     class Config():
         orm_mode=True
 
@@ -32,7 +34,15 @@ class UserUpdate(BaseModel):
 SELLER schema
 """
 
-class Seller(BaseModel):
+class SellerUpdate(BaseModel):
+    location : str
+
+
+"""
+COSTUMER schema
+"""
+
+class CostumerUpdate(BaseModel):
     location : str
 
 
