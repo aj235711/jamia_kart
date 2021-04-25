@@ -63,6 +63,20 @@ class ProductShow(Product):
         orm_mode=True
 
 """
+CART schema
+"""
+
+class Cart(BaseModel):
+    product_id : int
+    qty : int
+
+class CartShow(Cart):
+    product_cart : ProductShow
+    id : int
+    class Config():
+        orm_mode=True
+
+"""
 AUTH schemas
 """
         

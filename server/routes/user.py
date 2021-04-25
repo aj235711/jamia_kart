@@ -47,8 +47,9 @@ async def create_users(request : schema.UserCreate, db : Session = Depends(get_d
     return {"success":True,"Msg": "user created","category":request.category}
 
 @route.get("/",response_model=schema.UserShow)
-async def get_curr_user(current_user:schema.User=Depends(get_current_user)):
-    return {"user":current_user}
+async def get_curr_user(db : Session = Depends(get_db),current_user:schema.User=Depends(get_current_user)):
+    user = db.query(models.User).filter(models.User.email==current_user.email).first()
+    return user
 
 @route.get("/all",response_model=List[schema.UserShow])
 async def get_all_users(db : Session = Depends(get_db),current_user:schema.User=Depends(get_current_user)):
