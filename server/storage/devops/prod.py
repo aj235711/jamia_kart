@@ -44,7 +44,7 @@ class Product(Base):
     price=Column(Float,nullable=False)
     category=Column(String(length=50))
     seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"),nullable=False)
-    user=Column(String,ForeignKey("user.email",ondelete="CASCADE"),nullable=False)
+    user=Column(String(length=100),ForeignKey("user.email",ondelete="CASCADE"),nullable=False)
     seller=relationship("User",back_populates="product")
     cart=relationship("Cart",back_populates="product_cart")
     order=relationship("Order",back_populates="product_order")
