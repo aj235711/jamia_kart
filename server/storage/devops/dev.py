@@ -12,20 +12,21 @@ class User(Base):
     category=Column(String)
     seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"))
     costumer_id=Column(Integer,ForeignKey("costumer.id",ondelete="CASCADE"))
+    product=relationship("Product",back_populates="seller")
 
 
 class Seller(Base):
     __tablename__="seller"
     id=Column(Integer,autoincrement=True,primary_key=True)
-    # user_id=Column(String,ForeignKey("user.email"))
     loc=Column(String)
     joined=Column(Date)
+    
+
 
 
 class Costumer(Base):
     __tablename__="costumer"
     id=Column(Integer,autoincrement=True,primary_key=True)
-    # user_id=Column(String,ForeignKey("user.email"))
     loc=Column(String)
     joined=Column(Date)
     cart=relationship("Cart",back_populates="costumer_cart")
@@ -42,6 +43,8 @@ class Product(Base):
     price=Column(Float,nullable=False)
     category=Column(String)
     seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"),nullable=False)
+    user=Column(String,ForeignKey("user.email",ondelete="CASCADE"),nullable=False)
+    seller=relationship("User",back_populates="product")
     cart=relationship("Cart",back_populates="product_cart")
     order=relationship("Order",back_populates="product_order")
 
