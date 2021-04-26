@@ -13,7 +13,7 @@ get_db=database.get_db
 
 
 @route.put("/{email}")
-def edit_seller(email:str,request:schema.SellerUpdate,db:Session=Depends(get_db),current_user:schema.User=Depends(get_curr_user)):
+async def edit_seller(email:str,request:schema.SellerUpdate,db:Session=Depends(get_db),current_user:schema.User=Depends(get_curr_user)):
     user=db.query(models.User).filter(models.User.email==email).first()
     if user and user.email==current_user.email:
         seller=db.query(models.Seller).filter(models.Seller.id==user.seller_id)

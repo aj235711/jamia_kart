@@ -12,7 +12,7 @@ get_curr_user=oauth2.get_current_user
 get_db=database.get_db
 
 @route.put("/{email}")
-def edit_costumer(email:str,request:schema.SellerUpdate,db:Session=Depends(get_db),current_user:schema.User=Depends(get_curr_user)):
+async def edit_costumer(email:str,request:schema.SellerUpdate,db:Session=Depends(get_db),current_user:schema.User=Depends(get_curr_user)):
     user=db.query(models.User).filter(models.User.email==email).first()
     if user and user.email==current_user.email:
         costumer=db.query(models.Costumer).filter(models.Costumer.id==user.costumer_id)
