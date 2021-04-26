@@ -13,7 +13,7 @@ get_current_user=oauth2.get_current_user
 get_db = database.get_db
 
 @route.post("/")
-def create_order(request : schema.Order, db : Session = Depends(get_db), current_user : schema.User=Depends(get_current_user)):
+async def create_order(request : schema.Order, db : Session = Depends(get_db), current_user : schema.User=Depends(get_current_user)):
     user = db.query(models.User).filter(models.User.email==current_user.email).first()
     if (not user) or user.category!="customer":
         return {"success":False, "errMsg": "not a customer"}
@@ -41,7 +41,7 @@ def create_order(request : schema.Order, db : Session = Depends(get_db), current
     return {"success":True, "msg":"order created","order_id":order.id}
 
 @route.delete("/delete/{id}")
-def delete_order(id:int, db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+async def delete_order(id:int, db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
     user = db.query(models.User).filter(models.User.email==current_user.email).first()
     order = db.query(models.Order).filter(models.Order.id==id)
     if (not user) or user.category != "customer" and user.costumer_id != order.first().costumer_id:
