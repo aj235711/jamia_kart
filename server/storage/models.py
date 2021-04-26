@@ -16,8 +16,8 @@ class User(Base):
     name=Column(String)
     password=Column(String)
     category=Column(String)
-    seller_id=Column(Integer,ForeignKey("seller.id"))
-    costumer_id=Column(Integer,ForeignKey("costumer.id"))
+    seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"))
+    costumer_id=Column(Integer,ForeignKey("costumer.id",ondelete="CASCADE"))
 
 
 class Seller(Base):
@@ -45,7 +45,7 @@ class Product(Base):
     qty=Column(Integer,nullable=False)
     price=Column(Float,nullable=False)
     category=Column(String)
-    seller_id=Column(Integer,ForeignKey("seller.id"),nullable=False)
+    seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"),nullable=False)
     cart=relationship("Cart",back_populates="product_cart")
     order=relationship("Order",back_populates="product_order")
 
@@ -53,8 +53,8 @@ class Cart(Base):
     __tablename__="cart"
     id=Column(Integer,primary_key=True,autoincrement=True)
     qty=Column(Integer,nullable=False)
-    costumer_id=Column(Integer,ForeignKey("costumer.id"))
-    product_id=Column(Integer,ForeignKey("product.id"))
+    costumer_id=Column(Integer,ForeignKey("costumer.id",ondelete="CASCADE"))
+    product_id=Column(Integer,ForeignKey("product.id",ondelete="CASCADE"))
     costumer_cart=relationship("Costumer",back_populates="cart")
     product_cart=relationship("Product",back_populates="cart")
 
@@ -62,8 +62,8 @@ class Order(Base):
     __tablename__="order"
     id=Column(Integer,primary_key=True,autoincrement=True)
     qty=Column(Integer,nullable=False)
-    costumer_id=Column(Integer,ForeignKey("costumer.id"))
-    product_id=Column(Integer,ForeignKey("product.id"))
+    costumer_id=Column(Integer,ForeignKey("costumer.id",ondelete="CASCADE"))
+    product_id=Column(Integer,ForeignKey("product.id",ondelete="CASCADE"))
     status=Column(Boolean,default=False)
     ship_add=Column(String,nullable=False)
     amount=Column(Float,nullable=False)
