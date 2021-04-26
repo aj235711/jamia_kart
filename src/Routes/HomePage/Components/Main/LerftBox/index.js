@@ -85,13 +85,13 @@ const LeftBox = () => {
             <MenuItem value={30}>Avg. Customer review</MenuItem>
           </Select>
         </FormControl>
-        <h2
+        {/* <h2
           style={{ margin: "30px", marginBottom: "0px", textAlign: "center" }}
         >
           Discount
-        </h2>
+        </h2> */}
         <div className="d-flex justify-content center flex-wrap">
-        <Chip
+        {/* <Chip
           label="10% off or more"
           onClick={handleClick}
           onDelete={handleDelete}
@@ -120,7 +120,7 @@ const LeftBox = () => {
           onDelete={handleDelete}
           className="d-flex justify-content-between mx-3 my-2"
           style={{ border: "1px solid #ee8022bf", color: "#ee8022ff", backgroundColor: "#ffffff", width: '80%', fontSize: '1.1rem' }}
-        />
+        /> */}
         </div>
       </div>
     </Col>

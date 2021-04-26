@@ -15,6 +15,7 @@ import axios from "axios";
 import { Button, Label, FormGroup, CustomInput } from "reactstrap";
 import JamiaKart from "../../utils/JamiaKart.jpg";
 import Nav from "./Nav";
+// import
 const qs = require("qs");
 
 const LoginForm = () => {
@@ -33,7 +34,7 @@ const LoginForm = () => {
         console.log(res);
         localStorage.setItem("jwt", res.data.access_token);
         history.push("/jamia_kart");
-      });
+      }).catch(err => alert('Wrong username or password'));
   };
 
   return (
@@ -69,6 +70,12 @@ const LoginForm = () => {
                     Sign In
                   </Button>
                 </FormGroup>
+                <FormGroup className="w-100 d-flex justify-content-center align-items-center">
+              <div>Don't have an account?</div>
+              <div className="ml-3" style={{color: '#332288', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => history.push('/register')}>
+                Register
+              </div>
+            </FormGroup>
               </Row>
             </AvForm>
           </Col>
