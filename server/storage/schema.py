@@ -57,10 +57,16 @@ class Product(BaseModel):
     category : str
     desc : str
 
+class ProductEdit(BaseModel):
+    imgurl : str
+    qty : int
+    price : float
+
 class ProductShow(Product):
     id : int
     class Config():
         orm_mode=True
+
 
 """
 CART schema

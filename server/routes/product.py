@@ -45,4 +45,24 @@ def single_product(id:int,db : Session = Depends(get_db)):
     product=db.query(models.Product).filter(models.Product.id==id).first()
     if product:
         return product
-    
+
+@route.put("/edit/{id}")
+def edit_product(id : int, request : schema.ProductEdit, db : Session = Depends(get_db), current_user : schema.User = Depends(get_current_user)):
+    """
+    edit product
+    """
+    user = db.query(models.User).filter(models.User.email == current_user.email).first()
+    product = db.query(models.Product).filter(models.Product.id==id)
+    if user  and user.category == "seller" and product.first() and user.seller_id == product.first().seller_id:
+        img = request.imgurl
+        daam = request.price
+        qnty = request.qty
+        if img == "":
+            img = product.first().imgurl
+        if daam == -1:
+            daam = product.first().price
+        if qnty == -1:
+            qnty = product.first().qty
+    product.update({"qty":qnty,"price":daam,"imgurl":img},synchronize_session=False)
+    db.commit()
+    return product.first()
