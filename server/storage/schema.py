@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 from pydantic import BaseModel
 
 """
@@ -91,6 +91,18 @@ class Order(BaseModel):
     qty : int
     shipping_add : str
     cart_id : int
+
+class OrderShow(BaseModel):
+    id : int
+    qty : int
+    ship_add : str
+    status : bool
+    amount : float
+    ship_add : str
+    product_order : ProductShow
+    
+    class Config():
+        orm_mode=True
 
 """
 AUTH schemas
