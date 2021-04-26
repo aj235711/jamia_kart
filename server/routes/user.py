@@ -99,10 +99,10 @@ async def delete_user(email:str, pswd:str, db: Session=Depends(get_db),current_u
             detail="unauthenticated")
     if user.first().category=="seller":
         seller=db.query(models.Seller).filter(models.Seller.id==user.first().seller_id)
-        seller.delete()
+        seller.delete(synchronize_session=False)
     elif user.first().category=="costumer":
         costumer=db.query(models.Costumer).filter(models.Seller.id==user.first().costumer_id)
-        costumer.delete()
+        costumer.delete(synchronize_session=False)
     user.delete(synchronize_session=False)
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
