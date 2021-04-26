@@ -77,6 +77,16 @@ class CartShow(Cart):
         orm_mode=True
 
 """
+ORDER schemas
+"""
+
+class Order(BaseModel):
+    product_id : int
+    qty : int
+    shipping_add : str
+    cart_id : int
+
+"""
 AUTH schemas
 """
         
