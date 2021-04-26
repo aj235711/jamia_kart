@@ -6,6 +6,7 @@ import HomePage from "./HomePage";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import ProductPage from "./ProductPage";
+import Cart from './Cart';
 
 const Routes = () => {
     return (
@@ -15,6 +16,7 @@ const Routes = () => {
           <Route path="/register" exact component={RegisterForm} />
           <Route path="/login" exact component={LoginForm} />
           <Route path="/product:id" exact component={ProductPage} />
+          <Route path="/cart" exxact component={Cart} />
         </Switch>
       </Router>
     );
