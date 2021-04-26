@@ -43,8 +43,12 @@ const RegisterForm = () => {
       <Col md="6" className="border border-secondary rounded p-4 bg-white m-3">
         <AvForm onValidSubmit={handleSubmit}>
           <Row>
-            <Col md="12" className="d-flex justify-content-center" style={{height: '60px', width: '150px'}}>
-              <img src={JamiaKart} className= "pb-2 px-5" />
+            <Col
+              md="12"
+              className="d-flex justify-content-center"
+              style={{ height: "60px", width: "150px" }}
+            >
+              <img src={JamiaKart} className="pb-2 px-5" />
             </Col>
             <Col md="6">
               <AvField name="name" label="Name" required />
@@ -70,11 +74,8 @@ const RegisterForm = () => {
             </Col>
             <Col md="6">
               <AvField type="select" name="userType" label="User Type" required>
-                <option disabled={true} default>
-                  ---Select User Type---
-                </option>
-                <option value='customer'>Customer</option>
-                <option value='seller'>Salesman</option>
+                <option value="customer">Customer</option>
+                <option value="seller">Salesman</option>
               </AvField>
             </Col>
             <Col md="6">
@@ -87,7 +88,15 @@ const RegisterForm = () => {
             </FormGroup>
             <FormGroup className="w-100 d-flex justify-content-center align-items-center">
               <div>Already have an account?</div>
-              <div className="ml-3" style={{color: '#332288', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => history.push('/login')}>
+              <div
+                className="ml-3"
+                style={{
+                  color: "#332288",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={() => history.push("/login")}
+              >
                 Login
               </div>
             </FormGroup>
