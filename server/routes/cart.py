@@ -13,7 +13,7 @@ get_current_user=oauth2.get_current_user
 get_db = database.get_db
 
 @route.post("/")
-def create_cart(request : schema.Cart,db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+async def create_cart(request : schema.Cart,db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
     """
     creates cart
     """
@@ -30,7 +30,7 @@ def create_cart(request : schema.Cart,db : Session = Depends(get_db),current_use
     return new_cart
 
 @route.get("/",response_model=List[schema.CartShow])
-def all_cart_items(db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+async def all_cart_items(db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
     """
     get all cart items of customer
     """
@@ -40,7 +40,7 @@ def all_cart_items(db : Session = Depends(get_db),current_user : schema.User = D
         return cart_items
 
 @route.put("/update/{id}")
-def cart_update(id : int,qty : int,db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+async def cart_update(id : int,qty : int,db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
     """
     update cart item
     """
@@ -57,7 +57,7 @@ def cart_update(id : int,qty : int,db : Session = Depends(get_db),current_user :
     return {"success":False, "errMsg":"not a customer"}
 
 @route.delete("/delete/{id}")
-def delete_cart(id : int,db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+async def delete_cart(id : int,db : Session = Depends(get_db),current_user : schema.User = Depends(get_current_user)):
     """
     delete cart item
     """
