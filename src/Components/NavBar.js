@@ -9,6 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import JamiaKart from "../utils/JamiaKart.jpg";
+import {Button} from 'reactstrap';
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,10 +53,15 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      style={{zIndex: '5000'}}
     >
       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My Orders</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={() => {
+        localStorage.setItem("jwt", '');
+        handleMenuClose();
+        history.push('./login');
+        }}>Logout</MenuItem>
     </Menu>
   );
 
@@ -77,11 +83,15 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={(event) => {
+                if(localStorage.getItem('jwt'))  
+                handleProfileMenuOpen(event)
+                else history.push('./login');
+              }}
               color="inherit"
               style={{outline: 'none'}}
             >
-              Amir
+             {localStorage.getItem('jwt') ? <Button color='transparent'>User</Button> : <Button color='transparent'>Login</Button>}
             </IconButton>
             <IconButton aria-label="show 4 new" color="inherit" style={{outline: 'none'}}>
               <Badge badgeContent={0} color="primary">

@@ -20,7 +20,7 @@ const Routes = () => {
           <Route path="/register" exact component={RegisterForm} />
           <Route path="/login" exact component={LoginForm} />
           <Route path="/product:id" exact component={ProductPage} />
-          <Route path="/cart" exxact component={Cart} />
+          <Route path="/cart" exact component={Cart} />
           <Route path="/addproduct" exact component={AddProduct} />
         </Switch>
       </Router>

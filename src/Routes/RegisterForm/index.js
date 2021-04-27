@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Button, FormGroup } from "reactstrap";
 import JamiaKart from "../../utils/JamiaKart.jpg";
 import axios from "axios";
+import {toast} from 'react-toastify';
 
 const RegisterForm = () => {
   const history = useHistory();
@@ -21,8 +22,9 @@ const RegisterForm = () => {
       })
       .then((res) => {
         console.log(res);
-        history.push("/jamia_kart");
-      });
+        history.push("/login");
+        toast.success('hahaha');
+      }).catch(err => alert('Enter again'));
   };
 
   return (
