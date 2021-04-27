@@ -53,7 +53,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      style={{zIndex: '5000'}}
+      style={{zIndex:"5000"}}
     >
       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My Orders</MenuItem>
@@ -74,6 +74,7 @@ export default function PrimarySearchAppBar() {
               src={JamiaKart}
               style={{ height: "5vh", cursor: "pointer" }}
               onClick={() => history.push("/jamia_kart")}
+              
             />
           </Typography>
           <div className={classes.grow} />
