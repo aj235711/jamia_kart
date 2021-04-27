@@ -52,6 +52,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      style={{zIndex:"5000"}}
     >
       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My Orders</MenuItem>
@@ -81,7 +82,7 @@ export default function PrimarySearchAppBar() {
               color="inherit"
               style={{outline: 'none'}}
             >
-              Amir
+              User
             </IconButton>
             <IconButton aria-label="show 4 new" color="inherit" style={{outline: 'none'}}>
               <Badge badgeContent={0} color="primary">
