@@ -1,11 +1,18 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import {serverLink} from '../../../utils/constans';
 
 const RightBox = () => {
-  
+  const history = useHistory();
   const [quantity, setQuantity] = React.useState(0);
+
+  // const passQuantity = () => {
+  //   console.log(quantity);
+  //   history.push('/cart', {quantity})
+  // }
 
 
   return (
@@ -43,7 +50,9 @@ const RightBox = () => {
           marginLeft: "10px",
           marginBottom: "10px",
           width: "88%",
+          outline:"none"
         }}
+        // onClick={passQuantity}
       >
         Add to cart
       </Button>
@@ -54,6 +63,7 @@ const RightBox = () => {
           color: "#ee8822ff",
           marginLeft: "10px",
           width: "88%",
+          outline:"none"
         }}
       >
         Buy now

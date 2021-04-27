@@ -1,7 +1,8 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date, Float ,DECIMAL,ForeignKeyConstraint,CHAR
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date, Float
 from sqlalchemy.orm import relationship
 
 from storage.database import Base
+
 
 class User(Base):
     __tablename__="user"
@@ -11,21 +12,26 @@ class User(Base):
     category=Column(String)
     seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"))
     costumer_id=Column(Integer,ForeignKey("costumer.id",ondelete="CASCADE"))
+    product=relationship("Product",back_populates="seller")
+
 
 class Seller(Base):
     __tablename__="seller"
     id=Column(Integer,autoincrement=True,primary_key=True)
     loc=Column(String)
     joined=Column(Date)
+    
 
-class Customer(Base):
+
+
+class Costumer(Base):
     __tablename__="costumer"
     id=Column(Integer,autoincrement=True,primary_key=True)
-    # user_id=Column(String,ForeignKey("user.email"))
     loc=Column(String)
     joined=Column(Date)
     cart=relationship("Cart",back_populates="costumer_cart")
     order=relationship("Order",back_populates="costumer_order")
+
 
 class Product(Base):
     __tablename__="product"
@@ -37,8 +43,11 @@ class Product(Base):
     price=Column(Float,nullable=False)
     category=Column(String)
     seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"),nullable=False)
+    user=Column(String,ForeignKey("user.email",ondelete="CASCADE"),nullable=False)
+    seller=relationship("User",back_populates="product")
     cart=relationship("Cart",back_populates="product_cart")
     order=relationship("Order",back_populates="product_order")
+
 
 class Cart(Base):
     __tablename__="cart"
@@ -48,6 +57,7 @@ class Cart(Base):
     product_id=Column(Integer,ForeignKey("product.id",ondelete="CASCADE"))
     costumer_cart=relationship("Costumer",back_populates="cart")
     product_cart=relationship("Product",back_populates="cart")
+
 
 class Order(Base):
     __tablename__="order"

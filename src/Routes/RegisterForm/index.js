@@ -1,18 +1,8 @@
 import * as React from "react";
 import { Col, Row } from "reactstrap";
-import {
-  AvForm,
-  AvField,
-  AvGroup,
-  AvInput,
-  AvFeedback,
-  AvRadioGroup,
-  AvRadio,
-  AvCheckboxGroup,
-  AvCheckbox,
-} from "availity-reactstrap-validation";
+import { AvForm, AvField } from "availity-reactstrap-validation";
 import { useHistory } from "react-router-dom";
-import { Button, Label, FormGroup, CustomInput } from "reactstrap";
+import { Button, FormGroup } from "reactstrap";
 import JamiaKart from "../../utils/JamiaKart.jpg";
 import axios from "axios";
 

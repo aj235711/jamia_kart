@@ -17,8 +17,6 @@ class UserShow(BaseModel):
     email : str
     name : str
     category : str
-    # seller_id : int
-    # costumer_id : int
     class Config():
         orm_mode=True
 
@@ -64,6 +62,7 @@ class ProductEdit(BaseModel):
 
 class ProductShow(Product):
     id : int
+    seller : UserShow
     class Config():
         orm_mode=True
 

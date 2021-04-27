@@ -14,7 +14,7 @@ get_current_user=oauth2.get_current_user
 get_db = database.get_db
 
 @route.post("/",response_model=schema.ProductShow)
-def create_product(request : schema.Product, db: Session=Depends(get_db),current_user : schema.User = Depends(get_current_user)):
+async def create_product(request : schema.Product, db: Session=Depends(get_db),current_user : schema.User = Depends(get_current_user)):
     """
     create product
     """
@@ -23,14 +23,14 @@ def create_product(request : schema.Product, db: Session=Depends(get_db),current
         return {"success":False,"errMsg":"no such user"}
     if user.category != "seller":
         return {"success":False,"errMsg":"not a seller"}
-    new_product=models.Product(name=request.name,desc=request.desc,imgurl=request.imgurl,qty=request.qty,price=request.price,category=request.category,seller_id=user.seller_id)
+    new_product=models.Product(name=request.name,desc=request.desc,imgurl=request.imgurl,qty=request.qty,price=request.price,category=request.category,seller_id=user.seller_id,user=user.email)
     db.add(new_product)
     db.commit()
     db.refresh(new_product)
     return new_product
 
 @route.get("/saare",response_model = List[schema.ProductShow])
-def all_products(db : Session = Depends(get_db)):
+async def all_products(db : Session = Depends(get_db)):
     """
     list all products
     """
@@ -38,7 +38,7 @@ def all_products(db : Session = Depends(get_db)):
     return products
 
 @route.get("/akela/{id}",response_model=schema.ProductShow)
-def single_product(id:int,db : Session = Depends(get_db)):
+async def single_product(id:int,db : Session = Depends(get_db)):
     """
     return a single product or null
     """
@@ -47,7 +47,7 @@ def single_product(id:int,db : Session = Depends(get_db)):
         return product
 
 @route.put("/edit/{id}")
-def edit_product(id : int, request : schema.ProductEdit, db : Session = Depends(get_db), current_user : schema.User = Depends(get_current_user)):
+async def edit_product(id : int, request : schema.ProductEdit, db : Session = Depends(get_db), current_user : schema.User = Depends(get_current_user)):
     """
     edit product
     """
