@@ -1,11 +1,13 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { Row, Col, Button } from "reactstrap";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import { useHistory as history } from "react-router-dom";
 
 const CartItem = () => {
   return (
-    <div className="mb-5">
+    <div className="mb-5" style={{cursor:"pointer"}}>
       <div
         className="shadow p-3 mt-5"
         style={{ borderRadius: "5px", border: "2px solid rgba(0, 0, 0, 0.3)" }}

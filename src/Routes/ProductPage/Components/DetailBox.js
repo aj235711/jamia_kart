@@ -3,8 +3,7 @@ import Details from "./Details";
 import { Col, Row } from "reactstrap";
 import axios from "axios";
 
-const DetailBox = ({name, price, description}) => {
-
+const DetailBox = ({ name, price, description, sellerName, qty }) => {
   // const [products, setProducts] = React.useState([]);
   // React.useEffect(() => {
   //   axios
@@ -14,15 +13,15 @@ const DetailBox = ({name, price, description}) => {
 
   return (
     <div
-    style={{
-        position: 'fixed', 
-        left: '30%',
+      style={{
+        position: "fixed",
+        left: "30%",
         backgroundColor: "white",
         borderRight: "1px solid rgba(0,0,0,0.3)",
         height: "80vh",
         padding: "8px",
-        display:"flex",
-        width:"50%",
+        display: "flex",
+        width: "50%",
         // alignItems:"center",
         // justifyContent:"center"
       }}
@@ -41,7 +40,13 @@ const DetailBox = ({name, price, description}) => {
           </Col>
         );
       })} */}
-      <Details name={name} price={price} description={description} />
+      <Details
+        name={name}
+        price={price}
+        description={description}
+        sellerName={sellerName}
+        qty={qty}
+      />
     </div>
   );
 };

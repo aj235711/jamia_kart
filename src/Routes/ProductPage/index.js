@@ -7,17 +7,35 @@ import { useLocation } from "react-router-dom";
 const ProductPage = () => {
   const location = useLocation();
 
-  const { id, name, price, imgTag, category, description } = location.state;
+  const {
+    id,
+    name,
+    price,
+    imgTag,
+    category,
+    description,
+    sellerName,
+    qty
+  } = location.state;
+
 
   return (
     <div
       style={{
-        marginTop:"18vh"
+        marginTop: "18vh",
       }}
     >
       <Image imgTag={imgTag} />
-      <DetailBox name={name} price={price} description={description} />
-      <RightBox />
+      <DetailBox
+        name={name}
+        price={price}
+        description={description}
+        sellerName={sellerName}
+        qty={qty}
+      />
+      <RightBox
+      qty={qty}
+      />
     </div>
   );
 };

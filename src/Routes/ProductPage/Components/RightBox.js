@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {serverLink} from '../../../utils/constans';
 
-const RightBox = () => {
+const RightBox = ({ qty }) => {
   const history = useHistory();
   const [quantity, setQuantity] = React.useState(0);
 
@@ -30,6 +30,7 @@ const RightBox = () => {
       <TextField
         id="outlined-basic"
         label="Quantity"
+        disabled={qty===0}
         variant="outlined"
         type="number"
         inputProps={{ min: 0}}
@@ -44,9 +45,10 @@ const RightBox = () => {
       />
       <Button
         variant="outlined"
+        disabled={qty===0}
         style={{
-          border: "1px solid #ee8822aa",
-          color: "#ee8822ff",
+          border: `1px solid ${qty>0 ? "#ee8822aa" : "#44444466"}`,
+          color: `${qty>0 ? "#ee8822aa" : "#44444466"}`,
           marginLeft: "10px",
           marginBottom: "10px",
           width: "88%",
@@ -64,9 +66,10 @@ const RightBox = () => {
       </Button>
       <Button
         variant="outlined"
+        disabled={qty===0}
         style={{
-          border: "1px solid #ee8822aa",
-          color: "#ee8822ff",
+          border: `1px solid ${qty>0 ? "#ee8822aa" : "#44444466"}`,
+          color: `${qty>0 ? "#ee8822aa" : "#44444466"}`,
           marginLeft: "10px",
           width: "88%",
           outline:"none"

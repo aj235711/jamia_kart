@@ -3,13 +3,14 @@ import Card from "./Card";
 // import product from './Array.js'
 import { Col, Row } from "reactstrap";
 import axios from "axios";
+import {serverLink} from '../../../../../../utils/constans';
 import PlaceHolder from "../../../../../../Components/PlaceHolder";
 
 const CardList = ({selectedCategory}) => {
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     axios
-      .get("https://fakestoreapi.com/products")
+      .get(`${serverLink}/products/saare`)
       .then((response) => setProducts(response.data));
   }, []);
 
@@ -30,10 +31,12 @@ const CardList = ({selectedCategory}) => {
               key={product.id}
               id={product.id}
               price={product.price}
-              name={product.title}
-              imgTag={product.image}
+              name={product.name}
+              imgTag={product.imgurl}
               category={product.category}
-              description={product.description}
+              description={product.desc}
+              sellerName={product.seller.name}
+              qty={product.qty}
             />
           </Col>
         );

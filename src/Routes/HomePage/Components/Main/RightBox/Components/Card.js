@@ -4,12 +4,12 @@ import Button from "@material-ui/core/Button";
 import { Row, Col } from "reactstrap";
 import {useHistory} from 'react-router-dom';
 
-const Card = ({ id, name, price, imgTag, category, description }) => {
+const Card = ({ id, name, price, imgTag, category, description, sellerName,qty }) => {
 
   const history = useHistory();
 
   const pageChange = () => {
-    history.push(`/product:${id}`, {id, name, price, imgTag, category, description});
+    history.push(`/product:${id}`, {id, name, price, imgTag, category, description,sellerName,qty});
   };
 
   return (
