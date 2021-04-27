@@ -15,7 +15,7 @@ import axios from "axios";
 import { Button, Label, FormGroup, CustomInput } from "reactstrap";
 import JamiaKart from "../../utils/JamiaKart.jpg";
 import Nav from "./Nav";
-// import
+import {serverLink} from '../../utils/constans';
 const qs = require("qs");
 
 const LoginForm = () => {
@@ -24,7 +24,7 @@ const LoginForm = () => {
     console.log(values);
     axios
       .post(
-        "http://localhost:8000/login/",
+        `${serverLink}/login/`,
         qs.stringify({
           username: values.email,
           password: values.password,
@@ -33,6 +33,14 @@ const LoginForm = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("jwt", res.data.access_token);
+        // var decoded = jwt_decode(res.data.access_token);
+        // localStorage.setItem("user", decoded);
+        // console.log(decoded);
+        // axios.get(`${serverLink}/user/`, {
+        //   headers:{
+        //     "Authorization":"bearer "+localStorage.getItem('jwt')
+        // }
+        // }).then(res => console.log(res)).catch(err => console.log(err));
         history.push("/jamia_kart");
       }).catch(err => alert('Wrong username or password'));
   };
