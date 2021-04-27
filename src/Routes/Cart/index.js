@@ -12,7 +12,7 @@ const Cart = () => {
       <Nav2 />
       <Col md="12" className="d-flex justify-content-center mt-5">
         <Col md="9" className="d-flex align-items-center flex-wrap">
-          <CartItem id={0}/>
+          <CartItem />
           </Col>
       </Col>
     </>

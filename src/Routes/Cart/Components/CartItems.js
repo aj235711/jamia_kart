@@ -3,7 +3,7 @@ import { Row, Col, Button } from "reactstrap";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-const CartItem = ({ id }) => {
+const CartItem = () => {
   return (
     <div className="shadow p-3" style={{borderRadius: '5px', border: "2px solid rgba(0, 0, 0, 0.3)"}}>
       <Row
@@ -44,7 +44,7 @@ const CartItem = ({ id }) => {
       >
         <h5 className="ml-5">
         <RemoveIcon className="bg-dark text-white mr-2 p-1" style={{cursor: 'pointer'}}/>
-          {"      "}Quantity: 5{"      "}
+          {"      "}Quantity: 1{"      "}
           <AddIcon className="bg-dark text-white ml-2 p-1" style={{cursor: 'pointer'}}/>
           {"      "}
         </h5>
