@@ -1,8 +1,7 @@
 import React from "react";
-import NavBar from "../../Components/NavBar.js";
-import Nav2 from "../../Components/Nav2.js";
 import Main from "./Components/Main/index.js";
 import {useLocation} from 'react-router-dom';
+// import Bars from "../../Components/Bars.js";
 
 const HomePage = () => {
   console.log(localStorage.getItem("jwt"));
@@ -11,7 +10,7 @@ const HomePage = () => {
   console.log(selectedCategory);
   return (
     <div>
-      <div
+      {/* <div
         style={{
           position: "fixed",
           minWidth: "1294px",
@@ -20,10 +19,9 @@ const HomePage = () => {
           width: "100%",
           zIndex: "1000",
         }}
-      >
-        <NavBar />
-        <Nav2 />
-      </div>
+      > */}
+        {/* <Bars /> */}
+      {/* </div> */}
       <Main selectedCategory={selectedCategory}/>
     </div>
   );
