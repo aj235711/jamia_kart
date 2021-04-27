@@ -10,7 +10,7 @@ const HomePage = () => {
   console.log(selectedCategory);
   return (
     <div>
-      <div
+      {/* <div
         style={{
           position: "fixed",
           minWidth: "1294px",
@@ -19,9 +19,9 @@ const HomePage = () => {
           width: "100%",
           zIndex: "1000",
         }}
-      >
+      > */}
         {/* <Bars /> */}
-      </div>
+      {/* </div> */}
       <Main selectedCategory={selectedCategory}/>
     </div>
   );
