@@ -52,7 +52,13 @@ const RightBox = () => {
           width: "88%",
           outline:"none"
         }}
-        // onClick={passQuantity}
+        onClick={() => {
+          if(localStorage.getItem('jwt')) {
+
+          } else {
+            history.push('/login');
+          }
+        }}
       >
         Add to cart
       </Button>
@@ -64,6 +70,13 @@ const RightBox = () => {
           marginLeft: "10px",
           width: "88%",
           outline:"none"
+        }}
+        onClick={() => {
+          if(localStorage.getItem('jwt')) {
+
+          } else {
+            history.push('/login');
+          }
         }}
       >
         Buy now
