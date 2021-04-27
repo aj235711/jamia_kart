@@ -11,6 +11,14 @@ from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+get_db = database.get_db
+
+@app.on_event("shutdown")
+def shutdown_event(db:Session=Depends(get_db)):
+    print("connection closed")
+    db.close()
+    
+    
 app.include_router(authentication.route)
 app.include_router(user.route)
 app.include_router(admin.route)

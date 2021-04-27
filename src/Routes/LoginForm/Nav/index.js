@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import JamiaKart from "../../../utils/JamiaKart.jpg";
+import M from "materialize-css";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -29,7 +30,7 @@ export default function PrimarySearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             <img src={JamiaKart} style={{height:"5vh"}}/>
           </Typography>
-          <div>Sign Up</div>
+          <div onClick={M.toast({html:"hello"})}>Sign Up</div>
           </Toolbar>
           </AppBar>
     </div>
