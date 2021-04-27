@@ -2,9 +2,8 @@ import React from "react";
 import Image from "./Components/Image.js";
 import DetailBox from "./Components/DetailBox.js";
 import RightBox from "./Components/RightBox.js";
-import NavBar from "../../Components/NavBar.js";
-import Nav2 from "../../Components/Nav2.js";
 import { useLocation } from "react-router-dom";
+// import Bars from "../../Components/Bars.js";
 
 const ProductPage = () => {
   const location = useLocation();
@@ -17,10 +16,10 @@ const ProductPage = () => {
         position: "fixed",
         width: "100%",
         zIndex: "1000",
+        marginTop:"18vh"
       }}
     >
-      <NavBar />
-      <Nav2 />
+      {/* <Bars /> */}
       <Image imgTag={imgTag} />
       <DetailBox name={name} price={price} description={description} />
       <RightBox />
