@@ -21,6 +21,6 @@ def get_db():
     db=SessionLocal()
     try:
         yield db
-    except:
-        print("error occured")
-    #     db.close()
+    finally:
+        # print("error occured")
+        db.close()
