@@ -95,9 +95,9 @@ export default function PrimarySearchAppBar() {
             >
              {localStorage.getItem('jwt') ? <Button color='transparent'>User</Button> : <Button color='transparent'>Login</Button>}
             </IconButton>
-            <IconButton aria-label="show 4 new" color="inherit" style={{outline: 'none'}}>
+            <IconButton onClick={() => history.push('/cart')} aria-label="show 4 new" color="inherit" style={{outline: 'none'}}>
               <Badge badgeContent={0} color="primary">
-                <ShoppingCartIcon onClick={() => history.push('/cart')}/>
+                <ShoppingCartIcon/>
               </Badge>
             </IconButton>
           </div>
