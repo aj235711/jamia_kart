@@ -3,10 +3,10 @@ import Card from "./Card";
 // import product from './Array.js'
 import { Col, Row } from "reactstrap";
 import axios from "axios";
-import {serverLink} from '../../../../../../utils/constans';
+import {serverLink} from '../../../../../../utils/constants';
 import PlaceHolder from "../../../../../../Components/PlaceHolder";
 
-const CardList = ({selectedCategory}) => {
+const CardList = ({selectedCategory, stockFilter}) => {
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     axios
@@ -17,6 +17,7 @@ const CardList = ({selectedCategory}) => {
   if (!products.length) return <PlaceHolder />;
 
   const filteredProducts = selectedCategory === 'all' ? products : products.filter(product => product.category === selectedCategory);
+  const productsToShow = stockFilter ? filteredProducts.filter(product => product.qty > 0) : filteredProducts;
 
   return (
     <Row
@@ -24,7 +25,7 @@ const CardList = ({selectedCategory}) => {
       style={{ marginTop: "18vh", paddingBottom:"30px" }}
       className="display-flex justify-content-center"
     >
-      {filteredProducts.map((product, i) => {
+      {productsToShow.map((product, i) => {
         return (
           <Col md="3" sm="3">
             <Card
