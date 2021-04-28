@@ -6,7 +6,7 @@ import {useLocation} from 'react-router-dom';
 const HomePage = () => {
   console.log(localStorage.getItem("jwt"));
   const location = useLocation();
-  const selectedCategory = location.state ?  location.state.selectedCategory :  'all';
+  const selectedCategory = location.state ?  location.state.selectedCategory :  'All';
   console.log(selectedCategory);
   return (
     <div>

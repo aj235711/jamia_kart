@@ -2,7 +2,7 @@ import * as React from "react";
 import { Col, Row } from "reactstrap";
 import { AvForm, AvField, AvInput } from "availity-reactstrap-validation";
 import { useHistory } from "react-router-dom";
-import { Button, FormGroup, Label } from "reactstrap";
+import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -12,8 +12,10 @@ const ProductForm = () => {
   const history = useHistory();
 
   const [image, setImage] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = (event, values) => {
+    setLoading(true);
     console.log(values);
     const data = new FormData();
     data.append("file", image);
@@ -42,11 +44,18 @@ const ProductForm = () => {
           )
           .then((res) => {
             console.log(res.data);
+            setLoading(false);
             toast.dark("Added successfully!!");
           })
-          .catch((err) => toast.error("An error occured"));
+          .catch((err) => {
+            setLoading(false);
+            toast.error("An error occured");
+          });
       })
-      .catch((err) => toast.error("An error occured"));
+      .catch((err) => {
+        setLoading(false);
+        toast.error("An error occured");
+      });
   };
 
   return (
@@ -98,9 +107,13 @@ const ProductForm = () => {
               />
             </Col>
             <FormGroup className="w-100 d-flex justify-content-center">
-              <Button type="submit" outline color="info">
-                Add Product
-              </Button>
+              {!loading ? (
+                <Button type="submit" outline color="info">
+                  Add Product
+                </Button>
+              ) : (
+                <Spinner color='info' />
+              )}
             </FormGroup>
           </Row>
         </AvForm>
