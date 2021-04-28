@@ -16,7 +16,7 @@ const CardList = ({selectedCategory, stockFilter}) => {
 
   if (!products.length) return <PlaceHolder />;
 
-  const filteredProducts = selectedCategory === 'all' ? products : products.filter(product => product.category === selectedCategory);
+  const filteredProducts = selectedCategory === 'All' ? products : products.filter(product => product.category === selectedCategory);
   const productsToShow = stockFilter ? filteredProducts.filter(product => product.qty > 0) : filteredProducts;
 
   return (

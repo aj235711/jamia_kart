@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Container, Col, Row } from "reactstrap";
 import {
   AvForm,
@@ -12,7 +13,7 @@ import {
 } from "availity-reactstrap-validation";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { Button, Label, FormGroup, CustomInput } from "reactstrap";
+import { Button, Spinner, FormGroup } from "reactstrap";
 import JamiaKart from "../../utils/JamiaKart.jpg";
 import Nav from "./Nav";
 import { serverLink } from "../../utils/constants";
@@ -21,7 +22,9 @@ const qs = require("qs");
 
 const LoginForm = () => {
   const history = useHistory();
+  const [loading, setLoading] = React.useState(false);
   const handleSubmit = (event, values) => {
+    setLoading(true);
     console.log(values);
     axios
       .post(
@@ -41,12 +44,22 @@ const LoginForm = () => {
               Authorization: "bearer " + localStorage.getItem("jwt"),
             },
           })
-          .then((res) => localStorage.setItem("user", JSON.stringify(res.data)))
-          .catch((err) => console.log(err));
+          .then((res) => {
+            setLoading(false);
+            localStorage.setItem("user", JSON.stringify(res.data));
+          })
+          .catch((err) => {
+            setLoading(false);
+            console.log(err);
+            toast.error('Invalid credentials');
+          });
         history.push("/jamia_kart");
         console.log(JSON.parse(localStorage.getItem("user")));
       })
-      .catch((err) => alert("Wrong username or password"));
+      .catch((err) => {
+        setLoading(false);
+        toast.error('Invalid credentials');
+      });
   };
 
   return (
@@ -78,9 +91,13 @@ const LoginForm = () => {
                   />
                 </Col>
                 <FormGroup className="w-100 d-flex justify-content-center">
-                  <Button type="submit" outline color="info">
-                    Sign In
-                  </Button>
+                  {!loading ? (
+                    <Button type="submit" outline color="info">
+                      Sign In
+                    </Button>
+                  ) : (
+                    <Spinner color="info" />
+                  )}
                 </FormGroup>
                 <FormGroup className="w-100 d-flex justify-content-center align-items-center">
                   <div>Don't have an account?</div>

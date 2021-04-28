@@ -38,20 +38,20 @@ export default function DenseAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <ListItem button style={{textAlign:"center" }} onClick={() => history.push('/jamia_kart', {selectedCategory: 'all'})}>
+          <ListItem button style={{textAlign:"center" }} onClick={() => history.push('/jamia_kart', {selectedCategory: 'All'})}>
             <ListItemText primary="All" />
           </ListItem>
           <ListItem button>
-            <ListItemText primary="Men's section" onClick={() => history.push('/jamia_kart', {selectedCategory: `men's clothing`})}/>
+            <ListItemText primary="Men's section" onClick={() => history.push('/jamia_kart', {selectedCategory: `Men's Clothing`})}/>
             </ListItem>
           <ListItem button>
-            <ListItemText primary="Women's section" onClick={() => history.push('/jamia_kart', {selectedCategory: `women's clothing`})}/>
+            <ListItemText primary="Women's section" onClick={() => history.push('/jamia_kart', {selectedCategory: `Women's Clothing`})}/>
             </ListItem>
           <ListItem button>
-            <ListItemText primary="Jewelery" onClick={() => history.push('/jamia_kart', {selectedCategory: 'jewelery'})}/>
+            <ListItemText primary="Jewelery" onClick={() => history.push('/jamia_kart', {selectedCategory: 'Jewelery'})}/>
             </ListItem>
           <ListItem button>
-            <ListItemText primary="Electronics" onClick={() => history.push('/jamia_kart', {selectedCategory: 'electronics'})}/>
+            <ListItemText primary="Electronics" onClick={() => history.push('/jamia_kart', {selectedCategory: 'Electronics'})}/>
             </ListItem>
           {/* <ListItem button>
             <ListItemText primary="Top purchases" />

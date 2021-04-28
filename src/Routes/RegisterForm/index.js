@@ -2,16 +2,17 @@ import * as React from "react";
 import { Col, Row } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 import { useHistory } from "react-router-dom";
-import { Button, FormGroup } from "reactstrap";
+import { Button, FormGroup, Spinner } from "reactstrap";
 import JamiaKart from "../../utils/JamiaKart.jpg";
 import axios from "axios";
-import {toast} from 'react-toastify';
+import { toast } from "react-toastify";
 
 const RegisterForm = () => {
   const history = useHistory();
-
+  const [loading, setLoading] = React.useState(false);
   const handleSubmit = (event, values) => {
     console.log(values);
+    setLoading(true);
     axios
       .post("http://localhost:8000/user/", {
         name: values.name,
@@ -22,9 +23,14 @@ const RegisterForm = () => {
       })
       .then((res) => {
         console.log(res);
+        setLoading(false);
         history.push("/login");
-        toast.success('hahaha');
-      }).catch(err => alert('Enter again'));
+        toast.dark("Successfully registered.");
+      })
+      .catch((err) => {
+        setLoading(false);
+        toast.error('Troube reaching servers');
+      });
   };
 
   return (
@@ -74,9 +80,9 @@ const RegisterForm = () => {
               <AvField name="address" label="Address" required />
             </Col>
             <FormGroup className="w-100 d-flex justify-content-center">
-              <Button type="submit" outline color="info">
+              {!loading ? <Button type="submit" outline color="info">
                 Sign Up
-              </Button>
+              </Button> : <Spinner color='info' />}
             </FormGroup>
             <FormGroup className="w-100 d-flex justify-content-center align-items-center">
               <div>Already have an account?</div>
