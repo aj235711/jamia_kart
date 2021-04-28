@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
+// import { Provider } from 'react-redux';
 
 import Routes from "./Routes";
 import { ToastContainer } from "react-toastify";

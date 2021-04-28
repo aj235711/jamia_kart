@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import {serverLink} from '../../../utils/constans';
+import {serverLink} from '../../../utils/constants';
 
 const RightBox = ({ qty }) => {
   const history = useHistory();

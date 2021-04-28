@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 SQLALCHEMY_DATABASE_URL = "sqlite:///./base.db"
 
 #create a database with name jamia_cart
-# engine = create_engine("mysql+pymysql://root:HelloWorld123!@#@localhost/jamia_cart")
+# engine = create_engine("mysql+pymysql://root:test@localhost/jamia_cart")
 engine = create_engine("mysql+pymysql://MW9iZ6mPtD:oJcYvUzER3@remotemysql.com/MW9iZ6mPtD")
 
 # engine = create_engine(

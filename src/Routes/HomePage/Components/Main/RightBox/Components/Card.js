@@ -15,8 +15,9 @@ const Card = ({ id, name, price, imgTag, category, description, sellerName,qty }
   return (
     <Col
       md="12"
-      className="d-flex justify-content-center align-items-center flex-wrap p-4 m-3 text-center border shadow container"
-      style={{ height: "450px" }}
+      className="d-flex justify-content-center align-items-center flex-wrap p-4 m-3 text-center shadow container"
+      style={{ height: "420px" }}
+      onClick={pageChange}
     >
       <Col md="12" className="p-2">
         <img alt="robots" src={imgTag} className="image" />
@@ -34,14 +35,18 @@ const Card = ({ id, name, price, imgTag, category, description, sellerName,qty }
         <Col md="12" className="">
           <p>Rs. {price}</p>
         </Col>
+        {qty === 0 &&
+        <Col md="12" className="">
+          <p style={{color: 'red'}}>Out Of Stock</p>
+        </Col>}
       </Col>
-      <Button
+      {/* <Button
         onClick={pageChange}
         variant="outlined"
         style={{ border: "1px solid #ee8822aa", color: "#ee8822ff" }}
       >
         Show product
-      </Button>
+      </Button> */}
     </Col>
   );
 };
