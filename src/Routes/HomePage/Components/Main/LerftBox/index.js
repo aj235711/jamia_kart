@@ -12,7 +12,6 @@ import {Col} from 'reactstrap';
 
 const LeftBox = ({stockFilter, setStockFilter}) => {
 
-  const [stockToggle, setStockToggle] = React.useState(false);
 
   return (
     <div

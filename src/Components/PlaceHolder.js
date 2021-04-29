@@ -5,9 +5,9 @@ const PlaceHolder = () => {
   return (
     <div
       className="d-flex justify-content-center align-items-center flex-column"
-      style={{ height: "calc(100vh - 200px)", width: "100%" }}
+      style={{ height: "70vh", width: "100%",marginTop:"18vh" }}
     >
-      <Spinner color="primary" />
+      <Spinner color="dark" />
     </div>
   );
 };
