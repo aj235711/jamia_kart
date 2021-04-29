@@ -79,13 +79,13 @@ export default function PrimarySearchAppBar() {
     else if (event.target.value === "m" || event.target.value === "M") {
       history.push("/jamia_kart", { selectedCategory: "Men's Clothing" });
     }
-    else if (event.target.value === "w" || event.target.value === "M") {
+    else if (event.target.value === "w" || event.target.value === "W") {
       history.push("/jamia_kart", { selectedCategory: "Women's Clothing" });
     }
-    else if (event.target.value === "j" || event.target.value === "M") {
+    else if (event.target.value === "j" || event.target.value === "J") {
       history.push("/jamia_kart", { selectedCategory: "Jewelery" });
     }
-    else if (event.target.value === "e" || event.target.value === "M") {
+    else if (event.target.value === "e" || event.target.value === "E") {
       history.push("/jamia_kart", { selectedCategory: "Electronics" });
     }
   };
