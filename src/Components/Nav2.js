@@ -27,17 +27,17 @@ export default function DenseAppBar() {
     <div data-aos="fade-down" className={classes.root}>
       <AppBar
         position="static"
-        style={{ backgroundColor: "#222222", fontFamily: "Times New Roman", marginBottom:"10px"}}
+        style={{ backgroundColor: "#222222", fontFamily: "Lora", marginBottom:"10px"}}
       >
         <Toolbar variant="dense">
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <ListItem button style={{textAlign:"center" }} onClick={() => history.push('/jamia_kart', {selectedCategory: 'All'})}>
             <ListItemText primary="All" />
           </ListItem>

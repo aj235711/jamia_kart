@@ -1,5 +1,5 @@
 import * as React from "react";
-import Button from "@material-ui/core/Button";
+import {Button, Spinner} from "reactstrap";
 import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -33,7 +33,7 @@ const RightBox = ({ qty }) => {
         disabled={qty===0}
         variant="outlined"
         type="number"
-        inputProps={{ min: 0}}
+        defaultValue={1}
         placeholder="Enter quantity"
         inputProps={{min: 1}}
         onChange={(event) => setQuantity(event.target.value)}
@@ -44,16 +44,17 @@ const RightBox = ({ qty }) => {
         }}
       />
       <Button
-        variant="outlined"
+        outline
         disabled={qty===0}
         style={{
-          border: `1px solid ${qty>0 ? "#ee8822aa" : "#44444466"}`,
-          color: `${qty>0 ? "#ee8822aa" : "#44444466"}`,
+          // border: `1px solid ${qty>0 ? "#ee8822aa" : "#44444466"}`,
+          // color: `${qty>0 ? "#ee8822aa" : "#44444466"}`,
           marginLeft: "10px",
           marginBottom: "10px",
           width: "88%",
           outline:"none"
         }}
+        color={qty>0 ? 'info' : 'secondary'}
         onClick={() => {
           if(localStorage.getItem('jwt')) {
 
@@ -64,16 +65,21 @@ const RightBox = ({ qty }) => {
       >
         Add to cart
       </Button>
+      {/* <div style={{marginLeft: "10px",
+          marginBottom: "10px",
+          width: "88%",
+          textAlign: "center"}}><Spinner /></div> */}
       <Button
-        variant="outlined"
+        outline
         disabled={qty===0}
         style={{
-          border: `1px solid ${qty>0 ? "#ee8822aa" : "#44444466"}`,
-          color: `${qty>0 ? "#ee8822aa" : "#44444466"}`,
+          // border: `1px solid ${qty>0 ? "#ee8822aa" : "#44444466"}`,
+          // color: `${qty>0 ? "#ee8822aa" : "#44444466"}`,
           marginLeft: "10px",
           width: "88%",
           outline:"none"
         }}
+        color={qty>0 ? 'info' : 'secondary'}
         onClick={() => {
           if(localStorage.getItem('jwt')) {
 
