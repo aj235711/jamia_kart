@@ -7,7 +7,8 @@ SQLALCHEMY_DATABASE_URL = "sqlite:///./base.db"
 
 #create a database with name jamia_cart
 # engine = create_engine("mysql+pymysql://root:HelloWorld123!@#@localhost/jamia_cart")
-engine = create_engine("mysql+pymysql://MW9iZ6mPtD:oJcYvUzER3@remotemysql.com/MW9iZ6mPtD")
+# engine = create_engine("mysql+pymysql://MW9iZ6mPtD:oJcYvUzER3@remotemysql.com/MW9iZ6mPtD")
+engine = create_engine("mysql+pymysql://sql6409113:gBRVAnvFPP@sql6.freemysqlhosting.net/sql6409113")
 
 # engine = create_engine(
 #     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False} #connect args is only needed for sqlite
