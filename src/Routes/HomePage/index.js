@@ -1,13 +1,16 @@
 import React from "react";
 import Main from "./Components/Main/index.js";
-import {useLocation} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 // import Bars from "../../Components/Bars.js";
 
 const HomePage = () => {
-  console.log(localStorage.getItem("jwt"));
-  const location = useLocation();
-  const selectedCategory = location.state ?  location.state.selectedCategory :  'All';
-  console.log(selectedCategory);
+  // console.log(localStorage.getItem("jwt"));
+  let location = useLocation();
+  // let searchValue = location.state ? location.state.searchValue : "";
+  let selectedCategory = location.state
+    ? location.state.selectedCategory
+    : "All";
+
   return (
     <div>
       {/* <div
@@ -20,9 +23,9 @@ const HomePage = () => {
           zIndex: "1000",
         }}
       > */}
-        {/* <Bars /> */}
+      {/* <Bars /> */}
       {/* </div> */}
-      <Main selectedCategory={selectedCategory}/>
+      <Main selectedCategory={selectedCategory} />
     </div>
   );
 };

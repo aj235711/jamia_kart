@@ -14,7 +14,7 @@ export default function Bars() {
         zIndex: "1000",
       }}
       >
-      <NavBar />
+      <NavBar/>
       <Nav2 />
     </div>
   );
