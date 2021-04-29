@@ -30,7 +30,7 @@ export default function PrimarySearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             <img src={JamiaKart} style={{height:"5vh"}}/>
           </Typography>
-          <div onClick={M.toast({html:"hello"})}>Sign Up</div>
+          <div>Sign Up</div>
           </Toolbar>
           </AppBar>
     </div>

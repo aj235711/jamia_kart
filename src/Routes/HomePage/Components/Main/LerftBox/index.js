@@ -10,22 +10,8 @@ import { Select } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
 import {Col} from 'reactstrap';
 
-const LeftBox = () => {
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  });
+const LeftBox = ({stockFilter, setStockFilter}) => {
 
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-  const handleDelete = () => {
-    console.info("You clicked the delete icon.");
-  };
-
-  const handleClick = () => {
-    console.info("You clicked the Chip.");
-  };
 
   return (
     <div
@@ -62,8 +48,8 @@ const LeftBox = () => {
           style={{ margin: "20px" }}
           control={
             <Switch
-              checked={state.checkedB}
-              onChange={handleChange}
+              checked={stockFilter}
+              onChange={() => setStockFilter(!stockFilter)}
               name="checkedB"
               style={{ color: "black" }}
               color="#000000"
