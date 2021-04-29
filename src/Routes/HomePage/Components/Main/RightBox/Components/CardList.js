@@ -1,7 +1,7 @@
 import * as React from "react";
 import Card from "./Card";
 // import product from './Array.js'
-import { Col, Row } from "reactstrap";
+import { Col, Row, Spinner } from "reactstrap";
 import axios from "axios";
 import {serverLink} from '../../../../../../utils/constants';
 import PlaceHolder from "../../../../../../Components/PlaceHolder";
@@ -14,7 +14,7 @@ const CardList = ({selectedCategory, stockFilter}) => {
       .then((response) => setProducts(response.data));
   }, []);
 
-  if (!products.length) return <PlaceHolder />;
+  if (!products.length) return <PlaceHolder/>;
 
   const filteredProducts = selectedCategory === 'All' ? products : products.filter(product => product.category === selectedCategory);
   const productsToShow = stockFilter ? filteredProducts.filter(product => product.qty > 0) : filteredProducts;
