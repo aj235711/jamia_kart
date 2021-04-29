@@ -76,16 +76,16 @@ export default function PrimarySearchAppBar() {
     if (event.target.value === "a") {
       history.push("/jamia_kart", { selectedCategory: "All" });
     }
-    else if (event.target.value === "m") {
+    else if (event.target.value === "m" || event.target.value === "M") {
       history.push("/jamia_kart", { selectedCategory: "Men's Clothing" });
     }
-    else if (event.target.value === "w") {
+    else if (event.target.value === "w" || event.target.value === "M") {
       history.push("/jamia_kart", { selectedCategory: "Women's Clothing" });
     }
-    else if (event.target.value === "j") {
+    else if (event.target.value === "j" || event.target.value === "M") {
       history.push("/jamia_kart", { selectedCategory: "Jewelery" });
     }
-    else if (event.target.value === "e") {
+    else if (event.target.value === "e" || event.target.value === "M") {
       history.push("/jamia_kart", { selectedCategory: "Electronics" });
     }
   };
