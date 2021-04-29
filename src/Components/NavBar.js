@@ -73,7 +73,7 @@ export default function PrimarySearchAppBar() {
 
   const searchInput = (event) => {
     console.log(event.target.value);
-    if (event.target.value === "a") {
+    if (event.target.value === "a" || event.target.value === "A") {
       history.push("/jamia_kart", { selectedCategory: "All" });
     }
     else if (event.target.value === "m" || event.target.value === "M") {
