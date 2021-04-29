@@ -6,7 +6,11 @@ import axios from "axios";
 import { serverLink } from "../../../../../../utils/constants";
 import PlaceHolder from "../../../../../../Components/PlaceHolder";
 
-const CardList = ({ selectedCategory, stockFilter, sortFilter }) => {
+const CardList = ({
+  selectedCategory,
+  stockFilter,
+  sortFilter
+}) => {
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     axios
@@ -14,12 +18,30 @@ const CardList = ({ selectedCategory, stockFilter, sortFilter }) => {
       .then((response) => setProducts(response.data));
   }, []);
 
-  if (!products.length) return <PlaceHolder/>;
+  if (!products.length) return <PlaceHolder />;
+
+  // console.log(searchValue);
+
+ 
+  // let searchedProducts = products;
+  // let newProducts = searchedProducts;
+
+  // for (let i = 0; i < searchValue.length; i++) {
+  //   newProducts =
+  //     searchValue === ""
+  //       ? products
+  //       : searchedProducts.filter(
+  //           (product) => product.name.charAt(i) === searchValue.charAt(i)
+  //       );
+  //   searchedProducts = newProducts;
+  // }
 
   const filteredProducts =
     selectedCategory === "All"
       ? products
-      : products.filter((product) => product.category === selectedCategory);
+      : products.filter(
+          (product) => product.category === selectedCategory
+        );
 
   const stockFilterProducts = stockFilter
     ? filteredProducts.filter((product) => product.qty > 0)
