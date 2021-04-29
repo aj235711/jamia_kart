@@ -3,10 +3,10 @@ import Card from "./Card";
 // import product from './Array.js'
 import { Col, Row, Spinner } from "reactstrap";
 import axios from "axios";
-import {serverLink} from '../../../../../../utils/constants';
+import { serverLink } from "../../../../../../utils/constants";
 import PlaceHolder from "../../../../../../Components/PlaceHolder";
 
-const CardList = ({selectedCategory, stockFilter}) => {
+const CardList = ({ selectedCategory, stockFilter, sortFilter }) => {
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     axios
@@ -16,13 +16,38 @@ const CardList = ({selectedCategory, stockFilter}) => {
 
   if (!products.length) return <PlaceHolder/>;
 
-  const filteredProducts = selectedCategory === 'All' ? products : products.filter(product => product.category === selectedCategory);
-  const productsToShow = stockFilter ? filteredProducts.filter(product => product.qty > 0) : filteredProducts;
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
+
+  const stockFilterProducts = stockFilter
+    ? filteredProducts.filter((product) => product.qty > 0)
+    : filteredProducts;
+
+  const productsToShow =
+    sortFilter === "By Name"
+      ? stockFilterProducts.sort((a, b) =>
+          a.name > b.name ? 1 : a.name < b.name ? -1 : 0
+        )
+      : sortFilter === "PLTH"
+      ? stockFilterProducts.sort((a, b) =>
+          a.price > b.price ? 1 : a.price < b.price ? -1 : 0
+        )
+      : sortFilter === "PHTL"
+      ? stockFilterProducts.sort((a, b) =>
+          a.price < b.price ? 1 : a.price > b.price ? -1 : 0
+        )
+      : sortFilter === "By Category"
+      ? stockFilterProducts.sort((a, b) =>
+          a.category > b.category ? 1 : a.category < b.category ? -1 : 0
+        )
+      : stockFilterProducts;
 
   return (
     <Row
       data-aos="zoom-in-left"
-      style={{ marginTop: "18vh", paddingBottom:"30px" }}
+      style={{ marginTop: "18vh", paddingBottom: "30px" }}
       className="display-flex justify-content-center"
     >
       {productsToShow.map((product, i) => {
