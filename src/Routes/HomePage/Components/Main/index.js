@@ -4,13 +4,14 @@ import LeftBox from "./LerftBox/index.js";
 import RightBox from "./RightBox/index.js";
 import { useLocation } from "react-router-dom";
 
-const Main = ({ selectedCategory }) => {
+const Main = ({ selectedCategory, searchValue}) => {
   const [stockFilter, setStockFilter] = React.useState(false);
   const [sortFilter, setSortFilter] = React.useState("Alphabetically");
+  const [categoryFilter, setCategoryFilter] = React.useState("All")
 
-  let location = useLocation();
+
   
-  // let searchValue = location.state ? location.state.searchValue : "";
+  
 
 
 
@@ -20,8 +21,8 @@ const Main = ({ selectedCategory }) => {
         <LeftBox
           stockFilter={stockFilter}
           setStockFilter={setStockFilter}
-          sortFilter={sortFilter}
           setSortFilter={setSortFilter}
+          setCategoryFilter={setCategoryFilter}
         />
       </div>
       <div className="w-75">
@@ -29,6 +30,8 @@ const Main = ({ selectedCategory }) => {
           selectedCategory={selectedCategory}
           stockFilter={stockFilter}
           sortFilter={sortFilter}
+          categoryFilter={categoryFilter}
+          searchValue={searchValue}
         />
       </div>
     </div>
