@@ -71,13 +71,6 @@ export default function PrimarySearchAppBar() {
 
   const history = useHistory();
 
-  const searchInput = (event) => {
-
-      // *LABEL WALA TARIKA
-
-    history.push("/jamia_kart", { searchValue: event.target.value });
-
-  };
 
   return (
     <div data-aos="fade-down">
@@ -91,21 +84,6 @@ export default function PrimarySearchAppBar() {
             />
           </Typography>
 
-          <TextField
-            id="filled-search"
-            label="Search products"
-            type="search"
-            placeholder="Search by Category"
-            variant="filled"
-            // multiline
-            onChange={searchInput}
-            style={{
-              marginLeft: "2vh",
-              color: "",
-              margin: "1vh",
-              width: "20%",
-            }}
-          />
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
