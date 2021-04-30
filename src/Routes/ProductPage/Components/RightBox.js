@@ -44,10 +44,11 @@ const RightBox = ({ qty, id }) => {
         position: "fixed",
         left: "80%",
         backgroundColor: "white",
-        height: "80vh",
+        height: "85vh",
         padding: "8px",
         width: "20%",
         minWidth: "16vh",
+        paddingTop:"5vh"
       }}
     >
       <TextField

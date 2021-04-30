@@ -13,6 +13,7 @@ import JamiaKart from "../utils/JamiaKart.jpg";
 import { Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
+import SearchForeverTwoToneIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -71,10 +72,18 @@ export default function PrimarySearchAppBar() {
 
   const history = useHistory();
 
+  const searchInput = (event) => {
+    // *LABEL WALA TARIKA
+
+    history.push("/jamia_kart", { searchValue: event.target.value });
+  };
 
   return (
     <div data-aos="fade-down">
-      <AppBar position="static" color="black">
+      <AppBar position="static" color="black"
+      style={{borderBottom:"1px solid rgba(0,0,0,0.3"}}
+      >
+        
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             <img
@@ -84,6 +93,40 @@ export default function PrimarySearchAppBar() {
             />
           </Typography>
 
+          <div
+            style={{
+              textAlign: "center",
+              borderRadius: "4px",
+              backgroundColor: "rgba(400,400,400,1)",
+              margin: "2px",
+              marginLeft: "100vh",
+              width: "30%",
+              zIndex: "6000",
+              // border: "1px solid rgb(0, 0, 0, 0.3)",
+            }}
+          >
+            <SearchForeverTwoToneIcon
+              style={{
+                marginTop: "20px",
+                marginRight: "5px",
+                marginLeft:"5px",
+                backgroundColor: "rgba(400,400,400,1)",
+              }}
+            />
+            <TextField
+              id="filled-search"
+              label="Search products"
+              type="search"
+              placeholder="Search by Label"
+              variant="standard"
+              // multiline
+              onChange={searchInput}
+              style={{
+                margin: "4px",
+                width: "88%",
+              }}
+            />
+          </div>
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

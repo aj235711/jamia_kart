@@ -61,7 +61,7 @@ const CardList = ({
   return (
     <Row
       data-aos="zoom-in-left"
-      style={{ marginTop: "18vh", paddingBottom: "30px" }}
+      style={{ marginTop: "12vh", paddingBottom: "30px" }}
       className="display-flex justify-content-center"
     >
       {productsToShow.map((product, i) => {
