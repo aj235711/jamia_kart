@@ -2,7 +2,7 @@ import React from "react";
 
 const Image = ({imgTag}) => {
   return (
-    <div
+    <div className="imgContainer"
     style={{
         position: "fixed",
         backgroundColor: "white",
@@ -17,12 +17,12 @@ const Image = ({imgTag}) => {
         justifyContent:"center"
       }}
     >
-      <img
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          width: "20vw",
-        }}
+      <img className="image"
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "flex-start",
+        //   width: "20vw",
+        // }}
         src={imgTag}
         alt="laptop"
       />
