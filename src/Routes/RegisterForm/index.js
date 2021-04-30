@@ -39,7 +39,7 @@ const RegisterForm = () => {
       style={{ height: "100vh" }}
     >
       <Col md="6" className="border border-secondary rounded p-4 bg-white m-3">
-        <AvForm onValidSubmit={handleSubmit}>
+        <AvForm onValidSubmit={handleSubmit} model={{userType: 'customer'}}>
           <Row>
             <Col
               md="12"
@@ -71,7 +71,7 @@ const RegisterForm = () => {
               />
             </Col>
             <Col md="6">
-              <AvField type="select" name="userType" label="User Type" required>
+              <AvField type="select" name="userType" label="User Type" default='customer'>
                 <option value="customer">Customer</option>
                 <option value="seller">Salesman</option>
               </AvField>

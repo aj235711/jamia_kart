@@ -15,9 +15,8 @@ const ProductPage = () => {
     category,
     description,
     sellerName,
-    qty
+    qty,
   } = location.state;
-
 
   return (
     <div
@@ -33,9 +32,7 @@ const ProductPage = () => {
         sellerName={sellerName}
         qty={qty}
       />
-      <RightBox
-      qty={qty}
-      />
+      <RightBox qty={qty} id={id} />
     </div>
   );
 };

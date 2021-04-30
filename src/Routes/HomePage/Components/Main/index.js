@@ -6,14 +6,8 @@ import { useLocation } from "react-router-dom";
 
 const Main = ({ selectedCategory, searchValue}) => {
   const [stockFilter, setStockFilter] = React.useState(false);
-  const [sortFilter, setSortFilter] = React.useState("Alphabetically");
+  const [sortFilter, setSortFilter] = React.useState("By Name");
   const [categoryFilter, setCategoryFilter] = React.useState("All")
-
-
-  
-  
-
-
 
   return (
     <div style={{ minWidth: "1000px", overflowX: "auto" }}>
