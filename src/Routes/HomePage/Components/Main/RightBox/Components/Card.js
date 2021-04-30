@@ -25,20 +25,19 @@ const Card = ({ id, name, price, imgTag, category, description, sellerName,qty }
       <Col
         md="12"
         className="d-flex justify-content-center align-items-between flex-wrap"
-        // style={{fontSize: '0.0001vw'}}
       >
         <Col md="12" className="d-flex justify-content-center flex-wrap">
           <h6>{name.length < 25 ? name : name.substring(0, 17) + "..."}</h6>
         </Col>
         <Col md="12" className="d-flex justify-content-center flex-wrap">
-          <p>{category}</p>
+          <small>{category}</small>
         </Col>
         <Col md="12" className="d-flex justify-content-center flex-wrap">
           <small>Rs. {price}</small>
         </Col>
         {qty === 0 &&
         <Col md="12" className="my-0 d-flex justify-content-center flex-wrap">
-          <small style={{color: 'red'}}>Out Of Stock</small>
+          <small style={{color: 'red'}}><small>Out Of Stock</small></small>
         </Col>}
       </Col>
       {/* <Button
