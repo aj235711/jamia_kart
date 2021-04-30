@@ -5,7 +5,7 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { useHistory as history } from "react-router-dom";
 
-const CartItem = () => {
+const CartItem = ({name, description, quantity, image}) => {
   return (
     <div className="mb-5" style={{cursor:"pointer"}}>
       <div
@@ -23,21 +23,14 @@ const CartItem = () => {
           >
             <Col className="col-auto" style={{}}>
               <img
-                src="https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg"
+                src={image}
                 height="180vh"
               />
             </Col>
           </Col>
           <Col md="9" className="d-flex flex-wrap mt-3">
-            <h3>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h3>
-            <p>
-              Slim-fitting style, contrast raglan long sleeve, three-button
-              henley placket, light weight & soft fabric for breathable and
-              comfortable wearing. And Solid stitched shirts with round neck
-              made for durability and a great fit for casual fashion wear and
-              diehard baseball fans. The Henley style round neckline includes a
-              three-button placket.
-            </p>
+            <h3>{name}</h3>
+            <p>{description}</p>
           </Col>
         </Row>
 
@@ -53,7 +46,7 @@ const CartItem = () => {
               className="bg-dark text-white mr-2 p-1"
               style={{ cursor: "pointer" }}
             />
-            {"      "}Quantity: 1{"      "}
+            {"      "}Quantity: {quantity}{"      "}
             <AddIcon
               className="bg-dark text-white ml-2 p-1"
               style={{ cursor: "pointer" }}
