@@ -4,12 +4,14 @@ import { useLocation } from "react-router-dom";
 // import Bars from "../../Components/Bars.js";
 
 const HomePage = () => {
-  // console.log(localStorage.getItem("jwt"));
+  console.log(localStorage.getItem("jwt"));
   let location = useLocation();
-  // let searchValue = location.state ? location.state.searchValue : "";
+  
   let selectedCategory = location.state
     ? location.state.selectedCategory
     : "All";
+  
+  let searchValue = location.state ? location.state.searchValue : "";
 
   return (
     <div>
@@ -25,7 +27,10 @@ const HomePage = () => {
       > */}
       {/* <Bars /> */}
       {/* </div> */}
-      <Main selectedCategory={selectedCategory} />
+      <Main
+        selectedCategory={selectedCategory}
+        searchValue={searchValue}
+      />
     </div>
   );
 };

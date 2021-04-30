@@ -4,7 +4,9 @@ import CardList from "./Components/CardList";
 const RightBox = ({
   selectedCategory,
   stockFilter,
-  sortFilter
+  sortFilter,
+  categoryFilter,
+  searchValue
 }) => {
 
   return (
@@ -13,6 +15,8 @@ const RightBox = ({
         selectedCategory={selectedCategory}
         stockFilter={stockFilter}
         sortFilter={sortFilter}
+        categoryFilter={categoryFilter}
+        searchValue={searchValue}
       />
     </div>
   );

@@ -69,37 +69,15 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
-  let history = useHistory();
+  const history = useHistory();
 
-  // const searchInput = (event) => {
-    //   *CATEGORY WALA TARIKA
+  const searchInput = (event) => {
 
-    // console.log(event.target.value);
-    // if (event.target.value === "a" || event.target.value === "A") {
-    //   history.push("/jamia_kart", { selectedCategory: "All" });
-    // }
-    // else if (event.target.value === "m" || event.target.value === "M") {
-    //   history.push("/jamia_kart", { selectedCategory: "Men's Clothing" });
-    // }
-    // else if (event.target.value === "w" || event.target.value === "W") {
-    //   history.push("/jamia_kart", { selectedCategory: "Women's Clothing" });
-    // }
-    // else if (event.target.value === "j" || event.target.value === "J") {
-    //   history.push("/jamia_kart", { selectedCategory: "Jewelery" });
-    // }
-    // else if (event.target.value === "e" || event.target.value === "E") {
-    //   history.push("/jamia_kart", { selectedCategory: "Electronics" });
-    //   }
+      // *LABEL WALA TARIKA
 
-    //   *LABEL WALA TARIKA
+    history.push("/jamia_kart", { searchValue: event.target.value });
 
-    // history.push("/jamia_kart", { searchValue: event.target.value });
-
-
-    //STATES WALA TARIKA
-
-    // setSearchFilter(event.target.value) 
-  // };
+  };
 
   return (
     <div data-aos="fade-down">
@@ -113,7 +91,7 @@ export default function PrimarySearchAppBar() {
             />
           </Typography>
 
-          {/* <TextField
+          <TextField
             id="filled-search"
             label="Search products"
             type="search"
@@ -121,16 +99,13 @@ export default function PrimarySearchAppBar() {
             variant="filled"
             // multiline
             onChange={searchInput}
-            // InputLabelProps={{
-            //   children: 'Ye chiz seekhni hai'
-            // }}
             style={{
               marginLeft: "2vh",
               color: "",
               margin: "1vh",
               width: "20%",
             }}
-          /> */}
+          />
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

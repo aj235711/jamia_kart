@@ -8,9 +8,12 @@ import PlaceHolder from "../../../../../../Components/PlaceHolder";
 
 const CardList = ({
   selectedCategory,
+  searchValue,
   stockFilter,
-  sortFilter
+  sortFilter,
+  categoryFilter
 }) => {
+
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     axios
@@ -20,27 +23,16 @@ const CardList = ({
 
   if (!products.length) return <PlaceHolder />;
 
-  // console.log(searchValue);
+  console.log(searchValue);
 
  
-  // let searchedProducts = products;
-  // let newProducts = searchedProducts;
-
-  // for (let i = 0; i < searchValue.length; i++) {
-  //   newProducts =
-  //     searchValue === ""
-  //       ? products
-  //       : searchedProducts.filter(
-  //           (product) => product.name.charAt(i) === searchValue.charAt(i)
-  //       );
-  //   searchedProducts = newProducts;
-  // }
+  const searchedProducts = products.filter(product => product.name.toLowerCase().includes(searchValue.toLowerCase()));
 
   const filteredProducts =
-    selectedCategory === "All"
-      ? products
-      : products.filter(
-          (product) => product.category === selectedCategory
+    categoryFilter === "All"
+      ? searchedProducts
+      : searchedProducts.filter(
+          (product) => product.category === categoryFilter
         );
 
   const stockFilterProducts = stockFilter

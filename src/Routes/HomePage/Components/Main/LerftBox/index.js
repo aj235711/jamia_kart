@@ -13,8 +13,8 @@ import { Col } from "reactstrap";
 const LeftBox = ({
   stockFilter,
   setStockFilter,
-  sortFilter,
   setSortFilter,
+  setCategoryFilter
 }) => {
   return (
     <div
@@ -75,6 +75,24 @@ const LeftBox = ({
               <MenuItem value={"By Category"}>By Category</MenuItem>
             </Select>
           </FormControl>
+
+
+          <FormControl
+            style={{ margin: "20px", marginTop: "30px", marginBottom: "30px" }}
+          >
+            <InputLabel>Category</InputLabel>
+
+            <Select
+              onChange={(event) => setCategoryFilter(event.target.value)}
+            >
+              <MenuItem value={"All"}>All</MenuItem>
+              <MenuItem value={"Men's Clothing"}>Men's section</MenuItem>
+              <MenuItem value={"Women's Clothing"}>Women's section</MenuItem>
+              <MenuItem value={"Jewelery"}>Jewelery</MenuItem>
+              <MenuItem value={"Electronics"}>Electronics</MenuItem>
+            </Select>
+          </FormControl>
+
         </div>
       </Col>
     </div>
