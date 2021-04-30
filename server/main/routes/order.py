@@ -33,6 +33,8 @@ async def create_order(request : schema.Order, db : Session = Depends(get_db), c
         prod_id = cart.first().product_id
         qnty = cart.first().qty
         cart.delete()
+    if qnty <= 0:
+        {"success":False, "errMsg":"quantity must be greater then zero"}
     order = models.Order(qty=qnty,costumer_id=user.costumer_id,product_id=prod_id,ship_add=shipp_add,amount=amount)
     db.add(order)
     product.update({"qty":product.first().qty-request.qty},synchronize_session=False)

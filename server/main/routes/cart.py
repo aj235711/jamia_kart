@@ -21,8 +21,10 @@ async def create_cart(request : schema.Cart,db : Session = Depends(get_db),curre
     if user.category != "customer":
         return {"success":False, "errMsg":"not a customer"}
     product = db.query(models.Product).filter(models.Product.id==request.product_id).first()
-    if not product:
+    if not product or request.qty>product.qty:
         return {"success":False, "errMsg":"no such product found"}
+    if request.qty <= 0:
+        return {"success":False, "errMgs":"Quantity must be grater than zero"}
     new_cart = models.Cart(qty=request.qty,costumer_id=user.costumer_id,product_id=request.product_id)
     db.add(new_cart)
     db.commit()
