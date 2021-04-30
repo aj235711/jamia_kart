@@ -8,7 +8,7 @@ const Image = ({imgTag}) => {
         backgroundColor: "white",
         borderRight: "1px solid rgba(0,0,0,0.3)",
             //   marginTop: "1vh",
-        height: "80vh",
+        height: "85vh",
         padding: "8px",
         paddingTop: "3px",
         display:"flex",
