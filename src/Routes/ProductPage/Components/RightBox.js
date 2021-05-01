@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { serverLink } from "../../../utils/constants";
+import { toast } from "react-toastify";
 
 const RightBox = ({ qty, id }) => {
   const history = useHistory();
@@ -34,8 +35,12 @@ const RightBox = ({ qty, id }) => {
       )
       .then((res) => {
         setLoading(false);
+        toast.dark('Successfully added to cart.')
         console.log(res);
-      });
+      }).catch((err) => {
+        setLoading(false);
+        toast.error('Something went wrong.')
+      })
   };
 
   return (
@@ -44,7 +49,7 @@ const RightBox = ({ qty, id }) => {
         position: "fixed",
         left: "80%",
         backgroundColor: "white",
-        height: "85vh",
+        height: "87vh",
         padding: "8px",
         width: "20%",
         minWidth: "16vh",
