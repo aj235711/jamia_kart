@@ -7,6 +7,7 @@ import { serverLink } from "../../../utils/constants";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./CartItem.css";
+import { useHistory } from 'react-router-dom';
 
 const CartItem = ({
   id,
@@ -15,8 +16,15 @@ const CartItem = ({
   quantity,
   image,
   setCartItems,
-  cartItems,
+  productId,
+  price,
+  productQty,
+  sellerName,
+  category,
 }) => {
+
+  const history = useHistory();
+
   const [currentQuantity, setCurrentQuantity] = React.useState(quantity);
   const [saveChangesLoading, setSaveChangesLoading] = React.useState(false);
   const [deleteItemLoading, setDeleteItemLoading] = React.useState(false);
@@ -97,7 +105,7 @@ const CartItem = ({
   };
 
   return (
-    <div className="mb-3" style={{ cursor: "pointer" }}>
+    <div className="mb-2">
       <div
         className="shadow p-3 mt-5"
         style={{ borderRadius: "5px", border: "2px solid rgba(0, 0, 0, 0.3)" }}
@@ -116,7 +124,9 @@ const CartItem = ({
             </Col>
           </Col>
           <Col md="9" className="d-flex flex-wrap mt-3">
-            <h3>{name}</h3>
+            <h3 style={{ cursor: "pointer" }} 
+            onClick={() => history.push(`/product${productId}`, {id: productId, name, price, imgTag: image, category, description, sellerName, qty: productQty})}
+            >{name}</h3>
             <p>{description}</p>
           </Col>
         </Row>

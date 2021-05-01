@@ -4,10 +4,10 @@ import LeftBox from "./LerftBox/index.js";
 import RightBox from "./RightBox/index.js";
 import { useLocation } from "react-router-dom";
 
-const Main = ({ selectedCategory, searchValue}) => {
+const Main = ({ searchValue }) => {
   const [stockFilter, setStockFilter] = React.useState(false);
   const [sortFilter, setSortFilter] = React.useState("By Name");
-  const [categoryFilter, setCategoryFilter] = React.useState("All")
+  const [categoryFilter, setCategoryFilter] = React.useState("All");
 
   return (
     <div style={{ minWidth: "1000px", overflowX: "auto" }}>
@@ -21,7 +21,6 @@ const Main = ({ selectedCategory, searchValue}) => {
       </div>
       <div className="w-75">
         <RightBox
-          selectedCategory={selectedCategory}
           stockFilter={stockFilter}
           sortFilter={sortFilter}
           categoryFilter={categoryFilter}

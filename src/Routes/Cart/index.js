@@ -28,7 +28,7 @@ const Cart = () => {
   return (
     <>
       {localStorage.getItem("jwt") ? (
-        <div style={{ marginTop: "18vh" }}>
+        <div style={{ marginTop: "10vh" }}>
           <Col md="12" className="d-flex justify-content-center mt-5 mb-5">
             <Col md="9" className="d-flex align-items-center flex-wrap">
               {cartItems.length ? (
@@ -40,7 +40,11 @@ const Cart = () => {
                     quantity={item.qty}
                     image={item.product_cart.imgurl}
                     setCartItems={setCartItems}
-                    cartItems={cartItems}
+                    productId={item.product_cart.id}
+                    price={item.product_cart.price}
+                    productQty={item.product_cart.qty}
+                    sellerName={item.product_cart.seller.name}
+                    category={item.product_cart.category}
                   />
                 ))
               ) : (
