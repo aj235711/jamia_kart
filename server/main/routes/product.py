@@ -37,6 +37,13 @@ async def all_products(db : Session = Depends(get_db)):
     products=db.query(models.Product).all()
     return products
 
+@route.get("/saare/mere",response_model = List[schema.ProductShow])
+async def mere_products(db : Session = Depends(get_db), current_user : schema.User =Depends(get_current_user)):
+    user = db.query(models.User).filter(models.User.email == current_user.email).first()
+    if user and user.category == "seller":
+        products = db.query(models.Product).filter(models.Product.user==user.email).all()
+        return products
+
 @route.get("/akela/{id}",response_model=schema.ProductShow)
 async def single_product(id:int,db : Session = Depends(get_db)):
     """
