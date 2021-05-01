@@ -1,6 +1,14 @@
 from typing import List, Optional
 from pydantic import BaseModel
 
+class SellerAndCustomer(BaseModel):
+    id : int
+    loc : str
+    # joined : str
+
+    class Config():
+        orm_mode = True
+
 """
 USER schemas
 """
@@ -17,6 +25,8 @@ class UserShow(BaseModel):
     email : str
     name : str
     category : str
+    seller_detail : Optional[SellerAndCustomer]
+    customer_detail : Optional[SellerAndCustomer]
     class Config():
         orm_mode=True
 
@@ -78,6 +88,7 @@ class Cart(BaseModel):
 class CartShow(Cart):
     product_cart : ProductShow
     id : int
+    costumer_cart : SellerAndCustomer
     class Config():
         orm_mode=True
 
@@ -99,6 +110,7 @@ class OrderShow(BaseModel):
     amount : float
     ship_add : str
     product_order : ProductShow
+    costumer_order : SellerAndCustomer
     
     class Config():
         orm_mode=True

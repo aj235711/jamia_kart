@@ -12,6 +12,8 @@ class User(Base):
     category=Column(CHAR(length=10))
     seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"))
     costumer_id=Column(Integer,ForeignKey("costumer.id",ondelete="CASCADE"))
+    seller_detail=relationship("Seller",back_populates="user")
+    customer_detail=relationship("Costumer",back_populates="user")
     product=relationship("Product",back_populates="seller")
 
 
@@ -22,6 +24,7 @@ class Seller(Base):
     # user_id=Column(String,ForeignKey("user.email"))
     loc=Column(String(length=500))
     joined=Column(Date)
+    user=relationship("User",back_populates="seller_detail")
 
 
 class Costumer(Base):
@@ -32,6 +35,7 @@ class Costumer(Base):
     joined=Column(Date)
     cart=relationship("Cart",back_populates="costumer_cart")
     order=relationship("Order",back_populates="costumer_order")
+    user=relationship("User",back_populates="customer_detail")
 
 
 class Product(Base):
@@ -43,7 +47,7 @@ class Product(Base):
     qty=Column(Integer,nullable=False)
     price=Column(Float,nullable=False)
     category=Column(String(length=50))
-    seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"),nullable=False)
+    # seller_id=Column(Integer,ForeignKey("seller.id",ondelete="CASCADE"),nullable=False)
     user=Column(String(length=100),ForeignKey("user.email",ondelete="CASCADE"),nullable=False)
     seller=relationship("User",back_populates="product")
     cart=relationship("Cart",back_populates="product_cart")
