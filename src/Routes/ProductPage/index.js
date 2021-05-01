@@ -21,7 +21,7 @@ const ProductPage = () => {
   return (
     <div
       style={{
-        marginTop: "18vh",
+        marginTop: "13vh",
       }}
     >
       <Image imgTag={imgTag} />

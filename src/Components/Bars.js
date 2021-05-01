@@ -15,7 +15,7 @@ export default function Bars() {
       }}
       >
       <NavBar/>
-      <Nav2 />
+      {/* <Nav2 /> */}
     </div>
   );
 }
