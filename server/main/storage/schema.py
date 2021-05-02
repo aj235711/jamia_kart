@@ -5,6 +5,7 @@ class SellerAndCustomer(BaseModel):
     id : int
     loc : str
     # joined : str
+    phone_number : int
 
     class Config():
         orm_mode = True
@@ -20,6 +21,7 @@ class User(BaseModel):
 
 class UserCreate(User):
     location : str
+    phone_number : int
 
 class UserShow(BaseModel):
     email : str
@@ -32,18 +34,20 @@ class UserShow(BaseModel):
 
 class UserUpdate(BaseModel):
     name : str
-    password : str
-    category : str
-    location : str
+    loc : str
+    phone_number : int
     class Config():
         orm_mode=True
 
+class PasswordUpdate(BaseModel):
+    password : str
 """
 SELLER schema
 """
 
 class SellerUpdate(BaseModel):
     location : str
+    phone_number : int
 
 
 """
@@ -52,6 +56,7 @@ COSTUMER schema
 
 class CostumerUpdate(BaseModel):
     location : str
+    phone_number : int
 
 """
 PRODUCT schema

@@ -24,14 +24,14 @@ async def create_users(request : schema.UserCreate, db : Session = Depends(get_d
     if user.first():
         return {"success":False,"errMsg": "User already exist"}
     if cat=="seller":
-        new_seller = models.Seller(loc=request.location,joined=date.today())
+        new_seller = models.Seller(loc=request.location,joined=date.today(),phone_number=request.phone_number)
         db.add(new_seller)
         db.commit()
         db.refresh(new_seller)
         new_user = models.User(email=request.email,name=request.name,
             password=hashing.Hash.bcrypt(request.password),category=cat,seller_id=new_seller.id)
     elif cat=="customer":
-        new_costumer = models.Costumer(loc=request.location,joined=date.today())
+        new_costumer = models.Costumer(loc=request.location,joined=date.today(),phone_number=request.phone_number)
         db.add(new_costumer)
         db.commit()
         db.refresh(new_costumer)
@@ -59,14 +59,17 @@ async def get_all_users(db : Session = Depends(get_db),current_user:schema.User=
     users = db.query(models.User).all()
     return users
 
-@route.get("/{email}",response_model=schema.UserShow)
-async def get_user(email:str,db : Session = Depends(get_db),current_user:schema.User=Depends(get_current_user)):
+@route.put("/pass/{email}")
+def password_update(email : str, request : schema.PasswordUpdate, db : Session = Depends(get_db)):
     """
-    get single user
+    update password
     """
-    user=db.query(models.User).filter(models.User.email==email).first()
-    return user
-
+    user = db.query(models.User).filter(models.User.email==email)
+    if not user : 
+        return {"success":False,"Msg":"user not found"}
+    user.update({"password":hashing.Hash.bcrypt(request.password)},synchronize_session=False)
+    db.commit()
+    return {"success":True,"Msg":"password updated"}
 
 
 @route.put('/{email}')
@@ -81,9 +84,28 @@ async def update_user(email:str, request : schema.UserUpdate, db : Session=Depen
     if user.first().email != current_user.email:
         raise HTTPException(status_code=403,
             detail="unauthenticated")
-    user.update({'name':request.name,'password':hashing.Hash.bcrypt(request.password),'category':request.category},synchronize_session=False)
+    phone_number = request.phone_number
+    loc = request.loc
+    if user.first().category == "seller":
+        seller = db.query(models.Seller).filter(models.Selled.id== user.first().seller_id)
+        if loc=="":
+            loc = seller.first().loc
+        if phone_number==0:
+            phone_number = seller.first().phone_number
+        seller.update({"loc":loc,"phone_number":phone_number},synchronize_session=False)
+    elif user.first().category == "customer":
+        costumer = db.query(models.Customer).filter(models.Costumer.id== user.first().costumer_id)
+        if loc=="":
+            loc = costumer.first().loc
+        if phone_number==0:
+            phone_number = costumer.first().phone_number
+        costumer.update({"loc":loc,"phone_number":phone_number},synchronize_session=False)
+    user.update({'name':request.name},synchronize_session=False)
     db.commit()
     return {"message":f"updated id associated to {email}"}
+
+
+
 
 @route.delete('/{email}')
 async def delete_user(email:str, pswd:str, db: Session=Depends(get_db),current_user:schema.User=Depends(get_current_user)):

@@ -17,7 +17,12 @@ async def edit_seller(email:str,request:schema.SellerUpdate,db:Session=Depends(g
     user=db.query(models.User).filter(models.User.email==email).first()
     if user and user.email==current_user.email:
         seller=db.query(models.Seller).filter(models.Seller.id==user.seller_id)
-        date=seller.first().joined
-        seller.update({"loc":request.location,"joined":date})
+        phone_number = request.phone_number
+        loc = request.loc
+        if loc=="":
+            loc = seller.first().loc
+        if phone_number==0:
+            phone_number = seller.first().phone_number
+        seller.update({"loc":loc,"phone_number":phone_number},synchronize_session=False)
         db.commit()
         return {"message":"seller info updated"}

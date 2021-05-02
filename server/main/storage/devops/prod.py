@@ -17,22 +17,23 @@ class User(Base):
     product=relationship("Product",back_populates="seller")
 
 
-
 class Seller(Base):
     __tablename__="seller"
     id=Column(Integer,autoincrement=True,primary_key=True)
-    # user_id=Column(String,ForeignKey("user.email"))
     loc=Column(String(length=500))
     joined=Column(Date)
+    phone_number=Column(Integer,nullable=False)
     user=relationship("User",back_populates="seller_detail")
+
+
 
 
 class Costumer(Base):
     __tablename__="costumer"
     id=Column(Integer,autoincrement=True,primary_key=True)
-    # user_id=Column(String,ForeignKey("user.email"))
     loc=Column(String(length=500))
     joined=Column(Date)
+    phone_number=Column(Integer,nullable=False)
     cart=relationship("Cart",back_populates="costumer_cart")
     order=relationship("Order",back_populates="costumer_order")
     user=relationship("User",back_populates="customer_detail")

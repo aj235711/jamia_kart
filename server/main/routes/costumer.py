@@ -16,7 +16,12 @@ async def edit_costumer(email:str,request:schema.SellerUpdate,db:Session=Depends
     user=db.query(models.User).filter(models.User.email==email).first()
     if user and user.email==current_user.email:
         costumer=db.query(models.Costumer).filter(models.Costumer.id==user.costumer_id)
-        date=costumer.first().joined
-        costumer.update({"loc":request.location,"joined":date})
+        phone_number = request.phone_number
+        loc = request.loc
+        if loc=="":
+            loc = costumer.first().loc
+        if phone_number==0:
+            phone_number = costumer.first().phone_number
+        costumer.update({"loc":loc,"phone_number":phone_number},synchronize_session=False)
         db.commit()
         return {"message":"costumer info updated"}
