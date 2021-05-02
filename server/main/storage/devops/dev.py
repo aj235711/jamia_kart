@@ -74,6 +74,7 @@ class Order(Base):
     status=Column(Boolean,default=False)
     ship_add=Column(String,nullable=False)
     amount=Column(Float,nullable=False)
+    phone_number=Column(Integer, nullable=False)
     costumer_order=relationship("Costumer",back_populates="order")
     product_order=relationship("Product",back_populates="order")
 

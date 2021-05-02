@@ -23,9 +23,12 @@ async def create_order(request : schema.Order, db : Session = Depends(get_db), c
     amount = product.first().price*request.qty
     shipp_add = request.shipping_add
     prod_id = request.product_id
+    phone_number = request.phone_number
     qnty = request.qty
     if shipp_add == "":
         shipp_add = db.query(models.Costumer).filter(models.Costumer.id==user.costumer_id).first().loc
+    if phone_number==0:
+        phone_number = db.query(models.Costumer).filter(models.Costumer.id==user.costumer_id).first().phone_number
     if request.cart_id != -1:
         cart = db.query(models.Cart).filter(models.Cart.id==request.cart_id)
         if (not cart.first()) or cart.first().product_id != request.product_id or cart.first().qty != request.qty:
@@ -34,8 +37,8 @@ async def create_order(request : schema.Order, db : Session = Depends(get_db), c
         qnty = cart.first().qty
         cart.delete()
     if qnty <= 0:
-        {"success":False, "errMsg":"quantity must be greater then zero"}
-    order = models.Order(qty=qnty,costumer_id=user.costumer_id,product_id=prod_id,ship_add=shipp_add,amount=amount)
+        return {"success":False, "errMsg":"quantity must be greater then zero"}
+    order = models.Order(qty=qnty,costumer_id=user.costumer_id,product_id=prod_id,ship_add=shipp_add,amount=amount,phone_number=phone_number)
     db.add(order)
     product.update({"qty":product.first().qty-request.qty},synchronize_session=False)
     db.commit()
