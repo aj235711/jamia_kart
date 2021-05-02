@@ -106,6 +106,7 @@ class Order(BaseModel):
     qty : int
     shipping_add : str
     cart_id : int
+    phone_number : int
 
 class OrderShow(BaseModel):
     id : int
