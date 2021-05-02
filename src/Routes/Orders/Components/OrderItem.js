@@ -160,6 +160,7 @@ const CartItem = ({
         </ModalBody>
         <ModalFooter>
           <Button
+            outline
             color={deleteItemLoading ? "secondary" : "danger"}
             disabled={deleteItemLoading}
             onClick={deleteItem}
@@ -167,6 +168,7 @@ const CartItem = ({
             Yes, Delete
           </Button>{" "}
           <Button
+            outline
             color="secondary"
             onClick={() => setDeleteItemModal(!deleteItemModal)}
           >
@@ -205,12 +207,19 @@ const CartItem = ({
               </small>
             </Col>
             <Col md="12">
+              <small>
+                Delivery Address:{" "}
+                {JSON.parse(localStorage.getItem("user")).customer_detail.loc}
+              </small>
+            </Col>
+            <Col md="12">
               <small>Delivery Status: {!status && "On its way..."}</small>
             </Col>
           </Row>
         </ModalBody>
         <ModalFooter>
           <Button
+            outline
             color="secondary"
             onClick={() => setViewDetailsModal(!viewDetailsModal)}
           >

@@ -289,42 +289,67 @@ const CartItem = ({
         <ModalHeader toggle={() => setOrderNowModal(!orderNowModal)}>
           Order Details
         </ModalHeader>
-        <AvForm onValidSubmit={orderNow} model={{deliveryAddress: JSON.parse(localStorage.getItem("user")).customer_detail.loc, contact: JSON.parse(localStorage.getItem("user")).customer_detail.phone_number}}>
-        <ModalBody className="py-3 d-flex align-items-center">
-          <Row>
-            <Col md="12"><h5>{name}</h5></Col>
-            <Col md="12"><p>Quantity: {currentQuantity}</p></Col>
-            <Col md="12"><p>Amount: {currentQuantity * price}</p></Col>
-            <Col md="12"><p>Sold by: {sellerName}</p></Col>
-            <Col md="12"><p>Order by: {JSON.parse(localStorage.getItem("user")).name}</p></Col>
-            <Col md="12">
-              <AvField name="deliveryAddress" label="Delivery Address" type="text" required />
-            </Col>
-            <Col md="12">
-              <AvField
-                name="contact"
-                label="Contact Number"
-                type="number"
-                required
-              />
-            </Col>
-          </Row>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            color={orderNowLoading ? "secondary" : "info"}
-            disabled={orderNowLoading}
-            type="submit"
-          >
-            Place Order
-          </Button>{" "}
-          <Button
-            color="secondary"
-            onClick={() => setOrderNowModal(!orderNowModal)}
-          >
-            Cancel
-          </Button>
-        </ModalFooter>
+        <AvForm
+          onValidSubmit={orderNow}
+          model={{
+            deliveryAddress: JSON.parse(localStorage.getItem("user"))
+              .customer_detail.loc,
+            contact: JSON.parse(localStorage.getItem("user")).customer_detail
+              .phone_number,
+          }}
+        >
+          <ModalBody className="py-3 d-flex align-items-center">
+            <Row>
+              <Col md="12">
+                <h5>{name}</h5>
+              </Col>
+              <Col md="12">
+                <p>Quantity: {currentQuantity}</p>
+              </Col>
+              <Col md="12">
+                <p>Amount: {currentQuantity * price}</p>
+              </Col>
+              <Col md="12">
+                <p>Sold by: {sellerName}</p>
+              </Col>
+              <Col md="12">
+                <p>Order by: {JSON.parse(localStorage.getItem("user")).name}</p>
+              </Col>
+              <Col md="12">
+                <AvField
+                  name="deliveryAddress"
+                  label="Delivery Address"
+                  type="text"
+                  required
+                />
+              </Col>
+              <Col md="12">
+                <AvField
+                  name="contact"
+                  label="Contact Number"
+                  type="number"
+                  required
+                />
+              </Col>
+            </Row>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              outline
+              color={orderNowLoading ? "secondary" : "info"}
+              disabled={orderNowLoading}
+              type="submit"
+            >
+              Place Order
+            </Button>{" "}
+            <Button
+              outline
+              color="secondary"
+              onClick={() => setOrderNowModal(!orderNowModal)}
+            >
+              Cancel
+            </Button>
+          </ModalFooter>
         </AvForm>
       </Modal>
 
@@ -337,6 +362,7 @@ const CartItem = ({
         </ModalBody>
         <ModalFooter>
           <Button
+            outline
             color={deleteItemLoading ? "secondary" : "danger"}
             disabled={deleteItemLoading}
             onClick={deleteItem}
@@ -344,6 +370,7 @@ const CartItem = ({
             Yes, Delete
           </Button>{" "}
           <Button
+            outline
             color="secondary"
             onClick={() => setDeleteItemModal(!deleteItemModal)}
           >
