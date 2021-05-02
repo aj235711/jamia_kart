@@ -12,6 +12,9 @@ const RegisterForm = () => {
   const [loading, setLoading] = React.useState(false);
   const handleSubmit = (event, values) => {
     console.log(values);
+    if(!values.password===values.current_password) {
+      return toast.error("Passwords don't match.");
+    }
     setLoading(true);
     axios
       .post("http://localhost:8000/user/", {

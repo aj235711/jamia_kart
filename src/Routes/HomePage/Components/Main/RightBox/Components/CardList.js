@@ -7,13 +7,11 @@ import { serverLink } from "../../../../../../utils/constants";
 import PlaceHolder from "../../../../../../Components/PlaceHolder";
 
 const CardList = ({
-  selectedCategory,
   searchValue,
   stockFilter,
   sortFilter,
-  categoryFilter
+  categoryFilter,
 }) => {
-
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     axios
@@ -25,8 +23,11 @@ const CardList = ({
 
   console.log(searchValue);
 
- 
-  const searchedProducts = products.filter(product => product.name.toLowerCase().includes(searchValue.toLowerCase()));
+  const searchedProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   const filteredProducts =
     categoryFilter === "All"
