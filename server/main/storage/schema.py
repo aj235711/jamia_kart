@@ -115,6 +115,7 @@ class OrderShow(BaseModel):
     status : bool
     amount : float
     ship_add : str
+    phone_number : int
     product_order : ProductShow
     costumer_order : SellerAndCustomer
     
