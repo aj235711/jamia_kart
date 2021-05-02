@@ -128,50 +128,50 @@ const CartItem = ({
   };
 
   const orderNow = (event, values) => {
-    // setOrderNowLoading(true);
-    // axios
-    //   .post(
-    //     `${serverLink}/order/`,
-    //     {
-    //       product_id: productId,
-    //       qty: currentQuantity,
-    //       shipping_add: JSON.parse(localStorage.getItem("user")).customer_detail
-    //         .loc,
-    //       cart_id: id,
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: "bearer " + localStorage.getItem("jwt"),
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     setOrderNowLoading(false);
-    //     toast.success("Order placed successfully.");
-    //     setCartItems([]);
-    //     setLoading(true);
-    //     axios
-    //       .get(`${serverLink}/cart/`, {
-    //         headers: {
-    //           Authorization: "bearer " + localStorage.getItem("jwt"),
-    //         },
-    //       })
-    //       .then((res) => {
-    //         console.log(res);
-    //         setCartItems([...res.data]);
-    //         setOrderNowLoading(false);
-    //         setLoading(false);
-    //       })
-    //       .catch((err) => {
-    //         setOrderNowLoading(false);
-    //         setLoading(false);
-    //         toast.error("Trouble reaching the servers.");
-    //       });
-    //   })
-    //   .catch((err) => {
-    //     setOrderNowLoading(false);
-    //     toast.error("Trouble reaching the servers.");
-    //   });
+    setOrderNowLoading(true);
+    axios
+      .post(
+        `${serverLink}/order/`,
+        {
+          product_id: productId,
+          qty: currentQuantity,
+          shipping_add: values.deliveryAddress,
+          cart_id: id,
+          phone_number: values.contact,
+        },
+        {
+          headers: {
+            Authorization: "bearer " + localStorage.getItem("jwt"),
+          },
+        }
+      )
+      .then((res) => {
+        setOrderNowModal(!orderNowModal);
+        toast.success("Order placed successfully.");
+        setCartItems([]);
+        setLoading(true);
+        axios
+          .get(`${serverLink}/cart/`, {
+            headers: {
+              Authorization: "bearer " + localStorage.getItem("jwt"),
+            },
+          })
+          .then((res) => {
+            console.log(res);
+            setCartItems([...res.data]);
+            setOrderNowLoading(false);
+            setLoading(false);
+          })
+          .catch((err) => {
+            setOrderNowLoading(false);
+            setLoading(false);
+            toast.error("Trouble reaching the servers.");
+          });
+      })
+      .catch((err) => {
+        setOrderNowLoading(false);
+        toast.error("Trouble reaching the servers.");
+      });
     console.log(values);
   };
 
@@ -289,30 +289,32 @@ const CartItem = ({
         <ModalHeader toggle={() => setOrderNowModal(!orderNowModal)}>
           Order Details
         </ModalHeader>
-        <AvForm onValidSubmit={orderNow}>
-        <ModalBody className="py-5 d-flex align-items-center">
-          
-            <Row>
-              <Col md="12">
-                <AvField name="email" label="Email" type="email" required />
-              </Col>
-              <Col md="12">
-                <AvField
-                  name="password"
-                  label="Password"
-                  type="password"
-                  required
-                />
-              </Col>
-            </Row>
-          
+        <AvForm onValidSubmit={orderNow} model={{deliveryAddress: JSON.parse(localStorage.getItem("user")).customer_detail.loc, contact: JSON.parse(localStorage.getItem("user")).customer_detail.phone_number}}>
+        <ModalBody className="py-3 d-flex align-items-center">
+          <Row>
+            <Col md="12"><h5>{name}</h5></Col>
+            <Col md="12"><p>Quantity: {currentQuantity}</p></Col>
+            <Col md="12"><p>Amount: {currentQuantity * price}</p></Col>
+            <Col md="12"><p>Sold by: {sellerName}</p></Col>
+            <Col md="12"><p>Order by: {JSON.parse(localStorage.getItem("user")).name}</p></Col>
+            <Col md="12">
+              <AvField name="deliveryAddress" label="Delivery Address" type="text" required />
+            </Col>
+            <Col md="12">
+              <AvField
+                name="contact"
+                label="Contact Number"
+                type="number"
+                required
+              />
+            </Col>
+          </Row>
         </ModalBody>
         <ModalFooter>
           <Button
             color={orderNowLoading ? "secondary" : "info"}
             disabled={orderNowLoading}
             type="submit"
-            // onClick={orderNow}
           >
             Place Order
           </Button>{" "}
