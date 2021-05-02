@@ -57,12 +57,17 @@ export default function PrimarySearchAppBar() {
       style={{ zIndex: "5000" }}
     >
       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Orders</MenuItem>
+      <MenuItem onClick={() => {
+        handleMenuClose();
+        history.push("/orders");
+        }}>
+          My Orders
+      </MenuItem>
       <MenuItem
         onClick={() => {
           localStorage.setItem("jwt", "");
           handleMenuClose();
-          history.push("./login");
+          history.push("/login");
         }}
       >
         Logout
@@ -73,8 +78,6 @@ export default function PrimarySearchAppBar() {
   const history = useHistory();
 
   const searchInput = (event) => {
-    // *LABEL WALA TARIKA
-
     history.push("/jamia_kart", { searchValue: event.target.value });
   };
 
@@ -137,13 +140,13 @@ export default function PrimarySearchAppBar() {
               aria-haspopup="true"
               onClick={(event) => {
                 if (localStorage.getItem("jwt")) handleProfileMenuOpen(event);
-                else history.push("./login");
+                else history.push('/login');
               }}
               color="inherit"
               style={{ outline: "none" }}
             >
               {localStorage.getItem("jwt") ? (
-                <Button color="transparent">User</Button>
+                <Button className="mr-2" color="transparent">{JSON.parse(localStorage.getItem("user")).name}</Button>
               ) : (
                 <Button color="transparent">Login</Button>
               )}

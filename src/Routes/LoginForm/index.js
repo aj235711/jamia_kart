@@ -3,13 +3,6 @@ import { Container, Col, Row } from "reactstrap";
 import {
   AvForm,
   AvField,
-  AvGroup,
-  AvInput,
-  AvFeedback,
-  AvRadioGroup,
-  AvRadio,
-  AvCheckboxGroup,
-  AvCheckbox,
 } from "availity-reactstrap-validation";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
