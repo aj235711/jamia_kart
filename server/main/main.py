@@ -13,6 +13,10 @@ app = FastAPI()
 
 get_db = database.get_db
 
+@app.get("/")
+def check():
+    return {"msg":"working"}
+
 # @app.on_event("shutdown")
 # def shutdown_event(db:Session=Depends(get_db)):
 #     print("connection closed")
