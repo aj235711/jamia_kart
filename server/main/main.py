@@ -7,7 +7,7 @@ import storage.schema as schema
 import storage.database as database
 import storage.models as models
 from routes import  user, authentication,admin,seller,costumer,product,cart, order
-from starlette.middleware.cors import CORSMiddleware
+# from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -41,5 +41,5 @@ allow_headers=["*"],)
 
 models.Base.metadata.create_all(bind=database.engine)
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+#if __name__ == "__main__":
+#    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
