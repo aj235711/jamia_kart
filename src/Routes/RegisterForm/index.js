@@ -6,22 +6,25 @@ import { Button, FormGroup, Spinner } from "reactstrap";
 import JamiaKart from "../../utils/JamiaKart.jpg";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Nav from './Nav';
+import {serverLink} from '../../utils/constants';
 
 const RegisterForm = () => {
   const history = useHistory();
   const [loading, setLoading] = React.useState(false);
   const handleSubmit = (event, values) => {
     console.log(values);
-    if(!values.password===values.current_password) {
+    if(!values.password===values.confirmPassword) {
       return toast.error("Passwords don't match.");
     }
     setLoading(true);
     axios
-      .post("http://localhost:8000/user/", {
+      .post(`${serverLink}/user/`, {
         name: values.name,
         email: values.email,
         password: values.password,
         category: values.userType,
+        phone_number: +values.phoneNumber,
         location: values.address,
       })
       .then((res) => {
@@ -37,9 +40,11 @@ const RegisterForm = () => {
   };
 
   return (
+    <>
+    <Nav />
     <div
       className="d-flex align-items-center justify-content-center bg-light"
-      style={{ height: "100vh" }}
+      style={{ height: "91vh" }}
     >
       <Col md="6" className="border border-secondary rounded p-4 bg-white m-3">
         <AvForm onValidSubmit={handleSubmit} model={{userType: 'customer'}}>
@@ -49,7 +54,7 @@ const RegisterForm = () => {
               className="d-flex justify-content-center"
               style={{ height: "60px", width: "150px" }}
             >
-              <img src={JamiaKart} className="pb-2 px-5" />
+              <img src={JamiaKart} className="pb-2 px-5 py-2" />
             </Col>
             <Col md="6">
               <AvField name="name" label="Name" required />
@@ -80,6 +85,14 @@ const RegisterForm = () => {
               </AvField>
             </Col>
             <Col md="6">
+              <AvField
+                name="phoneNumber"
+                label="Phone Number"
+                type="number"
+                required
+              />
+            </Col>
+            <Col md="12">
               <AvField name="address" label="Address" required />
             </Col>
             <FormGroup className="w-100 d-flex justify-content-center">
@@ -105,6 +118,7 @@ const RegisterForm = () => {
         </AvForm>
       </Col>
     </div>
+    </>
   );
 };
 

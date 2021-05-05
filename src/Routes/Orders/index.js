@@ -55,6 +55,8 @@ const Cart = () => {
                       setLoading={setLoading}
                       amount={item.amount}
                       status={item.product_order.status}
+                      shipAddress={item.ship_add}
+                      phoneNumber={item.phone_number}
                     />
                   ))
                 ) : (

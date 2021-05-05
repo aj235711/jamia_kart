@@ -32,7 +32,13 @@ const ProductPage = () => {
         sellerName={sellerName}
         qty={qty}
       />
-      <RightBox qty={qty} id={id} />
+      <RightBox
+        qty={qty}
+        id={id}
+        name={name}
+        price={price}
+        sellerName={sellerName}
+      />
     </div>
   );
 };

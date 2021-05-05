@@ -8,12 +8,13 @@ import Cart from "./Cart";
 import AddProduct from "./AddProduct";
 import Bars from "../Components/Bars";
 import Orders from "./Orders";
+import SellerHomePage from "./SellerHomePage";
 
 const Routes = () => {
   return (
     <Router>
       <Route
-        path={["/jamia_kart", "/product:id", "/cart", "/orders"]}
+        path={["/jamia_kart", "/product:id", "/cart", "/orders", "/sellerhomepage", "/addproduct"]}
         component={Bars}
       />
       <Switch>
@@ -24,6 +25,8 @@ const Routes = () => {
         <Route path="/cart" exact component={Cart} />
         <Route path="/addproduct" exact component={AddProduct} />
         <Route path="/orders" exact component={Orders} />
+        <Route path="/sellerhomepage" exact component={SellerHomePage} />
+        <Route path="/myproducts" exact component={MyProducts} />
       </Switch>
     </Router>
   );

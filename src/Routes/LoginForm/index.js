@@ -30,7 +30,6 @@ const LoginForm = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("jwt", res.data.access_token);
-        toast.dark("Logged in successfully");
         axios
           .get(`${serverLink}/user/`, {
             headers: {
@@ -40,14 +39,14 @@ const LoginForm = () => {
           .then((res) => {
             setLoading(false);
             localStorage.setItem("user", JSON.stringify(res.data));
+            history.push(res.data.category === 'customer' ? "/jamia_kart" : "/sellerhomepage");
+            toast.dark("Logged in successfully");
           })
           .catch((err) => {
             setLoading(false);
             console.log(err);
             toast.error('Invalid credentials');
           });
-        history.push("/jamia_kart");
-        console.log(JSON.parse(localStorage.getItem("user")));
       })
       .catch((err) => {
         setLoading(false);

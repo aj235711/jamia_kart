@@ -35,6 +35,8 @@ const CartItem = ({
   setLoading,
   amount,
   status,
+  phoneNumber,
+  shipAddress,
 }) => {
   const history = useHistory();
 
@@ -202,14 +204,12 @@ const CartItem = ({
             </Col>
             <Col md="12">
               <small>
-                Delivery Address:{" "}
-                {JSON.parse(localStorage.getItem("user")).customer_detail.loc}
+                Phone Number: {phoneNumber}
               </small>
             </Col>
             <Col md="12">
               <small>
-                Delivery Address:{" "}
-                {JSON.parse(localStorage.getItem("user")).customer_detail.loc}
+                Delivery Address: {shipAddress}
               </small>
             </Col>
             <Col md="12">
