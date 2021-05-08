@@ -1,11 +1,10 @@
 import React from "react";
 import NavBar from "./NavBar";
-import Nav2 from "./Nav2";
 
 export default function Bars() {
   return (
-      <div
-       style={{
+    <div
+      style={{
         position: "fixed",
         minWidth: "1000px",
         overflowX: "auto",
@@ -13,9 +12,8 @@ export default function Bars() {
         width: "100%",
         zIndex: "1000",
       }}
-      >
-      <NavBar/>
-      {/* <Nav2 /> */}
+    >
+      <NavBar />
     </div>
   );
 }

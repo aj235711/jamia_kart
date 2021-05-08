@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import * as React from "react";
 import CardList from "./Components/CardList";
 
 const RightBox = ({
@@ -6,9 +6,8 @@ const RightBox = ({
   stockFilter,
   sortFilter,
   categoryFilter,
-  searchValue
+  searchValue,
 }) => {
-
   return (
     <div style={{ position: "relative", left: "21vw" }}>
       <CardList

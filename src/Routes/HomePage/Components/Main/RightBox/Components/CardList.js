@@ -1,30 +1,25 @@
 import * as React from "react";
 import Card from "./Card";
-// import product from './Array.js'
-import { Col, Row, Spinner } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import axios from "axios";
 import { serverLink } from "../../../../../../utils/constants";
 import PlaceHolder from "../../../../../../Components/PlaceHolder";
 
-const CardList = ({
-  searchValue,
-  stockFilter,
-  sortFilter,
-  categoryFilter,
-}) => {
+const CardList = ({ searchValue, stockFilter, sortFilter, categoryFilter }) => {
   const [products, setProducts] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     axios
       .get(`${serverLink}/products/saare`)
       .then((response) => {
         setProducts(response.data);
         setLoading(false);
-      }).catch(err => {
-        setLoading(false);
       })
+      .catch((err) => {
+        setLoading(false);
+      });
   }, []);
 
   const searchedProducts = products.filter(
@@ -71,23 +66,33 @@ const CardList = ({
       style={{ marginTop: "12vh", paddingBottom: "30px" }}
       className="display-flex justify-content-center"
     >
-      {productsToShow.length ? productsToShow.map((product, i) => {
-        return (
-          <Col md="3" sm="3">
-            <Card
-              key={product.id}
-              id={product.id}
-              price={product.price}
-              name={product.name}
-              imgTag={product.imgurl}
-              category={product.category}
-              description={product.desc}
-              sellerName={product.seller.name}
-              qty={product.qty}
-            />
-          </Col>
-        );
-      }) : <Col md="12" className="d-flex justify-content-center align-items-center" style={{height: '80vh'}}>Oooops, nothing to show...😓</Col>}
+      {productsToShow.length ? (
+        productsToShow.map((product, i) => {
+          return (
+            <Col md="3" sm="3">
+              <Card
+                key={product.id}
+                id={product.id}
+                price={product.price}
+                name={product.name}
+                imgTag={product.imgurl}
+                category={product.category}
+                description={product.desc}
+                sellerName={product.seller.name}
+                qty={product.qty}
+              />
+            </Col>
+          );
+        })
+      ) : (
+        <Col
+          md="12"
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "80vh" }}
+        >
+          Oooops, nothing to show...😓
+        </Col>
+      )}
     </Row>
   );
 };

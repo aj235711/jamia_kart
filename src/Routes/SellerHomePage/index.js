@@ -4,8 +4,7 @@ import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 const HomePage = () => {
-
-    const history = useHistory();
+  const history = useHistory();
 
   return (
     <>
@@ -21,7 +20,7 @@ const HomePage = () => {
                 className="px-5 py-3"
                 outline
                 color="info"
-                onClick={() => history.push('/addproduct')}
+                onClick={() => history.push("/addproduct")}
               >
                 Create New Product
               </Button>
@@ -32,7 +31,7 @@ const HomePage = () => {
                 className="px-5 py-3"
                 outline
                 color="info"
-                onClick={() => history.push('/myproducts')}
+                onClick={() => history.push("/myproducts")}
               >
                 View My Products
               </Button>

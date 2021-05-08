@@ -81,7 +81,7 @@ const CartItem = ({
   return (
     <div className="mb-2" data-aos="zoom-in-left">
       <div
-        className="shadow p-3 mt-5"
+        className="shadow p-3 mt-4"
         style={{ borderRadius: "5px", border: "2px solid rgba(0, 0, 0, 0.3)" }}
       >
         <Row
@@ -149,6 +149,7 @@ const CartItem = ({
           </div>
         </Row>
       </div>
+
       <Modal
         isOpen={deleteItemModal}
         toggle={() => setDeleteItemModal(!deleteItemModal)}
@@ -199,14 +200,10 @@ const CartItem = ({
               </small>
             </Col>
             <Col md="12">
-              <small>
-                Phone Number: {phoneNumber}
-              </small>
+              <small>Phone Number: {phoneNumber}</small>
             </Col>
             <Col md="12">
-              <small>
-                Delivery Address: {shipAddress}
-              </small>
+              <small>Delivery Address: {shipAddress}</small>
             </Col>
             <Col md="12">
               <small>Delivery Status: {!status && "On its way..."}</small>

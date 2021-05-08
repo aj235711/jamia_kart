@@ -1,8 +1,6 @@
 import * as React from "react";
-import { Container, Col, Row } from "reactstrap";
 import LeftBox from "./LerftBox/index.js";
 import RightBox from "./RightBox/index.js";
-import { useLocation } from "react-router-dom";
 
 const Main = ({ searchValue }) => {
   const [stockFilter, setStockFilter] = React.useState(false);

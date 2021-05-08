@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Col, Row } from "reactstrap";
 import { AvForm, AvField, AvInput } from "availity-reactstrap-validation";
-import { useHistory } from "react-router-dom";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,8 +8,6 @@ import { toast } from "react-toastify";
 import { serverLink } from "../../../utils/constants";
 
 const ProductForm = () => {
-  const history = useHistory();
-
   const [image, setImage] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
@@ -112,7 +109,7 @@ const ProductForm = () => {
                   Add Product
                 </Button>
               ) : (
-                <Spinner color='info' />
+                <Spinner color="info" />
               )}
             </FormGroup>
           </Row>
