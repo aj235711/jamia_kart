@@ -33,7 +33,7 @@ const Cart = () => {
 
   return (
     <>
-      {localStorage.getItem("jwt") ? (
+      {JSON.parse(localStorage.getItem("user")).category === "customer" ? (
         <div style={{ marginTop: "10vh" }}>
           <Col md="12" className="d-flex justify-content-center mb-5">
             <Col md="9" className="d-flex align-items-center flex-wrap">
@@ -71,6 +71,8 @@ const Cart = () => {
             </Col>
           </Col>
         </div>
+      ) : JSON.parse(localStorage.getItem("user")).category === "seller" ? (
+        <Redirect to="/sellerhomepage" />
       ) : (
         <Redirect to="/login" />
       )}

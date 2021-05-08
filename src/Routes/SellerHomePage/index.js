@@ -32,6 +32,7 @@ const HomePage = () => {
                 className="px-5 py-3"
                 outline
                 color="info"
+                onClick={() => history.push('/myproducts')}
               >
                 View My Products
               </Button>

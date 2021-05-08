@@ -7,7 +7,7 @@ export default function Bars() {
       <div
        style={{
         position: "fixed",
-        minWidth: "1294px",
+        minWidth: "1000px",
         overflowX: "auto",
         top: "0",
         width: "100%",

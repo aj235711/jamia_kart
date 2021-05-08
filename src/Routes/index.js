@@ -9,12 +9,13 @@ import AddProduct from "./AddProduct";
 import Bars from "../Components/Bars";
 import Orders from "./Orders";
 import SellerHomePage from "./SellerHomePage";
+import MyProducts from "./MyProducts";
 
 const Routes = () => {
   return (
     <Router>
       <Route
-        path={["/jamia_kart", "/product:id", "/cart", "/orders", "/sellerhomepage", "/addproduct"]}
+        path={["/jamia_kart", "/product:id", "/cart", "/orders", "/sellerhomepage", "/addproduct", "/myproducts"]}
         component={Bars}
       />
       <Switch>

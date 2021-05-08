@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import * as React from "react";
 import {
   Row,
@@ -8,11 +7,8 @@ import {
   Tooltip,
   Modal,
   ModalBody,
-  ModalHeader,
   ModalFooter,
 } from "reactstrap";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
 import { serverLink } from "../../../utils/constants";
 import axios from "axios";
 import { toast } from "react-toastify";
