@@ -10,12 +10,22 @@ import Bars from "../Components/Bars";
 import Orders from "./Orders";
 import SellerHomePage from "./SellerHomePage";
 import MyProducts from "./MyProducts";
+import MyProfile from "./MyProfile";
 
 const Routes = () => {
   return (
     <Router>
       <Route
-        path={["/jamia_kart", "/product:id", "/cart", "/orders", "/sellerhomepage", "/addproduct", "/myproducts"]}
+        path={[
+          "/jamia_kart",
+          "/product:id",
+          "/cart",
+          "/orders",
+          "/sellerhomepage",
+          "/addproduct",
+          "/myproducts",
+          "/myprofile",
+        ]}
         component={Bars}
       />
       <Switch>
@@ -28,6 +38,7 @@ const Routes = () => {
         <Route path="/orders" exact component={Orders} />
         <Route path="/sellerhomepage" exact component={SellerHomePage} />
         <Route path="/myproducts" exact component={MyProducts} />
+        <Route path="/myprofile" exact component={MyProfile} />
       </Switch>
     </Router>
   );

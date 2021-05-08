@@ -1,12 +1,17 @@
 import * as React from "react";
 import { Container, Col, Row } from "reactstrap";
-import {
-  AvForm,
-  AvField,
-} from "availity-reactstrap-validation";
+import { AvForm, AvField } from "availity-reactstrap-validation";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { Button, Spinner, FormGroup } from "reactstrap";
+import {
+  Button,
+  Spinner,
+  FormGroup,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
 import JamiaKart from "../../utils/JamiaKart.jpg";
 import Nav from "./Nav";
 import { serverLink } from "../../utils/constants";
@@ -16,6 +21,10 @@ const qs = require("qs");
 const LoginForm = () => {
   const history = useHistory();
   const [loading, setLoading] = React.useState(false);
+  const [changePasswordLoading, setChangePasswordLoading] = React.useState(
+    false
+  );
+  const [changePasswordModal, setChangePasswordModal] = React.useState(false);
   const handleSubmit = (event, values) => {
     setLoading(true);
     console.log(values);
@@ -39,18 +48,39 @@ const LoginForm = () => {
           .then((res) => {
             setLoading(false);
             localStorage.setItem("user", JSON.stringify(res.data));
-            history.push(res.data.category === 'customer' ? "/jamia_kart" : "/sellerhomepage");
+            history.push(
+              res.data.category === "customer"
+                ? "/jamia_kart"
+                : "/sellerhomepage"
+            );
             toast.dark("Logged in successfully");
           })
           .catch((err) => {
             setLoading(false);
             console.log(err);
-            toast.error('Invalid credentials');
+            toast.error("Invalid credentials");
           });
       })
       .catch((err) => {
         setLoading(false);
-        toast.error('Invalid credentials');
+        toast.error("Invalid credentials");
+      });
+  };
+
+  const handleChangePassword = (event, values) => {
+    setChangePasswordLoading(true);
+    axios
+      .put(`${serverLink}/user/pass/${values.email}`, {
+        password: values.newPassword,
+      })
+      .then((res) => {
+        setChangePasswordLoading(true);
+        setChangePasswordModal(!changePasswordModal);
+        toast.dark("Password Changed Successfully!!");
+      })
+      .catch((err) => {
+        setChangePasswordLoading(false);
+        toast.error("Trouble reaching servers");
       });
   };
 
@@ -92,9 +122,21 @@ const LoginForm = () => {
                   )}
                 </FormGroup>
                 <FormGroup className="w-100 d-flex justify-content-center align-items-center">
-                  <div>Don't have an account?</div>
-                  <div
-                    className="ml-3"
+                  <small
+                    style={{
+                      color: "#332288",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setChangePasswordModal(!changePasswordModal)}
+                  >
+                    Forgot Password?
+                  </small>
+                </FormGroup>
+                <FormGroup className="w-100 d-flex justify-content-center align-items-center">
+                  <small>Don't have an account?</small>
+                  <small
+                    className="ml-2"
                     style={{
                       color: "#332288",
                       textDecoration: "underline",
@@ -103,12 +145,53 @@ const LoginForm = () => {
                     onClick={() => history.push("/register")}
                   >
                     Register
-                  </div>
+                  </small>
                 </FormGroup>
               </Row>
             </AvForm>
           </Col>
         </Col>
+        <Modal
+          isOpen={changePasswordModal}
+          toggle={() => setChangePasswordModal(!changePasswordModal)}
+        >
+          <ModalHeader
+            toggle={() => setChangePasswordModal(!changePasswordModal)}
+          >
+            Change Password
+          </ModalHeader>
+          <AvForm onValidSubmit={handleChangePassword}>
+            <ModalBody>
+              <Col md="12">
+                <AvField name="email" label="Email" type="email" required />
+              </Col>
+              <Col md="12">
+                <AvField
+                  name="newPassword"
+                  type="password"
+                  label="New Password"
+                />
+              </Col>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                color={changePasswordLoading ? "secondary" : "info"}
+                outline
+                type="submit"
+                disabled={changePasswordLoading}
+              >
+                Change Password
+              </Button>{" "}
+              <Button
+                color="secondary"
+                outline
+                onClick={() => setChangePasswordModal(!changePasswordModal)}
+              >
+                Cancel
+              </Button>
+            </ModalFooter>
+          </AvForm>
+        </Modal>
       </div>
     </>
   );

@@ -72,7 +72,7 @@ def password_update(email : str, request : schema.PasswordUpdate, db : Session =
     return {"success":True,"Msg":"password updated"}
 
 
-@route.put('/{email}')
+@route.put('/{email}', response_model=schema.UserShow)
 async def update_user(email:str, request : schema.UserUpdate, db : Session=Depends(get_db),current_user:schema.User=Depends(get_current_user)):
     """
     edit user details, must be available to user loggedin with same id
@@ -87,14 +87,14 @@ async def update_user(email:str, request : schema.UserUpdate, db : Session=Depen
     phone_number = request.phone_number
     loc = request.loc
     if user.first().category == "seller":
-        seller = db.query(models.Seller).filter(models.Selled.id== user.first().seller_id)
+        seller = db.query(models.Seller).filter(models.Seller.id== user.first().seller_id)
         if loc=="":
             loc = seller.first().loc
         if phone_number==0:
             phone_number = seller.first().phone_number
         seller.update({"loc":loc,"phone_number":phone_number},synchronize_session=False)
     elif user.first().category == "customer":
-        costumer = db.query(models.Customer).filter(models.Costumer.id== user.first().costumer_id)
+        costumer = db.query(models.Costumer).filter(models.Costumer.id== user.first().costumer_id)
         if loc=="":
             loc = costumer.first().loc
         if phone_number==0:
@@ -102,7 +102,7 @@ async def update_user(email:str, request : schema.UserUpdate, db : Session=Depen
         costumer.update({"loc":loc,"phone_number":phone_number},synchronize_session=False)
     user.update({'name':request.name},synchronize_session=False)
     db.commit()
-    return {"message":f"updated id associated to {email}"}
+    return user.first()
 
 
 

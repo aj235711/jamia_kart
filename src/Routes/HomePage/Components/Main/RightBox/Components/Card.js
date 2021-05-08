@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Card.css";
-import { Row, Col } from "reactstrap";
+import { Col } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
 const Card = ({

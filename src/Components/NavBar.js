@@ -56,9 +56,17 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
       style={{ zIndex: "5000" }}
     >
-      {JSON.parse(localStorage.getItem("user")).category === "customer" ? (
+      {localStorage.getItem("user") &&
+      JSON.parse(localStorage.getItem("user")).category === "customer" ? (
         <>
-          <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleMenuClose();
+              history.push("/myprofile");
+            }}
+          >
+            My Profile
+          </MenuItem>
           <MenuItem
             onClick={() => {
               handleMenuClose();
@@ -70,6 +78,7 @@ export default function PrimarySearchAppBar() {
           <MenuItem
             onClick={() => {
               localStorage.setItem("jwt", "");
+              localStorage.setItem("user", undefined);
               handleMenuClose();
               history.push("/login");
             }}
@@ -79,6 +88,22 @@ export default function PrimarySearchAppBar() {
         </>
       ) : (
         <>
+          <MenuItem
+            onClick={() => {
+              handleMenuClose();
+              history.push("/myprofile");
+            }}
+          >
+            My Profile
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleMenuClose();
+              history.push("/myproducts");
+            }}
+          >
+            My Products
+          </MenuItem>
           <MenuItem
             onClick={() => {
               localStorage.setItem("jwt", "");
@@ -111,41 +136,51 @@ export default function PrimarySearchAppBar() {
             <img
               src={JamiaKart}
               style={{ height: "5vh", cursor: "pointer" }}
-              onClick={() => history.push(JSON.parse(localStorage.getItem("user")).category==='seller' ? "/sellerhomepage" : "/jamia_kart")}
+              onClick={() =>
+                history.push(
+                  JSON.parse(localStorage.getItem("user")).category === "seller"
+                    ? "/sellerhomepage"
+                    : "/jamia_kart"
+                )
+              }
             />
           </Typography>
-          {JSON.parse(localStorage.getItem("user")).category === 'customer' && <div
-            style={{
-              textAlign: "center",
-              borderRadius: "4px",
-              backgroundColor: "white",
-              margin: "2px",
-              marginLeft: "90vh",
-              width: "30%",
-              zIndex: "6000",
-            }}
-          >
-            <SearchForeverTwoToneIcon
-              style={{
-                marginTop: "20px",
-                marginRight: "5px",
-                marginLeft: "5px",
-                backgroundColor: "white",
-              }}
-            />
-            <TextField
-              id="filled-search"
-              label="Search products"
-              type="search"
-              placeholder="Search by Label"
-              variant="standard"
-              onChange={searchInput}
-              style={{
-                margin: "4px",
-                width: "88%",
-              }}
-            />
-          </div>}
+          {localStorage.getItem("user") &&
+            JSON.parse(localStorage.getItem("user")).category ===
+              "customer" && (
+              <div
+                style={{
+                  textAlign: "center",
+                  borderRadius: "4px",
+                  backgroundColor: "white",
+                  margin: "2px",
+                  marginLeft: "90vh",
+                  width: "30%",
+                  zIndex: "6000",
+                }}
+              >
+                <SearchForeverTwoToneIcon
+                  style={{
+                    marginTop: "20px",
+                    marginRight: "5px",
+                    marginLeft: "5px",
+                    backgroundColor: "white",
+                  }}
+                />
+                <TextField
+                  id="filled-search"
+                  label="Search products"
+                  type="search"
+                  placeholder="Search by Label"
+                  variant="standard"
+                  onChange={searchInput}
+                  style={{
+                    margin: "4px",
+                    width: "88%",
+                  }}
+                />
+              </div>
+            )}
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -169,19 +204,20 @@ export default function PrimarySearchAppBar() {
                 <Button color="transparent">Login</Button>
               )}
             </IconButton>
-            {JSON.parse(localStorage.getItem("user")).category ===
-              "customer" && (
-              <IconButton
-                onClick={() => history.push("/cart")}
-                aria-label="show 4 new"
-                color="inherit"
-                style={{ outline: "none" }}
-              >
-                <Badge badgeContent={0} color="primary">
-                  <ShoppingCartIcon />
-                </Badge>
-              </IconButton>
-            )}
+            {localStorage.getItem("user") &&
+              JSON.parse(localStorage.getItem("user")).category ===
+                "customer" && (
+                <IconButton
+                  onClick={() => history.push("/cart")}
+                  aria-label="show 4 new"
+                  color="inherit"
+                  style={{ outline: "none" }}
+                >
+                  <Badge badgeContent={0} color="primary">
+                    <ShoppingCartIcon />
+                  </Badge>
+                </IconButton>
+              )}
           </div>
         </Toolbar>
       </AppBar>

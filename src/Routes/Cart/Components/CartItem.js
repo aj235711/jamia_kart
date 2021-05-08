@@ -4,13 +4,11 @@ import {
   Row,
   Col,
   Button,
-  Spinner,
   Tooltip,
   Modal,
   ModalBody,
   ModalHeader,
   ModalFooter,
-  FormGroup,
 } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 import AddIcon from "@material-ui/icons/Add";
@@ -178,7 +176,7 @@ const CartItem = ({
   return (
     <div className="mb-2" data-aos="zoom-in-left">
       <div
-        className="shadow p-3 mt-5"
+        className="shadow p-3 mt-4"
         style={{ borderRadius: "5px", border: "2px solid rgba(0, 0, 0, 0.3)" }}
       >
         <Row

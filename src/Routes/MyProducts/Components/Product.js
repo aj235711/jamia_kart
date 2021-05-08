@@ -3,22 +3,18 @@ import {
   Row,
   Col,
   Button,
-  Spinner,
   Tooltip,
   Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
-  FormGroup,
-  Label,
 } from "reactstrap";
 import { serverLink } from "../../../utils/constants";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./Product.css";
-import { useHistory } from "react-router-dom";
 import EditIcon from "@material-ui/icons/Edit";
-import { AvForm, AvField, AvInput } from "availity-reactstrap-validation";
+import { AvForm, AvField } from "availity-reactstrap-validation";
 
 const Product = ({
   id,
@@ -32,8 +28,6 @@ const Product = ({
   category,
   setLoading,
 }) => {
-  const history = useHistory();
-
   const [editProductLoading, setEditProductLoading] = React.useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const [editProductModal, setEditProductModal] = React.useState(false);
@@ -85,7 +79,7 @@ const Product = ({
   return (
     <div className="mb-2" data-aos="zoom-in-left">
       <div
-        className="shadow p-3 mt-5"
+        className="shadow p-3 mt-4"
         style={{ borderRadius: "5px", border: "2px solid rgba(0, 0, 0, 0.3)" }}
       >
         <Row
@@ -98,7 +92,12 @@ const Product = ({
             className="h-100 d-flex justify-content-center align-items-center pt-3 pb-3"
           >
             <Col className="imgSeller">
-              <img className="imageSeller" src={image} height="180vh" />
+              <img
+                className="imageSeller"
+                src={image}
+                alt="image"
+                height="180vh"
+              />
             </Col>
           </Col>
           <Col md="9" className="d-flex flex-wrap mt-3">

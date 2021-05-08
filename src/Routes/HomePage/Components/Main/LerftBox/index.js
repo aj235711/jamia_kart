@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  FormControl,
-  FormControlLabel,
-  InputLabel,
-  Chip,
-} from "@material-ui/core";
+import { FormControl, FormControlLabel, InputLabel } from "@material-ui/core";
 import Switch from "@material-ui/core/Switch";
 import { Select } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -14,7 +9,7 @@ const LeftBox = ({
   stockFilter,
   setStockFilter,
   setSortFilter,
-  setCategoryFilter
+  setCategoryFilter,
 }) => {
   return (
     <div
@@ -38,7 +33,7 @@ const LeftBox = ({
           backgroundColor: "white",
           borderRight: "1px solid rgba(0,0,0,0.3)",
           height: "87vh",
-          paddingTop:"12vh",
+          paddingTop: "12vh",
           width: "20vw",
           minWidth: "180px",
           padding: "8px",
@@ -65,9 +60,7 @@ const LeftBox = ({
           >
             <InputLabel>Sort by</InputLabel>
 
-            <Select
-              onChange={(event) => setSortFilter(event.target.value)}
-            >
+            <Select onChange={(event) => setSortFilter(event.target.value)}>
               <MenuItem value={"By Name"}>By Name</MenuItem>
               <MenuItem value={"PLTH"}>Price : Low to High</MenuItem>
               <MenuItem value={"PHTL"}>Price : High to Low</MenuItem>
@@ -75,15 +68,12 @@ const LeftBox = ({
             </Select>
           </FormControl>
 
-
           <FormControl
             style={{ margin: "20px", marginTop: "30px", marginBottom: "30px" }}
           >
             <InputLabel>Category</InputLabel>
 
-            <Select
-              onChange={(event) => setCategoryFilter(event.target.value)}
-            >
+            <Select onChange={(event) => setCategoryFilter(event.target.value)}>
               <MenuItem value={"All"}>All</MenuItem>
               <MenuItem value={"Men's Clothing"}>Men's section</MenuItem>
               <MenuItem value={"Women's Clothing"}>Women's section</MenuItem>
@@ -91,7 +81,6 @@ const LeftBox = ({
               <MenuItem value={"Electronics"}>Electronics</MenuItem>
             </Select>
           </FormControl>
-
         </div>
       </Col>
     </div>

@@ -5,7 +5,7 @@ from storage import schema
 
 SECRET_KEY="8w84tpoejgr(*&^%dsg\[rfo[pdf3pJHK(&JKPYkj#UIlwkf;ldfas+-as8HGIJF#@rozenSetd"
 ALGORITHM="HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES=120
+ACCESS_TOKEN_EXPIRE_MINUTES=12000000
 
 def create_access_token(data: dict):
     to_encode = data.copy()
