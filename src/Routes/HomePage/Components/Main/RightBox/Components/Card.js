@@ -1,20 +1,41 @@
 import * as React from "react";
 import "./Card.css";
 import { Row, Col } from "reactstrap";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-const Card = ({ id, name, price, imgTag, category, description, sellerName,qty }) => {
-
+const Card = ({
+  id,
+  name,
+  price,
+  imgTag,
+  category,
+  description,
+  sellerName,
+  qty,
+}) => {
   const history = useHistory();
 
   const pageChange = () => {
-    history.push(`/product:${id}`, {id, name, price, imgTag, category, description,sellerName, qty});
+    if (JSON.parse(localStorage.getItem("user")).category === "customer")
+      history.push(`/product:${id}`, {
+        id,
+        name,
+        price,
+        imgTag,
+        category,
+        description,
+        sellerName,
+        qty,
+      });
+    else history.push("/login");
   };
 
   return (
-    <Col data-tip data-for="registerTip"
+    <Col
+      data-tip
+      data-for="registerTip"
       md="12"
-      id='TooltipExample'
+      id="TooltipExample"
       className="d-flex justify-content-center align-items-center flex-wrap p-4 m-3 text-center shadow container"
       style={{ height: "400px" }}
       onClick={pageChange}
@@ -35,18 +56,14 @@ const Card = ({ id, name, price, imgTag, category, description, sellerName,qty }
         <Col md="12" className="d-flex justify-content-center flex-wrap">
           <small>Rs. {price}</small>
         </Col>
-        {qty === 0 &&
-        <Col md="12" className="my-0 d-flex justify-content-center flex-wrap">
-          <small style={{color: 'red'}}><small>Out Of Stock</small></small>
-        </Col>}
+        {qty === 0 && (
+          <Col md="12" className="my-0 d-flex justify-content-center flex-wrap">
+            <small style={{ color: "red" }}>
+              <small>Out Of Stock</small>
+            </small>
+          </Col>
+        )}
       </Col>
-      {/* <Button
-        onClick={pageChange}
-        variant="outlined"
-        style={{ border: "1px solid #ee8822aa", color: "#ee8822ff" }}
-      >
-        Show product
-      </Button> */}
     </Col>
   );
 };

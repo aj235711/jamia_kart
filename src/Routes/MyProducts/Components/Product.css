@@ -1,0 +1,16 @@
+.imgSeller {
+    width:100%;
+    height:8vw;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden
+}
+
+.imageSeller{
+  flex-shrink:0;
+    -webkit-flex-shrink: 0;
+    max-width:70%;
+    max-height:90%;
+    padding-top: 10px;
+}

@@ -1,20 +1,18 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-
-import NavBar from "../../Components/NavBar.js";
-import Nav2 from "../../Components/Nav2.js";
-import ProductForm from './Components/ProductForm';
-
+import ProductForm from "./Components/ProductForm";
+import { Redirect } from "react-router-dom";
 
 const ProductPage = () => {
-  const location = useLocation();
-
   return (
-      <>
-      <NavBar />
-      <Nav2 />
-      <ProductForm />
-</>
+    <>
+      {JSON.parse(localStorage.getItem("user")).category === "seller" ? (
+        <div style={{ marginTop: "15vh" }}>
+          <ProductForm />
+        </div>
+      ) : (
+        <Redirect to="/jamia_kart" />
+      )}
+    </>
   );
 };
 

@@ -13,15 +13,19 @@ const CardList = ({
   categoryFilter,
 }) => {
   const [products, setProducts] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
   React.useEffect(() => {
+    setLoading(true)
     axios
       .get(`${serverLink}/products/saare`)
-      .then((response) => setProducts(response.data));
+      .then((response) => {
+        setProducts(response.data);
+        setLoading(false);
+      }).catch(err => {
+        setLoading(false);
+      })
   }, []);
-
-  if (!products.length) return <PlaceHolder />;
-
-  console.log(searchValue);
 
   const searchedProducts = products.filter(
     (product) =>
@@ -59,13 +63,15 @@ const CardList = ({
         )
       : stockFilterProducts;
 
+  if (loading) return <PlaceHolder />;
+
   return (
     <Row
       data-aos="zoom-in-left"
       style={{ marginTop: "12vh", paddingBottom: "30px" }}
       className="display-flex justify-content-center"
     >
-      {productsToShow.map((product, i) => {
+      {productsToShow.length ? productsToShow.map((product, i) => {
         return (
           <Col md="3" sm="3">
             <Card
@@ -81,7 +87,7 @@ const CardList = ({
             />
           </Col>
         );
-      })}
+      }) : <Col md="12" className="d-flex justify-content-center align-items-center" style={{height: '80vh'}}>Oooops, nothing to show...😓</Col>}
     </Row>
   );
 };

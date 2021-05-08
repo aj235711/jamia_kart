@@ -56,61 +56,81 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
       style={{ zIndex: "5000" }}
     >
-      <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Orders</MenuItem>
-      <MenuItem
-        onClick={() => {
-          localStorage.setItem("jwt", "");
-          handleMenuClose();
-          history.push("./login");
-        }}
-      >
-        Logout
-      </MenuItem>
+      {JSON.parse(localStorage.getItem("user")).category === "customer" ? (
+        <>
+          <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleMenuClose();
+              history.push("/orders");
+            }}
+          >
+            My Orders
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              localStorage.setItem("jwt", "");
+              handleMenuClose();
+              history.push("/login");
+            }}
+          >
+            Logout
+          </MenuItem>
+        </>
+      ) : (
+        <>
+          <MenuItem
+            onClick={() => {
+              localStorage.setItem("jwt", "");
+              handleMenuClose();
+              history.push("/login");
+            }}
+          >
+            Logout
+          </MenuItem>
+        </>
+      )}
     </Menu>
   );
 
   const history = useHistory();
 
   const searchInput = (event) => {
-    // *LABEL WALA TARIKA
-
     history.push("/jamia_kart", { searchValue: event.target.value });
   };
 
   return (
     <div data-aos="fade-down">
-      <AppBar position="static" color="black"
-      style={{borderBottom:"1px solid rgba(0,0,0,0.3"}}
+      <AppBar
+        position="static"
+        color="black"
+        style={{ borderBottom: "1px solid rgba(0,0,0,0.3" }}
       >
-        
-        <Toolbar>
+        <Toolbar className="d-flex justify-content-between">
           <Typography className={classes.title} variant="h6" noWrap>
             <img
               src={JamiaKart}
               style={{ height: "5vh", cursor: "pointer" }}
-              onClick={() => history.push("/jamia_kart")}
+              onClick={() => history.push(JSON.parse(localStorage.getItem("user")).category==='seller' ? "/sellerhomepage" : "/jamia_kart")}
             />
           </Typography>
-
-          <div
+          {JSON.parse(localStorage.getItem("user")).category === 'customer' && <div
             style={{
               textAlign: "center",
               borderRadius: "4px",
-              backgroundColor: "rgba(400,400,400,1)",
+              backgroundColor: "white",
               margin: "2px",
-              marginLeft: "100vh",
+              marginLeft: "90vh",
               width: "30%",
               zIndex: "6000",
-              // border: "1px solid rgb(0, 0, 0, 0.3)",
             }}
           >
             <SearchForeverTwoToneIcon
               style={{
                 marginTop: "20px",
                 marginRight: "5px",
-                marginLeft:"5px",
-                backgroundColor: "rgba(400,400,400,1)",
+                marginLeft: "5px",
+                backgroundColor: "white",
               }}
             />
             <TextField
@@ -119,14 +139,13 @@ export default function PrimarySearchAppBar() {
               type="search"
               placeholder="Search by Label"
               variant="standard"
-              // multiline
               onChange={searchInput}
               style={{
                 margin: "4px",
                 width: "88%",
               }}
             />
-          </div>
+          </div>}
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -137,27 +156,32 @@ export default function PrimarySearchAppBar() {
               aria-haspopup="true"
               onClick={(event) => {
                 if (localStorage.getItem("jwt")) handleProfileMenuOpen(event);
-                else history.push("./login");
+                else history.push("/login");
               }}
               color="inherit"
               style={{ outline: "none" }}
             >
               {localStorage.getItem("jwt") ? (
-                <Button color="transparent">User</Button>
+                <Button className="mr-2" color="transparent">
+                  {JSON.parse(localStorage.getItem("user")).name}
+                </Button>
               ) : (
                 <Button color="transparent">Login</Button>
               )}
             </IconButton>
-            <IconButton
-              onClick={() => history.push("/cart")}
-              aria-label="show 4 new"
-              color="inherit"
-              style={{ outline: "none" }}
-            >
-              <Badge badgeContent={0} color="primary">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
+            {JSON.parse(localStorage.getItem("user")).category ===
+              "customer" && (
+              <IconButton
+                onClick={() => history.push("/cart")}
+                aria-label="show 4 new"
+                color="inherit"
+                style={{ outline: "none" }}
+              >
+                <Badge badgeContent={0} color="primary">
+                  <ShoppingCartIcon />
+                </Badge>
+              </IconButton>
+            )}
           </div>
         </Toolbar>
       </AppBar>

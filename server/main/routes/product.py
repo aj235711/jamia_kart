@@ -60,7 +60,7 @@ async def edit_product(id : int, request : schema.ProductEdit, db : Session = De
     """
     user = db.query(models.User).filter(models.User.email == current_user.email).first()
     product = db.query(models.Product).filter(models.Product.id==id)
-    if user  and user.category == "seller" and product.first() and user.seller_id == product.first().seller_id:
+    if user  and user.category == "seller" and product.first() and user.email == product.first().user:
         img = request.imgurl
         daam = request.price
         qnty = request.qty
