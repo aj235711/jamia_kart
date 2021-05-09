@@ -23,7 +23,7 @@ async def create_product(request : schema.Product, db: Session=Depends(get_db),c
         return {"success":False,"errMsg":"no such user"}
     if user.category != "seller":
         return {"success":False,"errMsg":"not a seller"}
-    new_product=models.Product(name=request.name,desc=request.desc,imgurl=request.imgurl,qty=request.qty,price=request.price,category=request.category,seller_id=user.seller_id,user=user.email)
+    new_product=models.Product(name=request.name,desc=request.desc,imgurl=request.imgurl,qty=request.qty,price=request.price,category=request.category,user=user.email)
     db.add(new_product)
     db.commit()
     db.refresh(new_product)
