@@ -38,7 +38,7 @@ const MyProfile = () => {
       .then((res) => {
         setDeleteAccountLoading(false);
         setDeleteAccountModal(!deleteAccountModal);
-        localStorage.setItem("user", undefined);
+        localStorage.setItem("user", "");
         history.push("/login");
         toast.dark("Account deleted successfully!");
       })

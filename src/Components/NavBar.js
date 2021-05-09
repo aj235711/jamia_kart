@@ -78,7 +78,7 @@ export default function PrimarySearchAppBar() {
           <MenuItem
             onClick={() => {
               localStorage.setItem("jwt", "");
-              localStorage.setItem("user", undefined);
+              localStorage.setItem("user", "");
               handleMenuClose();
               history.push("/login");
             }}
